@@ -7,7 +7,7 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=2000&q=80')",
+          backgroundImage: "url('/landing.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -21,12 +21,11 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto text-center flex flex-col items-center -mt-16 md:-mt-24">
 
-        {/* Massive Typography */}
+        {/* Massive Typography (Invisible to maintain layout spacing) */}
         <h1
-          className="text-[14vw] md:text-[11vw] leading-[0.95] tracking-tighter font-bold mx-auto max-w-full break-words text-white/95"
+          className="text-[14vw] md:text-[11vw] leading-[0.95] tracking-tighter font-bold mx-auto max-w-full break-words opacity-0 pointer-events-none select-none"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif",
-            textShadow: "0px 4px 24px rgba(255,255,255,0.3), 0px 10px 40px rgba(0,0,0,0.15)"
           }}
         >
           Hey, I'm<br />Arsh Verma

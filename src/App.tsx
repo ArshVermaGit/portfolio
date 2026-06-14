@@ -117,12 +117,14 @@ export default function App() {
           className="fixed z-50 flex items-center justify-center"
           style={{ top, left, width, height, willChange: "top, left, width, height" }}
         >
-          {/* iOS Liquid Glass Halo Container */}
-          <div className="absolute inset-[-16px] bg-white/20 backdrop-blur-2xl border border-white/50 rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.1)] z-0"></div>
-          
+          {/* Profile image with blurred bottom edge blending into background */}
           <img 
             src="/photo.png"
-            className="relative z-10 w-full h-full object-cover rounded-[1.5rem] shadow-lg"
+            className="relative z-10 w-full h-full object-cover"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+            }}
             alt="Profile"
           />
         </motion.div>
