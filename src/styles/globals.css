@@ -64,6 +64,13 @@ body::before {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@media (max-width: 768px) {
+  .glassContainer {
+    top: auto;
+    bottom: 24px;
+  }
+}
 .glassContainer::-webkit-scrollbar {
   display: none;
 }

@@ -66,18 +66,20 @@ export default function Navbar() {
 
       {/* The Liquid Glass Container */}
       <div className="glassContainer">
-        {SECTIONS.map((section, idx) => (
-          <button 
-            key={idx} 
-            className="glassBtn group"
-            onClick={() => scrollTo(section.id)}
-            title={section.label}
-          >
-            <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
-              <section.icon className="w-5 h-5 text-black drop-shadow-md group-hover:scale-110 transition-transform" />
-            </div>
-          </button>
-        ))}
+        <div className="flex items-center gap-3 overflow-x-auto w-full [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {SECTIONS.map((section, idx) => (
+            <button 
+              key={idx} 
+              className="glassBtn group"
+              onClick={() => scrollTo(section.id)}
+              title={section.label}
+            >
+              <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
+                <section.icon className="w-5 h-5 text-black drop-shadow-md group-hover:scale-110 transition-transform" />
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
     </>
   );
