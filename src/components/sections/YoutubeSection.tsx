@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Play, Calendar, X, Activity, Video } from 'lucide-react';
+import { Play, Calendar, X, Activity, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface YoutubeFeed {
@@ -31,7 +31,7 @@ export default function YoutubeSection() {
   const [data, setData] = useState<YoutubeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedVideo, setSelectedVideo] = useState<YoutubeItem | null>(null);
+  const [selectedVideoIdx, setSelectedVideoIdx] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -53,13 +53,13 @@ export default function YoutubeSection() {
   }, []);
 
   useEffect(() => {
-    if (selectedVideo) {
+    if (selectedVideoIdx !== null) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'auto';
     }
-    return () => { document.body.style.overflow = 'unset'; }
-  }, [selectedVideo]);
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [selectedVideoIdx]);
 
   if (loading) {
     return (
@@ -113,7 +113,8 @@ export default function YoutubeSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard  rounded-[2.5rem] overflow-hidden shadow-sm border "
+            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard  rounded-[2.5rem] overflow-hidden shadow-sm border border-transparent hover:border-gray-100 transition-colors duration-500"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             {/* Banner Mock */}
             <div className="h-32 w-full bg-cover bg-center relative" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
@@ -153,7 +154,6 @@ export default function YoutubeSection() {
             </div>
           </motion.div>
 
-          {/* RIGHT: Video Playlist */}
           <div className="lg:col-span-8 flex flex-col gap-4">
             <div className="flex items-center justify-between mb-4 px-4">
               <h4 className="text-xl font-bold flex items-center gap-2">
@@ -170,10 +170,9 @@ export default function YoutubeSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  onClick={() => setSelectedVideo(video)}
+                  onClick={() => setSelectedVideoIdx(idx)}
                   className="group flex flex-col sm:flex-row items-center gap-6 p-4 rounded-3xl bg-white/40   border border-transparent hover:border-[#e5e5e5] hover:shadow-xl transition-all duration-300 cursor-pointer"
                 >
-                  {/* Small Rounded Thumbnail */}
                   <div className="relative w-full sm:w-48 xl:w-56 aspect-video rounded-2xl overflow-hidden shrink-0 shadow-sm border border-[#eee]">
                     <img 
                       src={video.thumbnail} 
@@ -212,32 +211,55 @@ export default function YoutubeSection() {
 
       {/* Embedded Video Modal */}
       <AnimatePresence>
-        {selectedVideo && (
+        {selectedVideoIdx !== null && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12 bg-black/90 "
-            onClick={() => setSelectedVideo(null)}
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
+            onClick={() => setSelectedVideoIdx(null)}
           >
+            {/* Left Navigation */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : recentVideos.length - 1);
+              }} 
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronLeft size={24} strokeWidth={2.5} />
+            </button>
+
+            {/* Right Navigation */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedVideoIdx(prev => prev! < recentVideos.length - 1 ? prev! + 1 : 0);
+              }} 
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronRight size={24} strokeWidth={2.5} />
+            </button>
+
             <motion.div 
+              key={recentVideos[selectedVideoIdx].guid} // Re-animate when video changes
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-2xl aspect-video border border-white/10"
+              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
             >
               <button 
-                onClick={() => setSelectedVideo(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 bg-black/50 hover:bg-[#FF0000] rounded-full flex items-center justify-center text-white transition-colors  border border-white/10 hover:border-transparent hover:scale-110"
+                onClick={() => setSelectedVideoIdx(null)}
+                className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
               >
-                <X size={24} />
+                <X size={20} strokeWidth={3} />
               </button>
               
               <iframe 
-                src={`https://www.youtube.com/embed/${selectedVideo.link.split('v=')[1]}?autoplay=1&color=red`} 
-                title={selectedVideo.title}
+                src={`https://www.youtube.com/embed/${recentVideos[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
+                title={recentVideos[selectedVideoIdx].title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full border-0"

@@ -47,19 +47,14 @@ body::before {
 
 /* LIQUID GLASS NAVBAR */
 .glassContainer {
-  position: fixed;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  justify-content: center;
+  gap: clamp(4px, 1vw, 12px);
   width: max-content;
-  max-width: calc(100vw - 32px);
-  padding: 12px 20px;
+  padding: clamp(6px, 1.5vw, 12px) clamp(10px, 2.5vw, 20px);
   border-radius: 9999px;
-  z-index: 100;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -88,7 +83,6 @@ body::before {
     backdrop-filter: blur(20px);
     background-color: rgba(255, 255, 255, 0.1);
     filter: url(#container-glass);
-    overflow: hidden;
     isolation: isolate;
 }
 
@@ -98,10 +92,10 @@ body::before {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  padding: 10px;
+  width: clamp(36px, 4vw, 48px);
+  height: clamp(36px, 4vw, 48px);
+  min-width: clamp(36px, 4vw, 48px);
+  padding: clamp(6px, 1vw, 10px);
   background: transparent;
   border-radius: 9999px;
   outline: none;
@@ -121,7 +115,6 @@ body::before {
     position: absolute;
     inset: 0;
     z-index: 0;
-    overflow: hidden;
     border-radius: 9999px;
     box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7), inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
     background-color: rgba(255, 255, 255, 0.3);
@@ -136,11 +129,10 @@ body::before {
     content: '';
     position: absolute;
     z-index: -1;
-    inset: 0;
+    inset: -4px; /* Add slight bleed space so gooey effect doesn't get cut by bounding box */
     border-radius: 9999px;
     backdrop-filter: blur(0px);
     filter: url(#btn-glass);
-    overflow: hidden;
     isolation: isolate;
 }
 
@@ -159,11 +151,10 @@ body::before {
   border-top: 1px solid rgba(255, 255, 255, 1) !important;
   isolation: isolate;
   box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05), inset 0 2px 5px rgba(255, 255, 255, 0.5) !important;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease;
 }
 
 .glassCard:hover {
-  transform: translateY(-8px) scale(1.01);
   box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.05), inset 0 2px 5px rgba(255, 255, 255, 0.8) !important;
 }
 

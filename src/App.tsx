@@ -8,6 +8,7 @@ import AboutSection from './components/sections/AboutSection'
 import StatementSection from './components/sections/StatementSection'
 import TechStackSection from './components/sections/TechStackSection'
 import ProjectsSection from './components/sections/ProjectsSection'
+import CertificationsSection from './components/sections/CertificationsSection'
 import OpenSourceSection from './components/sections/OpenSourceSection'
 import GithubSection from './components/sections/GithubSection'
 import LeetcodeSection from './components/sections/LeetcodeSection'
@@ -136,6 +137,7 @@ export default function App() {
         <StatementSection />
         <TechStackSection />
         <ProjectsSection />
+        <CertificationsSection />
         <OpenSourceSection />
         <GithubSection />
         <LeetcodeSection />

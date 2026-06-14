@@ -50,7 +50,8 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://leetcode.com/u/arsh-leetcode/" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-[#1a1a1a] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#333333] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-[#1a1a1a] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#333333] text-white p-6 gap-6 flex-1"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header / Identity */}
               <div className="flex gap-4 items-center">
@@ -118,7 +119,8 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://www.geeksforgeeks.org/profile/arshver3wu0" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-[#111111] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#222] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-[#111111] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#222] text-white p-6 gap-6 flex-1"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header / Identity */}
               <div className="flex gap-4 items-center">
@@ -183,7 +185,8 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://www.kaggle.com/arshvermadev" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-[#111111] p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 text-[#111111] p-6 gap-6 flex-1"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header Banner Mock */}
               <div className="absolute top-0 right-0 w-32 h-32 opacity-80 pointer-events-none">
@@ -237,7 +240,8 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://huggingface.co/ArshVerma" target="_blank" rel="noreferrer"
-              className="group relative flex bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
+              className="group relative flex bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Left Sidebar */}
               <div className="w-1/3 flex flex-col gap-4 border-r border-[#1e293b] pr-6">

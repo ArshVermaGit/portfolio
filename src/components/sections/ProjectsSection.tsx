@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, GitFork, ArrowUpRight, Code, Layers, Sparkles, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Star, GitFork, ArrowUpRight, Code, Layers, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -52,6 +52,14 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
@@ -73,29 +81,30 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-10"
       onClick={onClose}
     >
       <motion.div
+        key={project.repo} // Animate on change
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl relative"
+        className="w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative"
       >
         {/* Navigation Buttons */}
         {hasPrev && (
-          <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)] backdrop-blur-md hidden md:flex">
+          <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md hidden md:flex">
             <ChevronLeft size={24} strokeWidth={2.5} />
           </button>
         )}
         {hasNext && (
-          <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)] backdrop-blur-md hidden md:flex">
+          <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md hidden md:flex">
             <ChevronRight size={24} strokeWidth={2.5} />
           </button>
         )}
 
         {/* Close Button */}
-        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-black/50  text-white rounded-full flex items-center justify-center hover:bg-black transition-colors shadow-lg">
-          <X size={24} strokeWidth={2.5} />
+        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
+          <X size={20} strokeWidth={3} />
         </button>
 
         {loading ? (
@@ -242,73 +251,76 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
     fetchRepo();
   }, [project.repo]);
 
+  const gradients = [
+    "from-[#f6f8fd] to-[#f1f5f9]", 
+    "from-[#fdfbfb] to-[#ebedee]",
+    "from-[#f8f9fa] to-[#e9ecef]",
+    "from-[#fcfcfc] to-[#f5f5f5]",
+  ];
+  const bgGradient = gradients[idx % gradients.length];
+
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 30 }} 
-      whileInView={{ opacity: 1, y: 0 }} 
+      initial={{ opacity: 0, scale: 0.95, y: 30 }} 
+      whileInView={{ opacity: 1, scale: 1, y: 0 }} 
+      whileHover={{ y: -10, scale: 1.02 }}
       viewport={{ once: true, margin: "-50px" }} 
-      transition={{ duration: 0.6, delay: idx * 0.1, type: "spring", bounce: 0.2 }}
-      className="group bg-white/70  rounded-[2.5rem] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white hover:border-[#eee] transition-all duration-500 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden"
+      transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
+      className="group glassCard rounded-[2rem] flex flex-col relative overflow-hidden cursor-pointer h-full"
+      onClick={onClick}
     >
-       {/* Clickable Overlay for Modal */}
-       <div className="absolute inset-0 z-0 cursor-pointer" onClick={onClick}></div>
+       {/* Cover Image Area */}
+       <div className={`w-full aspect-video bg-gradient-to-br ${bgGradient} group-hover:brightness-105 flex items-center justify-center relative overflow-hidden border-b border-[#eaeaea] group-hover:border-blue-100 transition-all duration-500`}>
+         {/* Subtle watermark */}
+         <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center scale-150 grayscale">
+            <img src={project.logo} className="w-full h-full object-cover blur-sm" alt="" />
+         </div>
 
-       {/* Logo */}
-       <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 bg-[#f9f9f9] rounded-[2rem] flex items-center justify-center p-4 border border-[#eee] group-hover:scale-105 transition-transform duration-500 relative z-10 pointer-events-none">
          <img 
            src={project.logo} 
            alt={project.title} 
-           className="w-full h-full object-contain drop-shadow-sm rounded-2xl" 
-           onError={(e) => {
-             e.currentTarget.style.display = 'none';
-           }}
+           className="w-24 h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-700 relative z-10" 
+           onError={(e) => { e.currentTarget.style.display = 'none'; }}
          />
-       </div>
-
-       {/* Details */}
-       <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left relative z-10 pointer-events-none">
-         <h3 className="text-3xl font-black text-[#111] tracking-tight mb-3 group-hover:text-blue-600 transition-colors">{project.title}</h3>
-         <p className="text-[#666] font-medium leading-relaxed mb-6 line-clamp-2 max-w-2xl">{data?.description || "Fetching repository details from GitHub..."}</p>
          
-         <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-[#eee] shadow-sm">
-               <Star size={16} className="text-[#e3b341] fill-[#e3b341]" />
-               <span className="font-bold text-[#111]">{data?.stargazers_count || 0}</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-[#eee] shadow-sm">
-               <GitFork size={16} className="text-[#888]" />
-               <span className="font-bold text-[#111]">{data?.forks_count || 0}</span>
-            </div>
+         {/* Live Badge in top left corner of the image */}
+         <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 bg-white/80 backdrop-blur-md rounded-full shadow-sm border border-white">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
+            <span className="text-[9px] font-black tracking-widest uppercase text-[#555]">Active</span>
          </div>
        </div>
 
-       {/* Actions */}
-       <div className="flex flex-row md:flex-col gap-3 w-full md:w-auto shrink-0 relative z-10">
-         <a 
-           href={data?.html_url || `https://github.com/ArshVermaGit/${project.repo}`} 
-           target="_blank" 
-           rel="noreferrer"
-           className="flex-1 md:w-48 py-3.5 px-6 bg-[#111] text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-black transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
-         >
-           <Code size={18} /> GitHub Repo
-         </a>
-         {data?.homepage ? (
-           <a 
-             href={data.homepage} 
-             target="_blank" 
-             rel="noreferrer"
-             className="flex-1 md:w-48 py-3.5 px-6 bg-white border border-[#ddd] text-[#111] rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#f9f9f9] transition-all shadow-sm hover:-translate-y-1"
-           >
-             <ArrowUpRight size={18} /> Live Demo
-           </a>
-         ) : (
-           <button 
-             onClick={onClick}
-             className="flex-1 md:w-48 py-3.5 px-6 bg-white border border-[#ddd] text-[#111] rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#f9f9f9] transition-all shadow-sm hover:-translate-y-1"
-           >
-             <LayoutGrid size={18} /> View Details
-           </button>
-         )}
+       {/* Content Area */}
+       <div className="flex-1 p-6 md:p-8 flex flex-col relative z-10 bg-white">
+         <div className="flex items-start justify-between gap-4 mb-3">
+            <h3 className="text-2xl font-black text-[#111] tracking-tight group-hover:text-blue-600 transition-colors line-clamp-1">{project.title}</h3>
+            {data?.stargazers_count > 0 && (
+               <div className="flex items-center gap-1 shrink-0 px-2 py-1 bg-[#fffbf0] border border-[#fde68a] text-[#d97706] rounded-md text-[11px] font-bold shadow-sm">
+                  <Star size={12} className="fill-[#d97706]" /> {data.stargazers_count}
+               </div>
+            )}
+         </div>
+         <p className="text-[#666] font-medium text-[15px] leading-relaxed line-clamp-2 mb-6">
+           {data?.description || project.about}
+         </p>
+         
+         {/* Footer Area */}
+         <div className="mt-auto flex items-center justify-between">
+           <div className="flex items-center gap-2 overflow-hidden">
+              {project.tech.slice(0, 3).map((t: string) => (
+                 <span key={t} className="px-2.5 py-1 bg-[#f9f9f9] border border-[#eee] text-[#666] rounded-md text-[10px] font-bold tracking-widest uppercase shadow-sm group-hover:border-[#ddd] transition-colors">
+                    {t}
+                 </span>
+              ))}
+              {project.tech.length > 3 && (
+                 <span className="text-[10px] font-black text-[#999] tracking-widest uppercase shrink-0">+{project.tech.length - 3}</span>
+              )}
+           </div>
+
+           <div className="w-8 h-8 rounded-full bg-white border border-[#eee] text-[#111] flex items-center justify-center group-hover:bg-[#111] group-hover:text-white transition-colors shadow-sm shrink-0">
+             <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+           </div>
+         </div>
        </div>
     </motion.div>
   );
@@ -335,7 +347,7 @@ export default function ProjectsSection() {
       
 
       
-      <div className="max-w-[1000px] mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -352,7 +364,7 @@ export default function ProjectsSection() {
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Selected open-source projects.</span>
         </motion.h2>
         
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, idx) => (
             <ProjectListItem 
               key={idx} 

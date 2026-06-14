@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GitPullRequest, Building2, BookOpen, ShieldCheck, X } from 'lucide-react';
+import { GitPullRequest, Building2, BookOpen, ShieldCheck, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -19,6 +19,13 @@ const organizations = [
   { name: 'lingdojo', login: 'lingdojo' },
 ];
 
+const badges = [
+  { src: "/apertre_ticket.jpeg", alt: "Apertre Ticket" },
+  { src: "/gssoc-badge-gssoc_champion.png", alt: "Champion" },
+  { src: "/gssoc-badge-legend.png", alt: "Legend" },
+  { src: "/gssoc-badge-top_10.png", alt: "Top 10" }
+];
+
 interface ActivityItem {
   title: string;
   url: string;
@@ -33,7 +40,16 @@ interface GithubData {
 
 export default function OpenSourceSection() {
   const [githubData, setGithubData] = useState<GithubData | null>(null);
-  const [selectedBadge, setSelectedBadge] = useState<{src: string, alt: string} | null>(null);
+  const [selectedBadgeIdx, setSelectedBadgeIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedBadgeIdx !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [selectedBadgeIdx]);
 
   useEffect(() => {
     async function fetchData() {
@@ -196,7 +212,7 @@ export default function OpenSourceSection() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setSelectedBadge({ src: "/apertre_ticket.jpeg", alt: "Apertre Ticket" });
+                    setSelectedBadgeIdx(0);
                   }}
                 >
                   <img src="/apertre_ticket.jpeg" className="h-20 md:h-28 drop-shadow-md rounded-xl object-contain group-hover/ticket:scale-[1.03] transition-transform duration-300" alt="Apertre Ticket" />
@@ -232,7 +248,7 @@ export default function OpenSourceSection() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setSelectedBadge({ src: "/gssoc-badge-gssoc_champion.png", alt: "Champion" });
+                    setSelectedBadgeIdx(1);
                   }}
                 >
                   <img src="/gssoc-badge-gssoc_champion.png" className="w-14 h-14 md:w-20 md:h-20 drop-shadow-md group-hover/badge:scale-110 group-hover/badge:-translate-y-1 transition-all duration-300" alt="Champion" />
@@ -243,7 +259,7 @@ export default function OpenSourceSection() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setSelectedBadge({ src: "/gssoc-badge-legend.png", alt: "Legend" });
+                    setSelectedBadgeIdx(2);
                   }}
                 >
                   <img src="/gssoc-badge-legend.png" className="w-14 h-14 md:w-20 md:h-20 drop-shadow-md group-hover/badge:scale-110 group-hover/badge:-translate-y-1 transition-all duration-300" alt="Legend" />
@@ -254,7 +270,7 @@ export default function OpenSourceSection() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setSelectedBadge({ src: "/gssoc-badge-top_10.png", alt: "Top 10" });
+                    setSelectedBadgeIdx(3);
                   }}
                 >
                   <img src="/gssoc-badge-top_10.png" className="w-14 h-14 md:w-20 md:h-20 drop-shadow-md group-hover/badge:scale-110 group-hover/badge:-translate-y-1 transition-all duration-300" alt="Top 10" />
@@ -271,37 +287,67 @@ export default function OpenSourceSection() {
 
       {/* Image Zoom Modal */}
       <AnimatePresence>
-        {selectedBadge && (
+        {selectedBadgeIdx !== null && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setSelectedBadge(null);
+              setSelectedBadgeIdx(null);
             }}
           >
+            {/* Left Navigation */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedBadgeIdx(prev => prev! > 0 ? prev! - 1 : badges.length - 1);
+              }} 
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronLeft size={24} strokeWidth={2.5} />
+            </button>
+
+            {/* Right Navigation */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedBadgeIdx(prev => prev! < badges.length - 1 ? prev! + 1 : 0);
+              }} 
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronRight size={24} strokeWidth={2.5} />
+            </button>
+
             <motion.div 
+              key={selectedBadgeIdx} // Add key to animate when index changes
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative p-6 md:p-16 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/20 shadow-2xl flex flex-col items-center"
+              className="relative p-6 md:p-16 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col items-center max-w-[90vw]"
             >
               <button 
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setSelectedBadge(null);
+                  setSelectedBadgeIdx(null);
                 }}
-                className="absolute -top-4 -right-4 md:-top-6 md:-right-6 z-10 w-10 h-10 md:w-12 md:h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-xl"
+                className="absolute -top-4 -right-4 md:-top-6 md:-right-6 z-10 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
               >
-                <X size={24} />
+                <X size={20} strokeWidth={3} />
               </button>
-              <img src={selectedBadge.src} alt={selectedBadge.alt} className="max-w-full max-h-[85vh] object-contain drop-shadow-2xl rounded-2xl" />
+              <img 
+                src={badges[selectedBadgeIdx].src} 
+                alt={badges[selectedBadgeIdx].alt} 
+                className="w-full max-w-[300px] md:max-w-[400px] h-auto object-contain drop-shadow-2xl" 
+              />
+              <p className="mt-8 text-white font-black tracking-widest uppercase text-sm md:text-base opacity-90">
+                {badges[selectedBadgeIdx].alt}
+              </p>
             </motion.div>
           </motion.div>
         )}

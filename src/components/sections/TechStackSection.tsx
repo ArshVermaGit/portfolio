@@ -98,10 +98,10 @@ const MarqueeRow = ({ items, reverse = false, speed = 40 }: { items: any[], reve
         {duplicatedItems.map((skill, idx) => (
           <div 
             key={`${skill.name}-${idx}`} 
-            className="flex items-center gap-4 glassCard  rounded-full pr-8 pl-4 py-3 shadow-[0_2px_10px_rgba(0,0,0,0.03)]    hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
+            className="flex items-center gap-4 bg-white border border-[#eee] rounded-full pr-8 pl-4 py-3 hover:-translate-y-1 hover:border-[#ddd] transition-all duration-300 cursor-default"
           >
-            <div className="w-10 h-10 bg-[#f8f8f8] rounded-full flex items-center justify-center border border-[#eeeeee]">
-              <img src={skill.icon} alt={skill.name} className="w-6 h-6 object-contain drop-shadow-sm" loading="lazy" />
+            <div className="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center border border-[#f5f5f5]">
+              <img src={skill.icon} alt={skill.name} className="w-6 h-6 object-contain" loading="lazy" />
             </div>
             <span className="text-[15px] font-bold tracking-tight text-[#111111]">{skill.name}</span>
           </div>

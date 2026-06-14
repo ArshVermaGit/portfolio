@@ -158,7 +158,8 @@ export default function LeetcodeSection() {
           {/* 1. PROFILE CARD */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="lg:col-span-4 glassCard  rounded-[2rem] p-8   hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+            className="lg:col-span-4 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="w-20 h-20 rounded-[1rem] border-2 border-white shadow-sm overflow-hidden mb-4">
               <img src="https://github.com/ArshVermaGit.png" alt="Arsh Verma" className="w-full h-full object-cover" />
@@ -184,7 +185,8 @@ export default function LeetcodeSection() {
           {/* 2. PROBLEM SOLVING MATRIX */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="lg:col-span-8 glassCard  rounded-[2rem] p-8   hover:shadow-xl transition-all duration-300 flex flex-col justify-center h-full"
+            className="lg:col-span-8 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-center h-full"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex flex-col md:flex-row gap-8 items-center h-full">
               
@@ -235,7 +237,8 @@ export default function LeetcodeSection() {
           {/* 3. HEATMAP */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="lg:col-span-8 glassCard  rounded-[2rem] p-8   hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-8 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
               <div>
@@ -273,7 +276,8 @@ export default function LeetcodeSection() {
           {/* 4. RECENT SUBMISSIONS */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="lg:col-span-4 glassCard  rounded-[2rem] p-8   hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-4 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-[#111] tracking-tight">Recent Solutions</h3>

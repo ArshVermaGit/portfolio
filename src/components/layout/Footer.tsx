@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start gap-1 text-blue-50">
           <p className="font-black text-white text-2xl tracking-widest uppercase mb-2 drop-shadow-md">Arsh Verma</p>
           <p className="font-medium text-sm opacity-90">© {new Date().getFullYear()} All rights reserved.</p>
-          <p className="font-medium text-sm flex items-center gap-1 opacity-90">Designed with <span className="text-white drop-shadow-md">♥</span> in India</p>
+          <p className="font-medium text-sm flex items-center gap-1 opacity-90">Designed with <span className="text-white drop-shadow-md">♥</span> by Arsh</p>
         </div>
 
         {/* Right: Socials */}

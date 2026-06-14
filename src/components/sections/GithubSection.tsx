@@ -143,7 +143,8 @@ export default function GithubSection() {
             {/* Profile Card */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
-              className="glassCard  rounded-[2rem] p-10 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center"
+              className="glassCard  rounded-[2rem] p-10 shadow-sm hover:shadow-xl transition-all duration-500 text-center flex flex-col items-center"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               <img 
                 src="https://github.com/ArshVermaGit.png" 
@@ -181,7 +182,8 @@ export default function GithubSection() {
             {/* Followers / Following */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
-              className="glassCard  rounded-[2rem] py-6 px-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex justify-around items-center"
+              className="glassCard  rounded-[2rem] py-6 px-8 shadow-sm hover:shadow-xl transition-all duration-500 flex justify-around items-center"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               <div className="flex flex-col items-center gap-1">
                 <span className="text-4xl font-black tracking-tighter text-[#111111]">{data.profile.followers}</span>
@@ -197,7 +199,8 @@ export default function GithubSection() {
             {/* Top Languages */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
-              className="glassCard  rounded-[2rem] p-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
+              className="glassCard  rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               <h4 className="text-lg font-bold tracking-tight mb-6">Top Languages</h4>
               <div className="flex flex-wrap gap-3">
@@ -226,17 +229,18 @@ export default function GithubSection() {
                 { label: 'TOTAL FORKS', value: data.stats.totalForks },
                 { label: 'MAX STREAK', value: `${data.stats.maxStreak} Days` },
               ].map((stat, idx) => (
-                <div key={idx} className="glassCard  rounded-[2rem] p-4 md:p-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col justify-center items-center text-center">
+                <motion.div key={idx} whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }} className="glassCard  rounded-[2rem] p-4 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-center items-center text-center">
                   <p className="text-[10px] md:text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-2 md:mb-3">{stat.label}</p>
                   <p className="text-3xl md:text-5xl font-black tracking-tighter text-[#111111]">{stat.value}</p>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
 
             {/* Heatmap */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
-              className="glassCard  rounded-[2rem] p-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-auto relative"
+              className="glassCard  rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-auto relative"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               <div className="flex justify-between items-end mb-8">
                 <div>
