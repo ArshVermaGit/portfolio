@@ -356,7 +356,7 @@ export default function ProjectsSection() {
           className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <div className="p-3 md:p-4 bg-[#111] rounded-2xl md:rounded-3xl shadow-md transform -rotate-3">
+            <div className="p-3 md:p-4 bg-gradient-to-tr from-[#10b981] to-[#3b82f6] rounded-2xl md:rounded-3xl shadow-md transform -rotate-3">
               <Layers className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={2.5} />
             </div>
             Featured Work

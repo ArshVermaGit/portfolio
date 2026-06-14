@@ -12,7 +12,8 @@ import {
   Cpu, 
   Heart, 
   Globe,
-  Award
+  Award,
+  Bot
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -20,6 +21,7 @@ const SECTIONS = [
   { id: 'about', icon: User, label: 'About' },
   { id: 'tech-stack', icon: Cpu, label: 'Tech Stack' },
   { id: 'works', icon: Layers, label: 'Featured Work' },
+  { id: 'ai-projects', icon: Bot, label: 'AI Projects' },
   { id: 'certifications', icon: Award, label: 'Certifications' },
   { id: 'open-source', icon: GitPullRequest, label: 'Open Source' },
   { id: 'github', icon: GitBranch, label: 'GitHub' },
