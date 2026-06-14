@@ -41,7 +41,7 @@ export default function SupportSection() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
           className="text-5xl md:text-8xl font-black tracking-tighter mb-16 flex flex-col items-center justify-center text-center text-[#111111]"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
@@ -59,7 +59,7 @@ export default function SupportSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
           className="max-w-5xl mx-auto glassCard   rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden"
         >
           <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left z-10">
