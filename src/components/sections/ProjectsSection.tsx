@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, GitFork, ArrowUpRight, Code, Layers, Sparkles, LayoutGrid } from 'lucide-react';
+import { X, Star, GitFork, ArrowUpRight, Code, Layers, Sparkles, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -47,7 +48,7 @@ const projects = [
   }
 ];
 
-function ProjectModal({ project, onClose }: { project: any, onClose: () => void }) {
+function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { project: any, onClose: () => void, onPrev: () => void, onNext: () => void, hasPrev: boolean, hasNext: boolean }) {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -69,10 +70,10 @@ function ProjectModal({ project, onClose }: { project: any, onClose: () => void 
     fetchData();
   }, [project]);
 
-  return (
+  return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60  p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-md p-4 md:p-10"
       onClick={onClose}
     >
       <motion.div
@@ -80,6 +81,18 @@ function ProjectModal({ project, onClose }: { project: any, onClose: () => void 
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl relative"
       >
+        {/* Navigation Buttons */}
+        {hasPrev && (
+          <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)] backdrop-blur-md hidden md:flex">
+            <ChevronLeft size={24} strokeWidth={2.5} />
+          </button>
+        )}
+        {hasNext && (
+          <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.15)] backdrop-blur-md hidden md:flex">
+            <ChevronRight size={24} strokeWidth={2.5} />
+          </button>
+        )}
+
         {/* Close Button */}
         <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-black/50  text-white rounded-full flex items-center justify-center hover:bg-black transition-colors shadow-lg">
           <X size={24} strokeWidth={2.5} />
@@ -208,7 +221,8 @@ function ProjectModal({ project, onClose }: { project: any, onClose: () => void 
           </div>
         )}
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }
 
@@ -301,19 +315,23 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
 }
 
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
-  // Lock body scroll when modal is open
+  // Lock body scroll and stop lenis when modal is open
   useEffect(() => {
-    if (selectedProject) {
+    const lenis = (window as any).lenis;
+    if (selectedProjectIndex !== null) {
       document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
     } else {
       document.body.style.overflow = 'unset';
+      if (lenis) lenis.start();
     }
     return () => {
       document.body.style.overflow = 'unset';
+      if (lenis) lenis.start();
     };
-  }, [selectedProject]);
+  }, [selectedProjectIndex]);
 
   return (
     <section id="works" className="py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden isolate">
@@ -344,15 +362,22 @@ export default function ProjectsSection() {
               key={idx} 
               project={project} 
               idx={idx} 
-              onClick={() => setSelectedProject(project)} 
+              onClick={() => setSelectedProjectIndex(idx)} 
             />
           ))}
         </div>
       </div>
 
       <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        {selectedProjectIndex !== null && (
+          <ProjectModal 
+            project={projects[selectedProjectIndex]} 
+            onClose={() => setSelectedProjectIndex(null)}
+            onPrev={() => setSelectedProjectIndex(selectedProjectIndex - 1)}
+            onNext={() => setSelectedProjectIndex(selectedProjectIndex + 1)}
+            hasPrev={selectedProjectIndex > 0}
+            hasNext={selectedProjectIndex < projects.length - 1}
+          />
         )}
       </AnimatePresence>
     </section>
