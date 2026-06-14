@@ -57,7 +57,6 @@ body::before {
   padding: 12px 20px;
   border-radius: 9999px;
   z-index: 100;
-  overflow-x: auto;
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
@@ -65,12 +64,6 @@ body::before {
   scrollbar-width: none;
 }
 
-@media (max-width: 768px) {
-  .glassContainer {
-    top: auto;
-    bottom: 24px;
-  }
-}
 .glassContainer::-webkit-scrollbar {
   display: none;
 }
