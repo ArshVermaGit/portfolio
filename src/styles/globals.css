@@ -9,7 +9,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,6 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Noise overlay */
@@ -41,9 +42,11 @@ body::before {
 
 /* Hide scrollbar for a cleaner look or customize it */
 ::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar:horizontal { height: 0; display: none; }
 ::-webkit-scrollbar-track { background: #F4F4F2; }
 ::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #999999; }
+::-webkit-scrollbar-corner { background: transparent; display: none; }
 
 /* LIQUID GLASS NAVBAR */
 .glassContainer {

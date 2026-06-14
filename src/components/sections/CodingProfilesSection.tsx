@@ -66,7 +66,7 @@ export default function CodingProfilesSection() {
               </div>
 
               {/* Stats Panels */}
-              <div className="flex gap-4 w-full h-32">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:h-32">
                 {/* Contest Panel */}
                 <div className="flex-1 bg-[#282828] rounded-xl p-4 flex flex-col justify-between border border-[#333]">
                   <div>
@@ -135,7 +135,7 @@ export default function CodingProfilesSection() {
               </div>
 
               {/* Stats Panels */}
-              <div className="flex gap-4 w-full h-32">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:h-32">
                 {/* Solved Donut Panel */}
                 <div className="flex-1 bg-[#1A1A1A] rounded-xl p-4 flex flex-col items-center justify-center border border-[#222]">
                   <p className="text-[10px] text-[#888] mb-2">Problems Overview</p>
@@ -189,7 +189,7 @@ export default function CodingProfilesSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header Banner Mock */}
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-80 pointer-events-none">
+              <div className="absolute top-0 right-0 w-32 h-32 opacity-20 sm:opacity-80 pointer-events-none">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#FFDE00] rounded-bl-full translate-x-4 -translate-y-4"></div>
                 <div className="absolute top-8 right-8 w-24 h-24 bg-[#20BEFF] rounded-tl-[3rem] rounded-bl-[3rem] transform rotate-12"></div>
                 <div className="absolute bottom-0 right-0 w-16 h-16 bg-[#2F8D46] rounded-tl-full translate-x-4 translate-y-4"></div>
@@ -240,24 +240,24 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://huggingface.co/ArshVerma" target="_blank" rel="noreferrer"
-              className="group relative flex bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col sm:flex-row bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Left Sidebar */}
-              <div className="w-1/3 flex flex-col gap-4 border-r border-[#1e293b] pr-6">
-                <div className="w-full aspect-square rounded-full overflow-hidden border border-[#334155] relative">
+              <div className="w-full sm:w-1/3 flex sm:flex-col items-center sm:items-start gap-4 border-b sm:border-b-0 sm:border-r border-[#1e293b] pb-6 sm:pb-0 sm:pr-6">
+                <div className="w-16 h-16 sm:w-full sm:aspect-square rounded-full overflow-hidden border border-[#334155] relative shrink-0">
                   <img src="/hugging-face-profile-picture.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
-                  <div className="absolute bottom-2 right-2 bg-[#1e293b] text-[10px] px-2 py-0.5 rounded-full border border-[#334155] flex items-center gap-1">
+                  <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 bg-[#1e293b] text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full border border-[#334155] flex items-center gap-1">
                     ❤️ 1
                   </div>
                 </div>
-                <div>
+                <div className="flex-1 flex flex-col">
                   <h3 className="text-lg font-bold leading-tight">Arsh Verma</h3>
-                  <p className="text-xs text-[#94a3b8] bg-[#1e293b] inline-block px-1.5 py-0.5 rounded mt-1">ArshVerma</p>
+                  <p className="text-xs text-[#94a3b8] bg-[#1e293b] inline-block px-1.5 py-0.5 rounded mt-1 w-max">ArshVerma</p>
                 </div>
-                <div className="flex gap-2">
-                  <span className="text-[10px] bg-[#1e293b] text-white px-2 py-1 rounded border border-[#334155]">+ New</span>
-                  <span className="text-[10px] text-[#94a3b8] border border-[#334155] px-2 py-1 rounded">Edit profile</span>
+                <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+                  <span className="text-[10px] bg-[#1e293b] text-white px-2 py-1 rounded border border-[#334155] text-center">+ New</span>
+                  <span className="text-[10px] text-[#94a3b8] border border-[#334155] px-2 py-1 rounded text-center">Edit profile</span>
                 </div>
               </div>
 

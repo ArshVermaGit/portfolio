@@ -191,7 +191,7 @@ export default function LeetcodeSection() {
             <div className="flex flex-col md:flex-row gap-8 items-center h-full">
               
               {/* Total Solved Hero Block */}
-              <div className="bg-[#FFA116] text-white p-8 rounded-[1.5rem] flex flex-col items-center justify-center shrink-0 w-full md:w-56 shadow-lg shadow-[#FFA116]/20 relative overflow-hidden h-full">
+              <div className="bg-[#FFA116] text-white py-12 md:p-8 rounded-[1.5rem] flex flex-col items-center justify-center shrink-0 w-full md:w-56 shadow-lg shadow-[#FFA116]/20 relative overflow-hidden md:h-full">
                 <Flame size={120} className="absolute -right-4 -bottom-4 text-white opacity-10 rotate-12" />
                 <p className="text-[10px] font-black uppercase tracking-widest text-white/90 mb-1 relative z-10">Total Solved</p>
                 <p className="text-5xl font-black tracking-tighter relative z-10">{totalSolved}</p>

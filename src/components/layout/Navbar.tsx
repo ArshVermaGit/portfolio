@@ -117,7 +117,7 @@ export default function Navbar() {
       </svg>
 
       {/* Top Page Liquid Glass Mask (Blurs content as you scroll up) */}
-      <div className="fixed top-0 left-0 right-0 h-24 md:h-32 z-[90] pointer-events-none" style={{
+      <div className="hidden md:block fixed top-0 left-0 right-0 h-24 md:h-32 z-[90] pointer-events-none" style={{
         background: 'linear-gradient(to bottom, rgba(244,244,242,0.8) 0%, rgba(244,244,242,0) 100%)',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
