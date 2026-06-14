@@ -226,9 +226,9 @@ export default function GithubSection() {
                 { label: 'TOTAL FORKS', value: data.stats.totalForks },
                 { label: 'MAX STREAK', value: `${data.stats.maxStreak} Days` },
               ].map((stat, idx) => (
-                <div key={idx} className="glassCard  rounded-[2rem] p-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col justify-center items-center text-center">
-                  <p className="text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-3">{stat.label}</p>
-                  <p className="text-4xl md:text-5xl font-black tracking-tighter text-[#111111]">{stat.value}</p>
+                <div key={idx} className="glassCard  rounded-[2rem] p-4 md:p-8 shadow-sm    hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col justify-center items-center text-center">
+                  <p className="text-[10px] md:text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-2 md:mb-3">{stat.label}</p>
+                  <p className="text-3xl md:text-5xl font-black tracking-tighter text-[#111111]">{stat.value}</p>
                 </div>
               ))}
             </motion.div>

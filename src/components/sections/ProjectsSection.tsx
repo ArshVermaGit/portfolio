@@ -104,7 +104,7 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
              <p className="font-bold text-[#888] tracking-widest uppercase text-sm animate-pulse">Loading GitHub Data...</p>
           </div>
         ) : (
-          <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full">
             
             {/* Top Header: Massive Screenshot */}
             <div className="w-full bg-[#f9f9f9] relative min-h-[300px] md:min-h-[450px] border-b border-[#eee]">
@@ -120,9 +120,9 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
             </div>
 
             {/* Middle Section: Meta Info & Buttons */}
-            <div className="px-8 py-10 md:px-12 flex flex-col md:flex-row gap-8 items-start justify-between border-b border-[#eee] bg-white">
+            <div className="px-6 py-8 md:px-12 md:py-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-between border-b border-[#eee] bg-white">
                <div className="flex-1">
-                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#111] mb-4">{project.title}</h2>
+                 <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#111] mb-4">{project.title}</h2>
                  <p className="text-xl text-[#666] font-medium leading-relaxed max-w-3xl">{data?.description || "No description provided."}</p>
                  
                  <div className="flex items-center gap-4 mt-6">
@@ -160,11 +160,11 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
             </div>
 
             {/* Bottom Section: Curated Details */}
-            <div className="p-8 md:p-12 bg-transparent flex-1">
-               <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 md:p-12 bg-transparent flex-1">
+               <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                  
                  {/* About & Features */}
-                 <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm  flex flex-col h-full">
+                 <div className="bg-white p-6 md:p-10 rounded-[2rem] shadow-sm  flex flex-col h-full">
                    <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6">About the Project</h3>
                    <p className="text-lg text-[#555] font-medium leading-relaxed mb-10">{project.about}</p>
                    
@@ -317,19 +317,15 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
 export default function ProjectsSection() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
-  // Lock body scroll and stop lenis when modal is open
+  // Lock body scroll when modal is open
   useEffect(() => {
-    const lenis = (window as any).lenis;
     if (selectedProjectIndex !== null) {
       document.body.style.overflow = 'hidden';
-      if (lenis) lenis.stop();
     } else {
       document.body.style.overflow = 'unset';
-      if (lenis) lenis.start();
     }
     return () => {
       document.body.style.overflow = 'unset';
-      if (lenis) lenis.start();
     };
   }, [selectedProjectIndex]);
 

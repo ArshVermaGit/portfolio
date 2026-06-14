@@ -40,14 +40,12 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
       </div>
 
       {/* Footer-like elements of the hero */}
-      <div className="absolute bottom-12 left-6 md:left-12 z-30">
-        <div className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl transition-all cursor-default shadow-lg flex items-center justify-center">
+      <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12 z-30 flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+        <div className="w-full md:w-auto px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl transition-all cursor-default shadow-lg flex items-center justify-center">
           <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-[#111111]">© 2026</span>
         </div>
-      </div>
 
-      <div className="absolute bottom-12 right-6 md:right-12 z-30 flex flex-col gap-2">
-        <a href="/RESUME.pdf" download className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 group">
+        <a href="/RESUME.pdf" download className="w-full md:w-auto px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2 group">
           Download Resume <Download size={16} className="group-hover:-translate-y-1 transition-transform text-[#111]" />
         </a>
       </div>

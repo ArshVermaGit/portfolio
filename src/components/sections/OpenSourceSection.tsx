@@ -225,8 +225,8 @@ export default function OpenSourceSection() {
               </div>
             </div>
 
-            <div className="flex items-center gap-6 md:gap-10 bg-white/80 px-6 py-4 rounded-[1.5rem] border border-[#eaeaea] group-hover:border-[#f97316]/20 transition-colors relative z-10">
-              <div className="flex items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-6 md:gap-10 bg-white/80 px-4 md:px-6 py-4 rounded-[1.5rem] border border-[#eaeaea] group-hover:border-[#f97316]/20 transition-colors relative z-10 w-full md:w-auto justify-center">
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
                 <div 
                   className="flex flex-col items-center gap-2 group/badge cursor-zoom-in"
                   onClick={(e) => {
@@ -288,11 +288,8 @@ export default function OpenSourceSection() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              className="relative max-w-4xl max-h-[90vh] flex flex-col items-center justify-center rounded-[2rem]"
+              onClick={(e) => e.stopPropagation()}
+              className="relative p-6 md:p-16 bg-white/10 backdrop-blur-3xl rounded-[3rem] border border-white/20 shadow-2xl flex flex-col items-center"
             >
               <button 
                 onClick={(e) => {

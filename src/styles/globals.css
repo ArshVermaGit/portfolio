@@ -50,7 +50,7 @@ body::before {
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
   width: max-content;
   max-width: calc(100vw - 32px);
