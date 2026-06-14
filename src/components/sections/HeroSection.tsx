@@ -43,13 +43,13 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
       <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12 z-30 flex flex-col-reverse md:flex-row items-center justify-between gap-4">
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          className="glassCard w-full md:w-auto px-6 py-3.5 rounded-2xl transition-all cursor-default flex items-center justify-center"
+          className="bg-[#f4f4f2]/90 backdrop-blur-3xl shadow-[0_20px_40px_rgba(0,0,0,0.2)] border border-white w-full md:w-auto px-6 py-3 rounded-full transition-all cursor-default flex items-center justify-center"
         >
-          <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-[#111111]">© 2026</span>
+          <span className="text-xs md:text-sm font-black tracking-widest uppercase text-[#111111]">© 2026</span>
         </motion.div>
 
-        <motion.a whileHover={{ y: -5, scale: 1.05 }} href="/RESUME.pdf" download className="glassCard w-full md:w-auto px-6 py-3.5 rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all flex items-center justify-center gap-2 group">
-          Download Resume <Download size={16} className="group-hover:-translate-y-1 transition-transform text-[#111]" />
+        <motion.a whileHover={{ y: -5, scale: 1.05 }} href="/RESUME.pdf" download className="bg-[#f4f4f2]/90 backdrop-blur-3xl shadow-[0_20px_40px_rgba(0,0,0,0.2)] border border-white w-full md:w-auto px-6 py-3 rounded-full text-xs md:text-sm font-black uppercase tracking-widest text-[#111111] transition-all flex items-center justify-center gap-2 group">
+          Download Resume <Download size={18} strokeWidth={2.5} className="group-hover:-translate-y-1 transition-transform text-[#111]" />
         </motion.a>
       </div>
 

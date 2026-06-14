@@ -195,7 +195,7 @@ export default function AIProjectsSection() {
                    <img 
                      src={project.logo} 
                      alt={project.title} 
-                     className="w-32 h-32 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
+                     className="w-40 h-40 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
                    />
                    
