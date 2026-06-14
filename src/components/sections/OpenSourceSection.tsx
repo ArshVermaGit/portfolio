@@ -94,7 +94,8 @@ export default function OpenSourceSection() {
           {/* ORGANIZATIONS & CONTRIBUTED TO */}
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={cardVariants}
-            className="lg:col-span-8 bg-white/70  rounded-[2.5rem] p-8 md:p-10 border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 h-full flex flex-col justify-between gap-12 relative overflow-hidden"
+            whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+            className="lg:col-span-8 glassCard rounded-[2.5rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 h-full flex flex-col justify-between gap-12 relative overflow-hidden"
           >
             {/* Subtle background pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
@@ -152,7 +153,10 @@ export default function OpenSourceSection() {
               </h3>
             </div>
 
-            <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea] overflow-hidden flex flex-col flex-1 relative z-10">
+            <motion.div 
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="glassCard rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 overflow-hidden flex flex-col flex-1 relative z-10"
+            >
               <div className="px-6 py-5 border-b border-[#eaeaea]">
                 <span className="text-[11px] font-black uppercase tracking-widest text-[#888]">Merged PRs & Closed Issues</span>
               </div>
@@ -186,7 +190,7 @@ export default function OpenSourceSection() {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* APERTRE 3.0 - COMPACT COMPETITION BAR */}
@@ -195,7 +199,8 @@ export default function OpenSourceSection() {
             target="_blank"
             rel="noreferrer"
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={cardVariants} transition={{ delay: 0.2 }}
-            className="lg:col-span-12 bg-white/70  rounded-[2.5rem] p-6 md:p-8 border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(61,166,57,0.15)] hover:border-[#3DA639]/30 hover:bg-gradient-to-r hover:from-white/70 hover:to-[#3DA639]/5 transition-all duration-500 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 group relative overflow-hidden"
+            whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+            className="lg:col-span-12 glassCard rounded-[2.5rem] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 group relative overflow-hidden"
           >
             <div className="flex items-center gap-6 relative z-10">
               <div className="w-16 h-16 bg-white rounded-2xl border border-[#eaeaea] shadow-sm flex items-center justify-center p-2 shrink-0 group-hover:scale-110 group-hover:border-[#3DA639]/30 transition-all duration-500">
@@ -241,7 +246,8 @@ export default function OpenSourceSection() {
             target="_blank"
             rel="noreferrer"
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={cardVariants} transition={{ delay: 0.3 }}
-            className="lg:col-span-12 bg-white/70  rounded-[2.5rem] p-6 md:p-8 border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.15)] hover:border-[#f97316]/30 hover:bg-gradient-to-r hover:from-white/70 hover:to-[#f97316]/5 transition-all duration-500 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 group relative overflow-hidden"
+            whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+            className="lg:col-span-12 glassCard rounded-[2.5rem] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 group relative overflow-hidden"
           >
             <div className="flex items-center gap-6 relative z-10">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl border border-[#eaeaea] shadow-sm flex items-center justify-center p-2 shrink-0 group-hover:scale-110 group-hover:border-[#f97316]/30 transition-all duration-500">

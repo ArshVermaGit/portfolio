@@ -113,8 +113,8 @@ export default function YoutubeSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard  rounded-[2.5rem] overflow-hidden shadow-sm border border-transparent hover:border-gray-100 transition-colors duration-500"
-            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500"
+            whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
           >
             {/* Banner Mock */}
             <div className="h-32 w-full bg-cover bg-center relative" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
@@ -171,7 +171,8 @@ export default function YoutubeSection() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
                   onClick={() => setSelectedVideoIdx(idx)}
-                  className="group flex flex-col sm:flex-row items-center gap-6 p-4 rounded-3xl bg-white/40   border border-transparent hover:border-[#e5e5e5] hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+                  className="group flex flex-col sm:flex-row items-center gap-6 p-4 rounded-3xl glassCard shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 cursor-pointer"
                 >
                   <div className="relative w-full sm:w-48 xl:w-56 aspect-video rounded-2xl overflow-hidden shrink-0 shadow-sm border border-[#eee]">
                     <img 

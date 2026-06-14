@@ -50,8 +50,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 md:col-span-2 h-full">
             <motion.a 
               href="https://www.linkedin.com/in/arshvermadev/" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
               <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/linkedin-banner.jpeg')" }}>
                 <div className="absolute inset-0 bg-black/10"></div>
@@ -75,8 +75,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://github.com/ArshVermaGit" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-[#0d1117] rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-[#30363d] text-white flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-[#0d1117] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#30363d] text-white flex-1"
             >
               <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center text-center">
                 <img src="https://skillicons.dev/icons?i=github" className="absolute top-5 right-5 w-6 h-6 opacity-50 grayscale group-hover:grayscale-0 transition-all" />
@@ -98,8 +98,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://x.com/TheArshVerma" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-black rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-[#333333] text-white flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-black rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#333333] text-white flex-1"
             >
               <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/X-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/20"></div>
@@ -129,8 +129,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://discord.com/users/975373913980825610" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-[#2b2d31] rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-[#1e1f22] text-white flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-[#2b2d31] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e1f22] text-white flex-1"
             >
               <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/discord-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/10"></div>
@@ -161,8 +161,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 md:col-span-2 h-full">
             <motion.a 
               href="https://www.youtube.com/@ArshCreates" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
               <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/20"></div>
@@ -186,8 +186,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://dev.to/arshvermadev" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border-[3px] border-black flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border-[3px] border-black flex-1"
             >
               <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center text-center relative">
                 <div className="absolute top-5 right-5 bg-black text-white text-[10px] font-black px-2 py-1 rounded">DEV</div>
@@ -209,8 +209,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 md:col-span-2 h-full">
             <motion.a 
               href="mailto:arshverma.dev@gmail.com" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
               <div className="pt-6 px-6 pb-6 flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-3 border-b border-[#eeeeee] pb-3">
@@ -240,8 +240,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://wa.me/919555532013" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-[#efeae2] rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-[#efeae2] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
               <div className="bg-[#075E54] px-5 py-4 flex items-center gap-3 text-white shrink-0 z-10 relative shadow-sm">
                 <div className="w-10 h-10 rounded-full bg-white overflow-hidden shrink-0">
@@ -272,8 +272,8 @@ export default function ContactSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://www.instagram.com/idc.arsh/" target="_blank" rel="noreferrer"
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex-1"
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
               <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center justify-center text-center">
                 <div className="w-20 h-20 rounded-full p-[3px] bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] mb-4">
