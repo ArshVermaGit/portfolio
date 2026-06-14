@@ -174,7 +174,7 @@ export default function CertificationsSection() {
               onClick={() => setSelectedIdx(idx)}
               variants={cardVariants}
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
-              className="cursor-pointer glassCard rounded-[2rem] p-2 flex flex-col group relative overflow-hidden h-full"
+              className="cursor-pointer glassCard rounded-[2rem] p-2 flex flex-col group relative overflow-hidden h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
               {/* Inner certificate frame */}
               <div className="flex-1 rounded-[1.5rem] bg-[#fafafa] border border-[#f0f0f0] p-8 flex flex-col relative overflow-hidden">

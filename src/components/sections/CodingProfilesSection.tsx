@@ -185,7 +185,7 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a 
               href="https://www.kaggle.com/arshvermadev" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 text-[#111111] p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-[#111111] p-6 gap-6 flex-1"
               whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header Banner Mock */}

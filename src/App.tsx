@@ -9,6 +9,8 @@ import StatementSection from './components/sections/StatementSection'
 import TechStackSection from './components/sections/TechStackSection'
 import ProjectsSection from './components/sections/ProjectsSection'
 import AIProjectsSection from './components/sections/AIProjectsSection'
+import ExperienceSection from './components/sections/ExperienceSection'
+import HackathonsSection from './components/sections/HackathonsSection'
 import CertificationsSection from './components/sections/CertificationsSection'
 import OpenSourceSection from './components/sections/OpenSourceSection'
 import GithubSection from './components/sections/GithubSection'
@@ -139,6 +141,8 @@ export default function App() {
         <TechStackSection />
         <ProjectsSection />
         <AIProjectsSection />
+        <ExperienceSection />
+        <HackathonsSection />
         <CertificationsSection />
         <OpenSourceSection />
         <GithubSection />

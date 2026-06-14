@@ -266,7 +266,7 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
       whileHover={{ y: -10, scale: 1.02 }}
       viewport={{ once: true, margin: "-50px" }} 
       transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-      className="group glassCard rounded-[2rem] flex flex-col relative overflow-hidden cursor-pointer h-full"
+      className="group glassCard rounded-[2rem] flex flex-col relative overflow-hidden cursor-pointer h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
       onClick={onClick}
     >
        {/* Cover Image Area */}

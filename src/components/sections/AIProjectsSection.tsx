@@ -176,52 +176,62 @@ export default function AIProjectsSection() {
               key={project.id}
               initial={{ opacity: 0, scale: 0.95, y: 30 }} 
               whileInView={{ opacity: 1, scale: 1, y: 0 }} 
-              whileHover={{ y: -10, scale: 1.02 }}
               viewport={{ once: true, margin: "-50px" }} 
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
               transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-              className="group bg-white rounded-[2rem] md:rounded-[3rem] flex flex-col md:flex-row relative overflow-hidden cursor-pointer w-full max-w-5xl shadow-lg border border-[#eee] hover:shadow-2xl transition-all duration-500 mx-auto"
+              className="group bg-white rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full max-w-[450px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] border border-[#eaeaea] transition-all duration-500 mx-auto"
               onClick={() => setSelectedIdx(idx)}
             >
-               {/* Cover Image Area */}
-               <div className="w-full md:w-2/5 md:min-h-[400px] aspect-video md:aspect-auto bg-gradient-to-br from-[#f6f8fd] to-[#f1f5f9] group-hover:brightness-105 flex items-center justify-center relative overflow-hidden border-b md:border-b-0 md:border-r border-[#eaeaea] group-hover:border-blue-100 transition-all duration-500 p-12">
-                 
-                 <img 
-                   src={project.logo} 
-                   alt={project.title} 
-                   className="w-40 h-40 md:w-56 md:h-56 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-700 relative z-10" 
-                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                 />
-                 
-                 {/* Live Badge */}
-                 <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-md rounded-full shadow-sm border border-white">
-                    <span className="w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse"></span>
-                    <span className="text-[10px] font-black tracking-widest uppercase text-[#555]">Active Model</span>
+              <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] flex flex-col relative overflow-hidden">
+                 {/* Cover Image Area */}
+                 <div className="w-full h-64 bg-white relative overflow-hidden flex items-center justify-center border-b border-[#eaeaea]">
+                   {/* Cool glowing background effect */}
+                   <div className="absolute inset-0 opacity-60">
+                      <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/80 via-transparent to-transparent group-hover:scale-110 group-hover:from-purple-100/80 transition-all duration-1000"></div>
+                   </div>
+                   
+                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+                   
+                   <img 
+                     src={project.logo} 
+                     alt={project.title} 
+                     className="w-32 h-32 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
+                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                   />
+                   
+                   {/* Live Badge */}
+                   <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-md rounded-full border border-[#eaeaea] shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981] animate-pulse"></span>
+                      <span className="text-[10px] font-black tracking-widest uppercase text-[#555]">Active</span>
+                   </div>
                  </div>
-               </div>
 
-               {/* Content Area */}
-               <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative z-10 bg-white">
-                 <div className="flex items-start justify-between gap-4 mb-4">
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111] tracking-tight group-hover:text-blue-600 transition-colors">{project.title}</h3>
-                    
-                    <div className="w-12 h-12 rounded-full bg-white border border-[#eee] text-[#111] flex items-center justify-center group-hover:bg-[#111] group-hover:text-white transition-colors shadow-sm shrink-0 mt-2">
-                      <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
+                 {/* Content Area */}
+                 <div className="flex-1 p-8 md:p-10 flex flex-col relative z-10 bg-white">
+                   <div className="flex items-start justify-between gap-4 mb-4">
+                      <h3 className="text-3xl font-black text-[#111] tracking-tight group-hover:text-[#4f46e5] transition-colors line-clamp-1">{project.title}</h3>
+                   </div>
+                   
+                   <p className="text-[#555] text-base md:text-lg leading-relaxed mb-8 line-clamp-2">
+                     {project.shortDescription}
+                   </p>
+                   
+                   {/* Footer Area */}
+                   <div className="mt-auto flex items-center justify-between border-t border-[#f5f5f5] pt-6">
+                      <div className="flex items-center gap-2 overflow-hidden flex-wrap">
+                         {project.tech.map((t: string) => (
+                            <span key={t} className="px-3 py-1.5 bg-[#f8fafc] border border-[#e2e8f0] text-[#475569] rounded-xl text-[11px] font-bold tracking-widest uppercase shadow-sm group-hover:border-[#cbd5e1] transition-colors">
+                               {t}
+                            </span>
+                         ))}
+                      </div>
+                      
+                      <div className="w-12 h-12 rounded-full bg-[#111] text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-md shrink-0 group-hover:bg-[#4f46e5]">
+                        <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                   </div>
                  </div>
-                 
-                 <p className="text-[#666] font-medium text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-                   {project.shortDescription}
-                 </p>
-                 
-                 {/* Footer Area */}
-                 <div className="mt-auto flex items-center gap-3 overflow-hidden flex-wrap">
-                    {project.tech.map((t: string) => (
-                       <span key={t} className="px-4 py-2 bg-[#f9f9f9] border border-[#eee] text-[#666] rounded-xl text-xs font-bold tracking-widest uppercase shadow-sm group-hover:border-[#ddd] transition-colors">
-                          {t}
-                       </span>
-                    ))}
-                 </div>
-               </div>
+              </div>
             </motion.div>
           ))}
         </div>

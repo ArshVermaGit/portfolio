@@ -326,7 +326,7 @@ export default function GithubSection() {
                 className="flex flex-col gap-5"
               >
                 <h3 className="text-xl font-bold tracking-tight px-1">Recent Activity</h3>
-                <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-[#eaeaea] overflow-hidden flex flex-col flex-1 relative z-10">
+                <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea] overflow-hidden flex flex-col flex-1 relative z-10">
                   <div className="px-6 py-5 border-b border-[#eaeaea]">
                     <span className="text-[11px] font-black uppercase tracking-widest text-[#888]">Merged PRs & Closed Issues</span>
                   </div>

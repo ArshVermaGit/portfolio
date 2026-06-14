@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Home,
@@ -13,7 +13,9 @@ import {
   Heart, 
   Globe,
   Award,
-  Bot
+  Bot,
+  Briefcase,
+  Trophy
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -22,6 +24,8 @@ const SECTIONS = [
   { id: 'tech-stack', icon: Cpu, label: 'Tech Stack' },
   { id: 'works', icon: Layers, label: 'Featured Work' },
   { id: 'ai-projects', icon: Bot, label: 'AI Projects' },
+  { id: 'experience', icon: Briefcase, label: 'Experience' },
+  { id: 'hackathons', icon: Trophy, label: 'Hackathons' },
   { id: 'certifications', icon: Award, label: 'Certifications' },
   { id: 'open-source', icon: GitPullRequest, label: 'Open Source' },
   { id: 'github', icon: GitBranch, label: 'GitHub' },
@@ -34,36 +38,43 @@ const SECTIONS = [
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
+  const isScrolling = useRef(false);
 
   useEffect(() => {
-    // Add small delay to let DOM paint first
-    const timeoutId = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const intersecting = entries.filter((entry) => entry.isIntersecting);
-          if (intersecting.length > 0) {
-            intersecting.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-            setActiveSection(intersecting[0].target.id);
-          }
-        },
-        {
-          rootMargin: '-20% 0px -60% 0px',
-          threshold: [0, 0.25, 0.5, 0.75, 1],
-        }
-      );
-
-      SECTIONS.forEach((section) => {
+    const handleScroll = () => {
+      if (isScrolling.current) return;
+      
+      // We check what element is currently at the top 30% of the screen
+      const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+      
+      let currentSection = SECTIONS[0].id;
+      for (const section of SECTIONS) {
         const el = document.getElementById(section.id);
-        if (el) observer.observe(el);
-      });
+        if (el) {
+          // Add a small buffer so it switches slightly before it hits the exact top
+          const top = el.offsetTop - 100; 
+          if (scrollPosition >= top) {
+            currentSection = section.id;
+          }
+        }
+      }
+      
+      setActiveSection(currentSection);
+    };
 
-      return () => observer.disconnect();
-    }, 500);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial check after a small delay to let layout settle
+    const timeoutId = setTimeout(handleScroll, 500);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const scrollTo = (id: string) => {
+    isScrolling.current = true;
     setActiveSection(id);
     const el = document.getElementById(id);
     if (el) {
@@ -71,6 +82,11 @@ export default function Navbar() {
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    
+    // Re-enable scroll listener after scrolling is likely done
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 1000);
   };
 
   return (
