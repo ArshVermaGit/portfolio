@@ -177,9 +177,9 @@ export default function AIProjectsSection() {
               initial={{ opacity: 0, scale: 0.95, y: 30 }} 
               whileInView={{ opacity: 1, scale: 1, y: 0 }} 
               viewport={{ once: true, margin: "-50px" }} 
-              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-              className="group bg-white rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full max-w-[450px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] border border-[#eaeaea] transition-all duration-500 mx-auto"
+              className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full max-w-[450px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 mx-auto border border-[#eaeaea]"
               onClick={() => setSelectedIdx(idx)}
             >
               <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] flex flex-col relative overflow-hidden">

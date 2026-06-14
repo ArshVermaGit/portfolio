@@ -85,9 +85,9 @@ export default function HackathonsSection() {
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-              className="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] transition-all duration-500 border border-[#eaeaea] flex flex-col relative overflow-hidden group w-full p-2"
+              className="group glassCard rounded-[2.5rem] p-2 flex flex-col relative overflow-hidden cursor-pointer w-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea]"
             >
               <div className="flex-1 rounded-[2rem] bg-[#fafafa] border border-[#f0f0f0] p-6 flex flex-col relative overflow-hidden">
                 <div className="flex items-center gap-4 mb-6 relative z-10">

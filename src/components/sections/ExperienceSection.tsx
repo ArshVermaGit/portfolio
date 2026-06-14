@@ -44,9 +44,9 @@ export default function ExperienceSection() {
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+              whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-              className="bg-white rounded-[3rem] p-2 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] transition-all duration-500 border border-[#eaeaea] flex flex-col relative group cursor-pointer"
+              className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea]"
             >
               <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden">
                 <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 bg-white rounded-2xl flex items-center justify-center overflow-hidden border border-[#eee] shadow-sm group-hover:border-[#14b8a6] transition-colors duration-300 relative z-10">
