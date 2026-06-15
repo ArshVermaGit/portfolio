@@ -245,7 +245,7 @@ export default function CodingProfilesSection() {
             >
               {/* Left Sidebar */}
               <div className="w-full sm:w-1/3 flex sm:flex-col items-center sm:items-start gap-4 border-b sm:border-b-0 sm:border-r border-[#1e293b] pb-6 sm:pb-0 sm:pr-6">
-                <div className="w-16 h-16 sm:w-full sm:aspect-square rounded-full overflow-hidden border border-[#334155] relative shrink-0">
+                <div className="w-16 h-16 sm:w-full sm:h-auto sm:aspect-square rounded-full overflow-hidden border border-[#334155] relative shrink-0">
                   <img src="/hugging-face-profile-picture.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                   <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 bg-[#1e293b] text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full border border-[#334155] flex items-center gap-1">
                     ❤️ 1
