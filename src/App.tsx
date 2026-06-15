@@ -110,7 +110,7 @@ export default function App() {
   const height = useTransform(smoothScrollY, [0, targetScroll], [bounds.hero.height, bounds.about.height]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 text-[#111111] relative isolate">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 bg-fixed text-[#111111] relative isolate overflow-x-clip">
       <Navbar />
       
       {/* Global Animated Profile Picture */}
