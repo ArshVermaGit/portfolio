@@ -10,7 +10,7 @@ const aiProjects = [
     shortDescription: 'Multi-class sentiment analysis model for e-commerce reviews based on BERT.',
     logo: '/review-logo.png',
     screenshots: [
-      { src: '/public/review.png', alt: 'Review.AI Dashboard', fallback: true },
+      { src: '/review.png', alt: 'Review.AI Dashboard', fallback: true },
       { src: '/confusion_matrix copy.png', alt: 'Confusion Matrix' },
       { src: '/training_loss_curve copy.png', alt: 'Training Loss Curve' }
     ],
