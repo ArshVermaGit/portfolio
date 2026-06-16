@@ -5,6 +5,26 @@ import { BrainCircuit, Code, Activity, X, Sparkles, Cpu, ArrowUpRight, Database,
 
 const aiProjects = [
   {
+    id: 'codelens',
+    title: 'CodeLens',
+    shortDescription: 'An AI agent fine-tuned to act as a Senior Code Reviewer, capable of autonomously detecting bugs, security vulnerabilities, and architectural issues in PRs.',
+    logo: '/codelens-brand-v2.svg',
+    screenshots: [
+      { src: '/Codelens.png', alt: 'CodeLens Dashboard' }
+    ],
+    huggingFaceUrl: 'https://huggingface.co/spaces/ArshVerma/CodeLens',
+    kaggleUrl: 'https://www.kaggle.com/models/arshvermadev/codelens/',
+    githubUrl: 'https://github.com/ArshVermaGit/codelens-eval',
+    datasetUrl: 'https://www.kaggle.com/datasets/arshvermadev/codelens-dataset',
+    modelSummary: 'CodeLens-Reviewer is an AI agent fine-tuned to act as a Senior Code Reviewer. Built upon the Qwen2.5-Coder architecture, this model has been instruction-tuned by Arsh Verma to autonomously detect bugs, identify security vulnerabilities, and critique architectural flaws in Python Pull Requests. It interacts directly with the CodeLens Evaluation Environment, outputting perfectly structured JSON actions to simulate an automated code review loop.',
+    details: 'Hardware: Trained on a single NVIDIA Tesla T4 x2 GPU via Kaggle.\nSoftware: Unsloth, PyTorch, Hugging Face Transformers, TRL.\nCompute: Fine-tuning took less than 15 minutes due to Unsloth highly optimized 4-bit LoRA training pipeline. Inference requires under 6GB of VRAM, making it incredibly lightweight and accessible.\n\nModel Characteristics\n\nThe model was fine-tuned from the pre-trained unsloth/Qwen2.5-Coder-7B-Instruct base model. It contains 7 Billion Parameters. LoRA adapters were applied to Q, K, V, O, gate, up, and down projections. The model was trained and quantized in 4-bit to severely reduce VRAM requirements.\n\nData Overview\n\nThe model was trained on a highly specific, synthetically generated instructional dataset targeting code review tasks. The training data contains custom prompt-completion pairs. Each row simulates a CodeLens environment state containing a PR title, a code diff containing planted bugs, and a golden JSON completion representing the ideal code review action.',
+    usage: 'This model is intended to be used either standalone for code inference or plugged into the live CodeLens Evaluation Environment. You can load it using the FastLanguageModel from Unsloth in 4-bit precision.\n\nShape of Inputs/Outputs:\n\nInput: Natural language instructions and a python code snippet.\nOutput: A strict JSON object containing action, issue_description, filename, line_number, severity, and category.\nKnown Failures: The model may hallucinate specific line numbers if the provided code diff is extremely long or poorly formatted.',
+    codeSnippet: `from unsloth import FastLanguageModel\nimport torch\n\nmax_seq_length = 2048\ndtype = None \nload_in_4bit = True\n\nmodel, tokenizer = FastLanguageModel.from_pretrained(\n    model_name = "arshvermadev/codelens",\n    max_seq_length = max_seq_length,\n    dtype = dtype,\n    load_in_4bit = load_in_4bit,\n)\n\n# Inference Example\nprompt = "Review this python code: ..."\ninputs = tokenizer([prompt], return_tensors="pt").to("cuda")\noutputs = model.generate(**inputs, max_new_tokens=256)\nprint(tokenizer.batch_decode(outputs, skip_special_tokens=True))`,
+    limitations: 'The model successfully learned the JSON formatting constraints and correctly identifies logic bugs (e.g., modifying arrays during iteration) without hallucinating markdown wrappers.\n\nBug Detection: High accuracy. Successfully identifies off-by-one and logical loop errors.\nSecurity Audit: Capable of identifying basic input sanitization failures.\nArchitecture: Demonstrates baseline capability in flagging Single Responsibility Principle violations.\n\nThis model is intended strictly for evaluating code within isolated sandboxes or assisting developers. It should not be used to automatically reject or approve production Pull Requests without human oversight, as false positives are possible. No sensitive or PII data was used during the training of this model.',
+    system: 'This model serves as the core Agent in the CodeLens Evaluation System. It receives system prompts, noise budgets, and task definitions from the CodeLens Python backend. Its downstream dependency is the CodeLens WebSocket dashboard, which parses the JSON outputs to assign rewards and update the live leaderboard.',
+    tech: ['Qwen2.5', 'Unsloth', 'LoRA', 'PyTorch']
+  },
+  {
     id: 'review-ai',
     title: 'REVIEW.AI',
     shortDescription: 'Multi-class sentiment analysis model for e-commerce reviews based on BERT.',
@@ -54,7 +74,7 @@ function AIProjectModal({ project, onClose }: { project: any, onClose: () => voi
           
           {/* Top Section: Meta Info & Logo */}
           <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
-             <div className="w-32 h-32 md:w-48 md:h-48 mb-8 relative">
+             <div className="w-48 h-48 md:w-64 md:h-64 mb-8 relative">
                 <img src={project.logo} alt={project.title} className="w-full h-full object-contain drop-shadow-sm" />
              </div>
              
@@ -79,6 +99,11 @@ function AIProjectModal({ project, onClose }: { project: any, onClose: () => voi
                <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
                  <ArrowUpRight size={20} /> Live Demo
                </a>
+               {project.datasetUrl && (
+                 <a href={project.datasetUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-blue-50 text-blue-600 border border-blue-100 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-blue-100 transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
+                   <Database size={20} /> Dataset
+                 </a>
+               )}
              </div>
           </div>
 
@@ -195,7 +220,7 @@ export default function AIProjectsSection() {
                    <img 
                      src={project.logo} 
                      alt={project.title} 
-                     className="w-40 h-40 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
+                     className="w-56 h-56 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
                    />
                    
