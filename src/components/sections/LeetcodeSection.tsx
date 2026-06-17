@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X, Medal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface AllQuestionsCount {
   difficulty: string;
@@ -108,6 +108,18 @@ export default function LeetcodeSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
+  const heatmapScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (data && heatmapScrollRef.current) {
+      // Small timeout to let the DOM paint the new heatmap width
+      setTimeout(() => {
+        if (heatmapScrollRef.current) {
+          heatmapScrollRef.current.scrollLeft = heatmapScrollRef.current.scrollWidth;
+        }
+      }, 100);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (selectedBadgeIndex !== null) {
@@ -336,7 +348,7 @@ export default function LeetcodeSection() {
               </div>
             </div>
 
-            <div className="flex-1 w-full overflow-x-auto flex items-center justify-start xl:justify-center mt-2 pb-6 custom-scrollbar">
+            <div ref={heatmapScrollRef} className="flex-1 w-full overflow-x-auto flex items-center justify-start xl:justify-center mt-2 pb-6 custom-scrollbar">
               <div className="flex flex-col gap-2 min-w-max">
                 
                 {/* Month Labels */}
