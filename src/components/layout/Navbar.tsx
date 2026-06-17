@@ -80,9 +80,11 @@ export default function Navbar() {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
-    return () => { document.body.style.overflow = 'auto'; };
+    return () => { 
+      document.body.style.overflow = '';
+    };
   }, [isMobileMenuOpen]);
 
   const scrollTo = (id: string) => {
@@ -145,28 +147,31 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="md:hidden fixed inset-0 z-[100] bg-[#f4f4f2]/80 backdrop-blur-3xl flex flex-col pt-24 px-4 pb-8 overflow-y-auto"
+            className="md:hidden fixed inset-0 z-[100] bg-[#f4f4f2]/80 backdrop-blur-3xl flex flex-col pt-24 px-4 pb-8 overflow-y-auto overscroll-contain"
+            data-lenis-prevent="true"
           >
-            <div className="flex flex-col gap-3 max-w-sm mx-auto w-full">
-              <p className="text-xs font-black uppercase tracking-widest text-[#888] mb-2 px-2">Navigation</p>
+            <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full">
+              <div className="col-span-2 mb-2">
+                <p className="text-xs font-black uppercase tracking-widest text-[#888] px-2 text-center">Navigation</p>
+              </div>
               {SECTIONS.map((section, idx) => {
                 const isActive = activeSection === section.id;
                 return (
                   <motion.button 
                     key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.03, type: "spring", bounce: 0.5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.02, type: "spring", bounce: 0.5 }}
                     onClick={() => {
                       scrollTo(section.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`flex items-center gap-4 p-4 rounded-[1.5rem] transition-all ${isActive ? 'bg-black text-white shadow-2xl scale-[1.02] z-10' : 'bg-white/60 text-[#111] hover:bg-white shadow-sm border border-white/50'}`}
+                    className={`flex flex-col items-center justify-center text-center gap-2 p-4 rounded-[1.5rem] transition-all ${isActive ? 'bg-black text-white shadow-xl scale-[1.02] z-10' : 'bg-white/80 text-[#111] hover:bg-white shadow-sm border border-white/50'}`}
                   >
-                    <div className={`w-12 h-12 rounded-[1.25rem] flex items-center justify-center shrink-0 ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
-                      <section.icon size={22} className={isActive ? 'text-white' : 'text-[#111]'} strokeWidth={isActive ? 2.5 : 2} />
+                    <div className={`w-10 h-10 rounded-[1rem] flex items-center justify-center shrink-0 ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
+                      <section.icon size={20} className={isActive ? 'text-white' : 'text-[#111]'} strokeWidth={isActive ? 2.5 : 2} />
                     </div>
-                    <span className={`text-lg ${isActive ? 'font-black' : 'font-bold'}`}>{section.label}</span>
+                    <span className={`text-[11px] uppercase tracking-wider ${isActive ? 'font-black' : 'font-bold'}`}>{section.label}</span>
                   </motion.button>
                 )
               })}

@@ -260,7 +260,7 @@ export default function YoutubeSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-md overscroll-none"
             >
               {/* Left Navigation */}
               {selectedVideoIdx !== null && selectedVideoIdx > 0 && (
@@ -269,9 +269,9 @@ export default function YoutubeSection() {
                     e.stopPropagation();
                     setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : prev);
                   }} 
-                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                  className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg border border-white/10 backdrop-blur-md"
                 >
-                  <ChevronLeft size={24} strokeWidth={2.5} />
+                  <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
               )}
 
@@ -282,9 +282,9 @@ export default function YoutubeSection() {
                   e.stopPropagation();
                   setSelectedVideoIdx(prev => prev! < data.items.length - 1 ? prev! + 1 : prev);
                 }} 
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg border border-white/10 backdrop-blur-md"
               >
-                <ChevronRight size={24} strokeWidth={2.5} />
+                <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
               </button>
             )}
 
@@ -295,13 +295,13 @@ export default function YoutubeSection() {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
+              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20 overscroll-contain"
             >
               <button 
                 onClick={() => setSelectedVideoIdx(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
+                className="absolute top-3 right-3 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-black rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-2xl border border-white/20"
               >
-                <X size={20} strokeWidth={3} />
+                <X className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
               </button>
               
               <iframe 

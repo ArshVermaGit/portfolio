@@ -118,9 +118,7 @@ export default function TechStackSection() {
       
 
       
-      {/* Gradient Fades for Marquee */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#F4F4F2] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#F4F4F2] to-transparent z-10 pointer-events-none"></div>
+      {/* CSS Mask-Image handles the fading perfectly on ANY background color! */}
 
       <div className="max-w-[1280px] mx-auto px-6 mb-20 relative z-20 text-center">
         <motion.h2 
@@ -143,7 +141,13 @@ export default function TechStackSection() {
         </motion.h2>
       </div>
 
-      <div className="flex flex-col gap-4 relative z-0 transform -rotate-2 scale-105">
+      <div 
+        className="flex flex-col gap-4 relative z-0 transform -rotate-2 scale-105 overflow-hidden"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+        }}
+      >
         <MarqueeRow items={row1} speed={60} />
         <MarqueeRow items={row2} speed={55} reverse />
         <MarqueeRow items={row3} speed={65} />

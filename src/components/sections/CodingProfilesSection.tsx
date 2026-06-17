@@ -50,7 +50,7 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a
               href="https://leetcode.com/u/arsh-leetcode/" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-[#1a1a1a] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#333333] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-[#1a1a1a] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#333333] text-white p-5 sm:p-6 gap-5 sm:gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header / Identity */}
@@ -78,10 +78,10 @@ export default function CodingProfilesSection() {
                   </div>
                 </div>
                 {/* Solved Donut Panel */}
-                <div className="flex-[1.5] bg-[#282828] rounded-xl p-4 flex items-center gap-4 border border-[#333]">
-                  <div className="relative w-20 h-20 flex items-center justify-center rounded-full border-4 border-[#FFA116] border-r-transparent border-b-transparent shrink-0">
+                <div className="flex-[1.5] bg-[#282828] rounded-xl p-4 flex items-center gap-2 sm:gap-4 border border-[#333]">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full border-4 border-[#FFA116] border-r-transparent border-b-transparent shrink-0">
                     <div className="text-center">
-                      <p className="text-xl font-bold leading-none">282</p>
+                      <p className="text-lg sm:text-xl font-bold leading-none">282</p>
                       <p className="text-[8px] text-[#888]">Solved</p>
                     </div>
                   </div>
@@ -122,7 +122,7 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a
               href="https://www.geeksforgeeks.org/profile/arshver3wu0" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-[#111111] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#222] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-[#111111] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#222] text-white p-5 sm:p-6 gap-5 sm:gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header / Identity */}
@@ -131,7 +131,7 @@ export default function CodingProfilesSection() {
                   <img src="/youtube-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale opacity-80" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold leading-tight uppercase tracking-wide">ARSH VERMA</h3>
+                  <h3 className="text-lg sm:text-xl font-bold leading-tight uppercase tracking-wide">ARSH VERMA</h3>
                   <p className="text-xs text-[#888888]">Community Member</p>
                 </div>
                 <img src="https://images.yourstory.com/cs/images/companies/119169043101580097794440231905187057223611079n-1617083628661.png" alt="GFG" className="w-8 h-8 ml-auto filter brightness-0 invert opacity-20" />
@@ -191,7 +191,7 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a
               href="https://www.kaggle.com/arshvermadev" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.2)] transition-shadow duration-500 text-[#111111] p-6 gap-6 flex-1"
+              className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.2)] transition-shadow duration-500 text-[#111111] p-5 sm:p-6 gap-5 sm:gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Header Banner Mock */}
@@ -202,15 +202,15 @@ export default function CodingProfilesSection() {
               </div>
 
               {/* Header / Identity */}
-              <div className="flex gap-6 items-center relative z-10 pt-4">
-                <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 border-4 border-[#20BEFF] p-1">
+              <div className="flex gap-4 sm:gap-6 items-center relative z-10 pt-4">
+                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border-4 border-[#20BEFF] p-1">
                   <div className="w-full h-full rounded-full overflow-hidden">
                     <img src="/instagram-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale" />
                   </div>
                 </div>
                 <div>
                   <p className="text-xs text-[#888888] mb-1">arshvermadev</p>
-                  <h3 className="text-2xl font-black leading-tight uppercase tracking-wider mb-2">ARSH VERMA</h3>
+                  <h3 className="text-xl sm:text-2xl font-black leading-tight uppercase tracking-wider mb-2">ARSH VERMA</h3>
                   <p className="text-[10px] text-[#666] flex items-center gap-1">Joined 4 days ago · last seen 3 days ago</p>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function CodingProfilesSection() {
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
             <motion.a
               href="https://huggingface.co/ArshVerma" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col sm:flex-row bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
+              className="group relative flex flex-col sm:flex-row bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e293b] text-white p-5 sm:p-6 gap-5 sm:gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
             >
               {/* Left Sidebar */}

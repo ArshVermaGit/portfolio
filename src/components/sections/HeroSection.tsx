@@ -56,9 +56,25 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-32 px-6 overflow-hidden bg-transparent">
 
-      {/* Flawless Fade Masked Background Image */}
+      {/* Flawless Fade Masked Background Image (Mobile) */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none block md:hidden"
+        style={{
+          backgroundImage: "url('/landing_1.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          WebkitMaskImage: 'linear-gradient(to top, transparent 0%, transparent 100px, black 400px)',
+          maskImage: 'linear-gradient(to top, transparent 0%, transparent 100px, black 400px)'
+        }}
+      >
+        {/* Subtle dark overlay so white text remains readable */}
+        <div className="absolute inset-0 bg-black/10"></div>
+      </div>
+
+      {/* Flawless Fade Masked Background Image (Desktop) */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none hidden md:block"
         style={{
           backgroundImage: "url('/landing.png')",
           backgroundSize: 'cover',

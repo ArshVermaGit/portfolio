@@ -63,7 +63,7 @@ function HackathonModal({
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10 overscroll-none"
     >
       <motion.div
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
@@ -72,45 +72,45 @@ function HackathonModal({
       >
         {/* Navigation Buttons (Outside Modal Box) */}
         {hasPrev && (
-          <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronLeft size={32} />
+          <div className="absolute inset-y-0 left-2 md:left-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
         {hasNext && (
-          <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronRight size={32} />
+          <div className="absolute inset-y-0 right-2 md:right-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
 
-        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
+        <button onClick={onClose} className="absolute top-3 right-3 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
           <X size={20} strokeWidth={3} />
         </button>
 
-        <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
+        <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
           
           <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
-             <div className="w-48 h-48 md:w-64 md:h-64 mb-8 relative rounded-2xl overflow-hidden shadow-sm border border-[#eee] bg-white">
+             <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mb-6 md:mb-8 relative rounded-2xl overflow-hidden shadow-sm border border-[#eee] bg-white shrink-0">
                 <img src={hackathon.logo} alt={hackathon.title} className="w-full h-full object-contain p-4" />
              </div>
              
-             <div className="flex items-center gap-3 mb-6">
-               <div className="px-4 py-1.5 bg-[#f8fafc] text-[#8b5cf6] rounded-full text-xs font-black tracking-widest uppercase border border-[#e2e8f0] flex items-center gap-2">
-                 <Calendar size={14} /> {hackathon.date}
+             <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+               <div className="px-3 py-1 md:px-4 md:py-1.5 bg-[#f8fafc] text-[#8b5cf6] rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-[#e2e8f0] flex items-center gap-1.5 md:gap-2">
+                 <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" /> {hackathon.date}
                </div>
              </div>
-             <h2 className="text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-6">{hackathon.title}</h2>
-             <p className="text-xl md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{hackathon.description}</p>
+             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-4 md:mb-6">{hackathon.title}</h2>
+             <p className="text-lg md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{hackathon.description}</p>
 
-             <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-               <a href={hackathon.link} target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
-                 <Trophy className="text-yellow-500" size={20} /> Devpost / Details
+             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 mt-8 md:mt-10 w-full md:w-auto">
+               <a href={hackathon.link} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                 <Trophy className="text-yellow-500 w-5 h-5 md:w-5 md:h-5" /> Devpost / Details
                </a>
-               <a href={hackathon.project.link} target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg">
-                 <ArrowUpRight size={20} /> View Project
+               <a href={hackathon.project.link} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-base md:text-lg">
+                 <ArrowUpRight className="w-5 h-5 md:w-5 md:h-5" /> View Project
                </a>
              </div>
           </div>
@@ -118,20 +118,20 @@ function HackathonModal({
           <div className="px-6 py-12 md:px-16 md:py-20 bg-[#f9f9f9] flex-1">
              <div className="max-w-4xl mx-auto flex flex-col gap-12 md:gap-16">
                
-               <section className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-[#eee] relative overflow-hidden">
-                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#8b5cf6] opacity-[0.04] rounded-full blur-3xl"></div>
+               <section className="bg-white p-6 sm:p-8 md:p-12 rounded-[2rem] shadow-sm border border-[#eee] relative overflow-hidden">
+                 <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-[#8b5cf6] opacity-[0.04] rounded-full blur-3xl"></div>
                  
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-8"><Code className="text-[#8b5cf6]" size={28} /> Submitted Project</h3>
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-6 md:mb-8"><Code className="text-[#8b5cf6] w-6 h-6 md:w-7 md:h-7 shrink-0" /> Submitted Project</h3>
                  
-                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8 relative z-10">
-                    <div className="w-24 h-24 bg-white rounded-2xl p-4 shadow-sm border border-[#e2e8f0] flex items-center justify-center shrink-0">
+                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 mb-6 md:mb-8 relative z-10">
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl p-3 md:p-4 shadow-sm border border-[#e2e8f0] flex items-center justify-center shrink-0">
                         <img src={hackathon.project.logo} alt={hackathon.project.title} className="w-full h-full object-contain" />
                     </div>
                     <div>
-                        <h4 className="text-2xl font-bold text-[#111] mb-2">{hackathon.project.title}</h4>
+                        <h4 className="text-xl md:text-2xl font-bold text-[#111] mb-2">{hackathon.project.title}</h4>
                         <div className="flex flex-wrap gap-2">
                           {hackathon.project.tech.map((t: string) => (
-                              <span key={t} className="px-3 py-1 bg-[#f8fafc] border border-[#e2e8f0] text-[#475569] rounded-xl text-xs font-bold tracking-widest uppercase shadow-sm">
+                              <span key={t} className="px-3 py-1 bg-[#f8fafc] border border-[#e2e8f0] text-[#475569] rounded-xl text-[10px] md:text-xs font-bold tracking-widest uppercase shadow-sm">
                                 {t}
                               </span>
                           ))}
@@ -139,12 +139,12 @@ function HackathonModal({
                     </div>
                  </div>
                  
-                 <p className="text-xl text-[#555] font-medium leading-relaxed relative z-10">{hackathon.project.about}</p>
+                 <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed relative z-10">{hackathon.project.about}</p>
                </section>
 
                <section>
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-8"><Award className="text-orange-500" size={28} /> Achievement & Certificate</h3>
-                 <div className="bg-white p-6 border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm flex items-center justify-center">
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-6 md:mb-8"><Award className="text-orange-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> Achievement & Certificate</h3>
+                 <div className="bg-white p-4 md:p-6 border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm flex items-center justify-center">
                     <img src={hackathon.certificate} alt="Hackathon Certificate" className="w-full h-auto max-h-[600px] object-contain rounded-xl hover:scale-[1.02] transition-transform duration-500" />
                  </div>
                </section>

@@ -59,7 +59,7 @@ export default function ContactSection() {
                   <img src="/linkedin-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <div className="pt-12 px-6 pb-6 flex flex-col flex-1">
+              <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
                 <h3 className="text-lg font-bold text-[#111111] leading-tight">Arsh Verma</h3>
                 <p className="text-sm text-[#666666] mb-3">Software Engineer | AI Developer</p>
                 <p className="text-xs font-semibold text-[#888888] mb-4">500+ Connections • 2.5K Followers</p>
@@ -81,7 +81,7 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-[#0d1117] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#30363d] text-white flex-1"
             >
-              <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center text-center">
+              <div className="pt-8 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 items-center text-center">
                 <img src="https://skillicons.dev/icons?i=github" className="absolute top-5 right-5 w-6 h-6 opacity-50 grayscale group-hover:grayscale-0 transition-all" />
                 <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-[4px] border-[#30363d] shadow-sm">
                   <img src={defaultPfp} alt="GitHub" className="w-full h-full object-cover" />
@@ -113,7 +113,7 @@ export default function ContactSection() {
                   <img src="/x-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <div className="pt-12 px-6 pb-6 flex flex-col flex-1">
+              <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-1">
                   <div>
                     <h3 className="text-lg font-bold leading-tight">Arsh Verma</h3>
@@ -148,7 +148,7 @@ export default function ContactSection() {
                   <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#23a559] border-[4px] border-[#2b2d31] rounded-full"></div>
                 </div>
               </div>
-              <div className="pt-12 px-6 pb-6 flex flex-col flex-1">
+              <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
                 <div className="bg-[#111214] p-3 rounded-xl mb-3 border border-[#1e1f22]">
                   <h3 className="text-lg font-bold leading-tight">Arsh</h3>
                   <p className="text-sm text-[#b5bac1]">ArshVerma</p>
@@ -182,7 +182,7 @@ export default function ContactSection() {
                   <img src="/youtube-profile-photo.jpeg" alt="Arsh Creates" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <div className="pt-12 px-6 pb-6 flex flex-col flex-1 text-center">
+              <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 text-center">
                 <h3 className="text-lg font-bold text-[#111111] leading-tight">Arsh Creates</h3>
                 <p className="text-sm text-[#666666] mb-3">@ArshCreates</p>
                 <p className="text-xs font-medium text-[#888888] mb-4">10.5K Subscribers • 120 Videos</p>
@@ -204,7 +204,7 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border-[3px] border-black flex-1"
             >
-              <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center text-center relative">
+              <div className="pt-8 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 items-center text-center relative">
                 <div className="absolute top-5 right-5 bg-black text-white text-[10px] font-black px-2 py-1 rounded">DEV</div>
                 <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                   <img src={defaultPfp} alt="Arsh" className="w-full h-full object-cover" />
@@ -230,7 +230,7 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
-              <div className="pt-6 px-6 pb-6 flex flex-col flex-1">
+              <div className="pt-6 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-3 border-b border-[#eeeeee] pb-3">
                   <div className="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center shrink-0">
                     <Mail size={20} />
@@ -274,7 +274,7 @@ export default function ContactSection() {
                 </div>
               </div>
               
-              <div className="px-6 py-6 flex flex-col flex-1 relative bg-[url('https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg')] bg-cover bg-center">
+              <div className="p-5 sm:p-6 flex flex-col flex-1 relative bg-[url('https://w0.peakpx.com/wallpaper/818/148/HD-wallpaper-whatsapp-background-cool-dark-green-new-theme-whatsapp.jpg')] bg-cover bg-center">
                  <div className="absolute inset-0 bg-[#efeae2]/90 "></div>
                  <div className="relative z-10 flex flex-col gap-3 h-full justify-center">
                    <div className="bg-white px-4 py-2.5 rounded-2xl rounded-tl-sm self-start shadow-sm text-sm max-w-[90%] text-[#111111]">
@@ -299,7 +299,7 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
-              <div className="pt-8 px-6 pb-6 flex flex-col flex-1 items-center justify-center text-center">
+              <div className="pt-8 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 items-center justify-center text-center">
                 <div className="w-20 h-20 rounded-full p-[3px] bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] mb-4">
                   <div className="w-full h-full rounded-full border-[3px] border-white overflow-hidden bg-white">
                     <img src="/instagram-profile-photo.jpeg" alt="Arsh" className="w-full h-full object-cover" />

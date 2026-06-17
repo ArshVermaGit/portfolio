@@ -81,7 +81,7 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10 overscroll-none"
     >
       <motion.div
         key={project.repo} // Animate on change
@@ -91,22 +91,22 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
       >
         {/* Navigation Buttons (Outside Modal Box) */}
         {hasPrev && (
-          <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronLeft size={32} />
+          <div className="absolute inset-y-0 left-2 md:left-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
         {hasNext && (
-          <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronRight size={32} />
+          <div className="absolute inset-y-0 right-2 md:right-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
 
         {/* Close Button */}
-        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
+        <button onClick={onClose} className="absolute top-3 right-3 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
           <X size={20} strokeWidth={3} />
         </button>
 
@@ -116,10 +116,10 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
              <p className="font-bold text-[#888] tracking-widest uppercase text-sm animate-pulse">Loading GitHub Data...</p>
           </div>
         ) : (
-          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full">
             
             {/* Top Header: Massive Screenshot */}
-            <div className="w-full bg-[#f9f9f9] relative min-h-[300px] md:min-h-[450px] border-b border-[#eee]">
+            <div className="w-full bg-[#f9f9f9] relative min-h-[200px] sm:min-h-[250px] md:min-h-[400px] lg:min-h-[450px] border-b border-[#eee] shrink-0">
                <img 
                   src={project.screenshot} 
                   alt={`${project.title} Screenshot`} 
@@ -134,17 +134,17 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
             {/* Middle Section: Meta Info & Buttons */}
             <div className="px-6 py-8 md:px-12 md:py-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-between border-b border-[#eee] bg-white">
                <div className="flex-1">
-                 <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#111] mb-4">{project.title}</h2>
-                 <p className="text-xl text-[#666] font-medium leading-relaxed max-w-3xl">{data?.description || "No description provided."}</p>
+                 <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight text-[#111] mb-3 md:mb-4">{project.title}</h2>
+                 <p className="text-lg sm:text-xl text-[#666] font-medium leading-relaxed max-w-3xl">{data?.description || "No description provided."}</p>
                  
-                 <div className="flex items-center gap-4 mt-6">
-                    <div className="flex items-center gap-2 px-5 py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
-                       <Star size={18} className="text-[#e3b341] fill-[#e3b341]" />
-                       <span className="font-bold text-[#111] text-lg">{data?.stargazers_count || 0}</span>
+                 <div className="flex flex-wrap items-center gap-3 md:gap-4 mt-5 md:mt-6">
+                    <div className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
+                       <Star className="w-4 h-4 md:w-[18px] md:h-[18px] text-[#e3b341] fill-[#e3b341]" />
+                       <span className="font-bold text-[#111] text-base md:text-lg">{data?.stargazers_count || 0}</span>
                     </div>
-                    <div className="flex items-center gap-2 px-5 py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
-                       <GitFork size={18} className="text-[#888]" />
-                       <span className="font-bold text-[#111] text-lg">{data?.forks_count || 0}</span>
+                    <div className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
+                       <GitFork className="w-4 h-4 md:w-[18px] md:h-[18px] text-[#888]" />
+                       <span className="font-bold text-[#111] text-base md:text-lg">{data?.forks_count || 0}</span>
                     </div>
                  </div>
                </div>
@@ -196,13 +196,13 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
                  </div>
 
                  {/* Tech Stack */}
-                 <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm  flex flex-col h-full">
-                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-8">Tech Stack</h3>
-                   <div className="flex flex-wrap gap-4">
+                 <div className="bg-white p-6 sm:p-8 md:p-10 rounded-[2rem] shadow-sm flex flex-col h-full">
+                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6 md:mb-8">Tech Stack</h3>
+                   <div className="flex flex-wrap gap-3 md:gap-4">
                      {project.tech.map((tech: string, i: number) => (
-                       <div key={i} className="px-6 py-4 bg-[#f9f9f9] hover:bg-[#f0f0f0] border border-[#eee] hover:border-[#ddd] rounded-2xl flex items-center gap-4 transition-all hover:-translate-y-1 hover:shadow-sm cursor-default">
-                         <img src={`https://skillicons.dev/icons?i=${tech}`} className="w-10 h-10 drop-shadow-sm" alt={tech} />
-                         <span className="font-bold text-[#111] text-lg capitalize">{tech}</span>
+                       <div key={i} className="px-4 py-3 md:px-6 md:py-4 bg-[#f9f9f9] hover:bg-[#f0f0f0] border border-[#eee] hover:border-[#ddd] rounded-2xl flex items-center gap-3 transition-all hover:-translate-y-1 hover:shadow-sm cursor-default">
+                         <img src={`https://skillicons.dev/icons?i=${tech}`} className="w-8 h-8 md:w-10 md:h-10 drop-shadow-sm" alt={tech} />
+                         <span className="font-bold text-[#111] text-base md:text-lg capitalize">{tech}</span>
                        </div>
                      ))}
                    </div>

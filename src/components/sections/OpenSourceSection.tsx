@@ -328,7 +328,7 @@ export default function OpenSourceSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-md overscroll-none"
             >
               {/* Left Navigation */}
               {modalState.index > 0 && (
@@ -340,9 +340,9 @@ export default function OpenSourceSection() {
                       return { ...prev, index: prev.index > 0 ? prev.index - 1 : prev.index };
                     });
                   }} 
-                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                  className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg border border-white/10 backdrop-blur-md"
                 >
-                  <ChevronLeft size={24} strokeWidth={2.5} />
+                  <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
               )}
   
@@ -358,9 +358,9 @@ export default function OpenSourceSection() {
                       return { ...prev, index: prev.index < list.length - 1 ? prev.index + 1 : prev.index };
                     });
                   }} 
-                  className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                  className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg border border-white/10 backdrop-blur-md"
                 >
-                  <ChevronRight size={24} strokeWidth={2.5} />
+                  <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
               )}
   
@@ -371,7 +371,7 @@ export default function OpenSourceSection() {
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 transition={{ type: "spring", bounce: 0.3 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative bg-white rounded-[2.5rem] p-6 md:p-12 max-w-[95vw] md:max-w-5xl w-full flex flex-col items-center shadow-2xl"
+                className="relative bg-white rounded-[2.5rem] p-6 md:p-12 max-w-[95vw] md:max-w-5xl w-full max-h-[90vh] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full flex flex-col items-center shadow-2xl"
               >
                 <button 
                   onClick={(e) => {
@@ -379,9 +379,9 @@ export default function OpenSourceSection() {
                     e.stopPropagation();
                     setModalState(null);
                   }}
-                  className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10"
+                  className="absolute top-3 right-3 md:top-6 md:right-6 w-10 h-10 md:w-12 md:h-12 bg-[#f4f4f5] hover:bg-[#e4e4e7] text-black rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm border border-[#e4e4e7] z-[10000]"
                 >
-                  <X size={20} className="text-gray-600" />
+                  <X className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
                 </button>
                 <img 
                   src={modalState.type === 'apertre' ? apertreBadges[modalState.index].src : gssocBadges[modalState.index].src} 

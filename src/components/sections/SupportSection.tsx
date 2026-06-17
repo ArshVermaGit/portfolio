@@ -61,7 +61,7 @@ export default function SupportSection() {
           viewport={{ once: true }}
           transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
           whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
-          className="max-w-4xl mx-auto glassCard rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 relative overflow-hidden"
+          className="max-w-4xl mx-auto glassCard rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 relative overflow-hidden"
         >
           <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left z-10">
             <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight text-[#111]">Buy me a <span className="text-[#fca016]">Coffee</span></h3>

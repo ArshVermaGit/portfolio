@@ -29,12 +29,12 @@ export default function AboutSection({ imageRef }: { imageRef: any }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
 
           {/* Left Side: Hey! and short bio */}
-          <div className="md:col-span-3 flex flex-col justify-center h-full gap-6">
+          <div className="md:col-span-3 flex flex-col justify-center items-center md:items-start text-center md:text-left h-full gap-4 md:gap-6">
             <div>
               <span className="text-3xl md:text-4xl font-bold tracking-tight text-[#888888] mb-1 block">Hey! I'm</span>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">Arsh Verma</h2>
+              <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-tight">Arsh Verma</h2>
             </div>
-            <p className="text-lg md:text-xl font-medium leading-snug tracking-tight max-w-[250px] text-[#444]">
+            <p className="text-base sm:text-lg md:text-xl font-medium leading-snug tracking-tight max-w-[280px] md:max-w-[250px] text-[#444]">
               Frontend Developer & Open Source Contributor · Building modern web apps and seamless user experiences.
             </p>
           </div>
@@ -49,16 +49,16 @@ export default function AboutSection({ imageRef }: { imageRef: any }) {
           </div>
 
           {/* Right Side: Long Bio and Link */}
-          <div className="md:col-span-4 flex flex-col justify-center gap-6 text-[#111111] font-medium tracking-tight">
-            <p className="text-[17px] leading-relaxed text-[#333]">
+          <div className="md:col-span-4 flex flex-col justify-center items-center md:items-start text-center md:text-left gap-6 text-[#111111] font-medium tracking-tight mt-4 md:mt-0">
+            <p className="text-base md:text-[17px] leading-relaxed text-[#333]">
               I build clean, fast, and functional interfaces that replace clunky workflows with seamless user experiences. Currently studying at VIT Bhopal University, I am actively open to freelance projects and early-stage startup collaborations in frontend and full-stack web development.
             </p>
 
-            <p className="text-[17px] leading-relaxed text-[#333]">
+            <p className="text-base md:text-[17px] leading-relaxed text-[#333]">
               I have a deep appreciation for well-crafted open-source work and modern web standards. Whether I am contributing to open-source projects or building products from scratch, I bring a sharp focus on performance, clean code, and experiences that just work.
             </p>
 
-            <div className="mt-4">
+            <div className="mt-2 md:mt-4">
               <a href="#contact" className="inline-flex items-center gap-2 text-[#111111] font-bold text-lg hover:translate-x-2 transition-transform group">
                 Let's collaborate
                 <span className="p-1.5 border border-[#111] rounded-lg group-hover:bg-[#111] group-hover:text-white transition-colors">

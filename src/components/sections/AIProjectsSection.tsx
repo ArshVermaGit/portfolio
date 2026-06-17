@@ -71,7 +71,7 @@ function AIProjectModal({
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10 overscroll-none"
     >
       <motion.div
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
@@ -80,57 +80,57 @@ function AIProjectModal({
       >
         {/* Navigation Buttons (Outside Modal Box) */}
         {hasPrev && (
-          <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronLeft size={32} />
+          <div className="absolute inset-y-0 left-2 md:left-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
         {hasNext && (
-          <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
-            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
-              <ChevronRight size={32} />
+          <div className="absolute inset-y-0 right-2 md:right-6 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10">
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
           </div>
         )}
 
         {/* Close Button */}
-        <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
+        <button onClick={onClose} className="absolute top-3 right-3 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
           <X size={20} strokeWidth={3} />
         </button>
 
-        <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
+        <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
           
           {/* Top Section: Meta Info & Logo */}
           <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
-             <div className="w-48 h-48 md:w-64 md:h-64 mb-8 relative">
+             <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mb-6 md:mb-8 relative shrink-0">
                 <img src={project.logo} alt={project.title} className="w-full h-full object-contain drop-shadow-sm" />
              </div>
              
-             <div className="flex items-center gap-3 mb-6">
-               <div className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-black tracking-widest uppercase border border-blue-100 flex items-center gap-1.5">
-                 <BrainCircuit size={12} /> AI Model
+             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
+               <div className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-blue-100 flex items-center gap-1.5 shrink-0">
+                 <BrainCircuit className="w-3 h-3 md:w-4 md:h-4" /> AI Model
                </div>
-               <div className="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-black tracking-widest uppercase border border-orange-100 flex items-center gap-1.5">
-                 <Activity size={12} /> NLP
+               <div className="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-orange-100 flex items-center gap-1.5 shrink-0">
+                 <Activity className="w-3 h-3 md:w-4 md:h-4" /> NLP
                </div>
              </div>
-             <h2 className="text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-6">{project.title}</h2>
-             <p className="text-xl md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{project.modelSummary}</p>
+             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-4 md:mb-6">{project.title}</h2>
+             <p className="text-lg md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{project.modelSummary}</p>
 
-             <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-               <a href={project.githubUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
+             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 mt-8 md:mt-10 w-full md:w-auto">
+               <a href={project.githubUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
                  <img src="https://skillicons.dev/icons?i=github" className="w-5 h-5" alt="Github" /> Repository
                </a>
-               <a href={project.kaggleUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg">
-                 <Database size={20} /> Kaggle Weights
+               <a href={project.kaggleUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-base md:text-lg">
+                 <Database className="w-5 h-5 md:w-6 md:h-6" /> Kaggle Weights
                </a>
-               <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
-                 <ArrowUpRight size={20} /> Live Demo
+               <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                 <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Live Demo
                </a>
                {project.datasetUrl && (
-                 <a href={project.datasetUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-blue-50 text-blue-600 border border-blue-100 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-blue-100 transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg">
-                   <Database size={20} /> Dataset
+                 <a href={project.datasetUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-blue-50 text-blue-600 border border-blue-100 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-blue-100 transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                   <Database className="w-5 h-5 md:w-6 md:h-6" /> Dataset
                  </a>
                )}
              </div>
@@ -141,23 +141,23 @@ function AIProjectModal({
              <div className="max-w-4xl mx-auto flex flex-col gap-12 md:gap-16">
                
                <section>
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-6"><Sparkles className="text-blue-500" size={28} /> Architecture & Training</h3>
-                 <p className="text-xl text-[#555] font-medium leading-relaxed">{project.details}</p>
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Sparkles className="text-blue-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> Architecture & Training</h3>
+                 <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed">{project.details}</p>
                </section>
 
                <section>
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-6"><Cpu className="text-orange-500" size={28} /> System Integration</h3>
-                 <p className="text-xl text-[#555] font-medium leading-relaxed whitespace-pre-wrap">{project.system}</p>
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Cpu className="text-orange-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> System Integration</h3>
+                 <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed whitespace-pre-wrap">{project.system}</p>
                </section>
 
                <section>
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-6"><Activity className="text-red-500" size={28} /> Limitations</h3>
-                 <p className="text-xl text-[#555] font-medium leading-relaxed whitespace-pre-wrap">{project.limitations}</p>
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Activity className="text-red-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> Limitations</h3>
+                 <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed whitespace-pre-wrap">{project.limitations}</p>
                </section>
 
-               <section className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-[#eee]">
-                 <h3 className="text-3xl font-black text-[#111] flex items-center gap-3 mb-6"><Code className="text-green-500" size={28} /> Inference Usage</h3>
-                 <p className="text-xl text-[#555] font-medium leading-relaxed mb-8 whitespace-pre-wrap">{project.usage}</p>
+               <section className="bg-white p-6 sm:p-8 md:p-12 rounded-[2rem] shadow-sm border border-[#eee]">
+                 <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Code className="text-green-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> Inference Usage</h3>
+                 <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed mb-6 md:mb-8 whitespace-pre-wrap">{project.usage}</p>
                  <div className="bg-[#111] p-6 md:p-8 rounded-[1.5rem] overflow-x-auto shadow-inner">
                    <pre className="text-sm md:text-base font-mono text-green-400 leading-relaxed">
                      <code>{project.codeSnippet}</code>
