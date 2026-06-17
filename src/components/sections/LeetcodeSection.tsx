@@ -1,6 +1,6 @@
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Trophy, Shield, Flame, Calendar as CalendarIcon, ExternalLink, Code2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface AllQuestionsCount {
   difficulty: string;
@@ -31,8 +31,18 @@ interface LeetCodeData {
       acSubmissionNum: AcSubmissionNum[];
     };
     submissionCalendar: string;
+    languageProblemCount: {
+      languageName: string;
+      problemsSolved: number;
+    }[];
   };
   recentSubmissionList: RecentSubmission[];
+  userContestRanking: {
+    attendedContestsCount: number;
+    rating: number;
+    globalRanking: number;
+    topPercentage: number;
+  };
 }
 
 function getHeatmapColor(count: number) {
@@ -45,21 +55,28 @@ function getHeatmapColor(count: number) {
 
 function parseLeetCodeCalendar(submissionCalendar: string) {
   const parsed = JSON.parse(submissionCalendar);
-  const daysMap = new Map();
+  const daysMap = new Map<string, number>();
+  
   for (const [timestamp, count] of Object.entries(parsed)) {
     const date = new Date(parseInt(timestamp) * 1000);
     const dateString = date.toISOString().split('T')[0];
     daysMap.set(dateString, count as number);
   }
 
-  // Generate last 365 days
-  const today = new Date();
+  // Generate last 39 full weeks + current week aligned to Sunday
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  
+  const today = new Date(`${year}-${month}-${day}T00:00:00Z`);
+  const startDate = new Date(today);
+  startDate.setUTCDate(today.getUTCDate() - (39 * 7 + today.getUTCDay()));
+
   const calendar = [];
   let currentWeek = { contributionDays: [] as any[] };
-  
-  for (let i = 364; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(today.getDate() - i);
+
+  for (let d = new Date(startDate); d <= today; d.setUTCDate(d.getUTCDate() + 1)) {
     const dateString = d.toISOString().split('T')[0];
     const count = daysMap.get(dateString) || 0;
     
@@ -70,11 +87,11 @@ function parseLeetCodeCalendar(submissionCalendar: string) {
       currentWeek = { contributionDays: [] };
     }
   }
-  
+
   if (currentWeek.contributionDays.length > 0) {
     calendar.push(currentWeek);
   }
-  
+
   return calendar;
 }
 
@@ -82,17 +99,18 @@ export default function LeetcodeSection() {
   const [data, setData] = useState<LeetCodeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('/api/leetcode');
+        const response = await fetch('/api/leetcode', { cache: 'no-store' });
         if (!response.ok) {
           const errData = await response.json();
           throw new Error(errData.error || 'Failed to fetch data');
         }
-        const result = await response.json();
-        setData(result);
+        const json = await response.json();
+        setData(json);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -104,43 +122,36 @@ export default function LeetcodeSection() {
 
   if (loading) {
     return (
-      <section className="py-24 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
-
-      
-        <div className="animate-pulse text-lg font-bold tracking-tight text-[#FFA116]">Loading LeetCode Data...</div>
-      </section>
-    );
-  }
-
-  if (error || !data) {
-    return (
-      <section className="py-24 px-6 bg-transparent text-[#111111]">
-        <div className="max-w-[1280px] mx-auto text-center border border-red-200 bg-red-50 p-8 rounded-3xl">
-          <h2 className="text-xl font-bold text-red-600 mb-2">LeetCode Integration Error</h2>
-          <p className="text-red-800 text-sm">{error}</p>
+      <section className="py-24 px-6 relative bg-white overflow-hidden min-h-[600px] flex items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(#FFA116_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]"></div>
+        <div className="animate-pulse flex flex-col items-center gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-[#FFA116]/20"></div>
+          <div className="h-4 w-32 bg-gray-200 rounded-full"></div>
         </div>
       </section>
     );
   }
 
+  if (error || !data) {
+    return null; 
+  }
+
   const { matchedUser, recentSubmissionList } = data;
   const calendar = parseLeetCodeCalendar(matchedUser.submissionCalendar);
   
-  const acSubmissionMap = new Map(matchedUser.submitStats.acSubmissionNum.map(s => [s.difficulty, s.count]));
-  const totalSolved = acSubmissionMap.get('All') || 0;
-  const easySolved = acSubmissionMap.get('Easy') || 0;
-  const mediumSolved = acSubmissionMap.get('Medium') || 0;
-  const hardSolved = acSubmissionMap.get('Hard') || 0;
+  const totalSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'All')?.count || 0;
+  const easySolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Easy')?.count || 0;
+  const mediumSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Medium')?.count || 0;
+  const hardSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Hard')?.count || 0;
 
   return (
-    <section id="leetcode" className="isolate py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden">
-
+    <section id="competitive" className="py-24 px-6 relative bg-white overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(#FFA116_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]"></div>
       
-      {/* Background blob removed as requested */}
-
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1280px] mx-auto relative z-10">
+        
         <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
@@ -234,16 +245,94 @@ export default function LeetcodeSection() {
             </div>
           </motion.div>
 
-          {/* 3. HEATMAP */}
+          {/* 3. CONTESTS PARTICIPATED */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold text-[#111] tracking-tight">Contests</h3>
+              <span className="text-[9px] font-black uppercase tracking-widest bg-blue-500/10 text-blue-600 px-2.5 py-1 rounded-full flex items-center gap-1">
+                <Trophy size={10} /> 1,325
+              </span>
+            </div>
+
+            <div className="flex-1 flex flex-col gap-4 justify-center">
+               <div className="flex justify-between items-center border-b border-[#eee] pb-4">
+                 <span className="text-sm font-bold text-[#555]">Attended</span>
+                 <span className="text-xl font-black text-[#111]">9</span>
+               </div>
+               <div className="flex justify-between items-center border-b border-[#eee] pb-4">
+                 <span className="text-sm font-bold text-[#555]">Global Ranking</span>
+                 <span className="text-xl font-black text-[#111]">836,211 <span className="text-[12px] text-[#aaa] font-bold">/874,367</span></span>
+               </div>
+               <div className="flex justify-between items-center">
+                 <span className="text-sm font-bold text-[#555]">Top</span>
+                 <span className="text-xl font-black text-[#111]">95.7%</span>
+               </div>
+            </div>
+          </motion.div>
+
+          {/* 4. LANGUAGES USED */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 }}
+            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold text-[#111] tracking-tight">Languages</h3>
+            </div>
+
+            <div className="flex-1 flex flex-col gap-3 justify-center">
+               {[
+                 { languageName: 'C++', problemsSolved: 226 },
+                 { languageName: 'JavaScript', problemsSolved: 30 },
+                 { languageName: 'TypeScript', problemsSolved: 22 },
+                 { languageName: 'Python3', problemsSolved: 4 },
+                 { languageName: 'Python', problemsSolved: 3 },
+                 { languageName: 'MySQL', problemsSolved: 2 }
+               ].slice(0, 5).map((lang, idx) => (
+                 <div key={idx} className="flex justify-between items-center">
+                   <span className="text-[11px] font-bold text-[#555] bg-[#f5f5f5] border border-[#eee] px-2.5 py-1 rounded-lg tracking-wide">{lang.languageName}</span>
+                   <span className="text-sm font-black text-[#111]">{lang.problemsSolved} <span className="text-[10px] text-[#888] font-bold ml-0.5">solved</span></span>
+                 </div>
+               ))}
+            </div>
+          </motion.div>
+
+          {/* 5. ACHIEVEMENTS */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold text-[#111] tracking-tight">Achievements</h3>
+              <button onClick={() => setIsModalOpen(true)} className="text-[11px] font-bold text-[#888] uppercase tracking-widest hover:text-[#FFA116] transition-colors flex items-center gap-1">
+                View All <ExternalLink size={12} />
+              </button>
+            </div>
+
+            <div className="flex-1 flex justify-between items-center w-full">
+               {['dcc-2026-3.png', 'dcc-2026-4.png', '50_1080_1080.png', '100_1080_1080.png'].map((badge, idx) => (
+                  <div key={idx} className="w-[22%] aspect-square max-w-[100px] rounded-[1.5rem] bg-white border border-[#eee] shadow-sm flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-md transition-all cursor-pointer group" onClick={() => setIsModalOpen(true)}>
+                    <img src={`/Leetcode/${badge}`} alt="Badge" className="w-[80%] h-[80%] object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+               ))}
+            </div>
+          </motion.div>
+
+          {/* 6. HEATMAP */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
             className="lg:col-span-8 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
               <div>
                 <h3 className="text-xl font-bold text-[#111] tracking-tight">Activity Heatmap</h3>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#888] mt-1.5 flex items-center gap-1"><CalendarIcon size={12} /> Last 365 Days</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#888] mt-1.5 flex items-center gap-1"><CalendarIcon size={12} /> Last 9 Months</p>
               </div>
               <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#888]">
                 <span className="mr-1">Less</span>
@@ -256,26 +345,60 @@ export default function LeetcodeSection() {
               </div>
             </div>
 
-            <div className="flex-1 w-full overflow-hidden flex items-center justify-center">
-              <div className="flex gap-[3px] md:gap-1 w-full justify-between">
-                {calendar.map((week, weekIdx) => (
-                  <div key={weekIdx} className="flex flex-col gap-[3px] md:gap-1">
-                    {week.contributionDays.map((day: any) => (
-                      <div
-                        key={day.date}
-                        title={`${day.contributionCount} submissions on ${day.date}`}
-                        className={`w-[10px] h-[10px] md:w-3 md:h-3 rounded-[2px] ${getHeatmapColor(day.contributionCount)} hover:ring-1 ring-[#111] transition-all cursor-pointer`}
-                      />
+            <div className="flex-1 w-full overflow-x-auto flex items-center justify-start xl:justify-center mt-2 pb-6 custom-scrollbar">
+              <div className="flex flex-col gap-2 min-w-max">
+                
+                {/* Month Labels */}
+                <div className="flex gap-[3px] md:gap-1 pl-[28px] md:pl-[32px]">
+                  {calendar.map((week, weekIdx) => {
+                     const d1 = new Date(week.contributionDays[0].date);
+                     const d2 = weekIdx > 0 ? new Date(calendar[weekIdx-1].contributionDays[0].date) : null;
+                     const isNewMonth = weekIdx === 0 || d1.getMonth() !== d2?.getMonth();
+                     return (
+                        <div key={`month-${weekIdx}`} className="w-[10px] md:w-3 relative">
+                           {isNewMonth && (
+                             <span className="absolute bottom-1 left-0 text-[10px] text-[#888] font-bold tracking-wide leading-none whitespace-nowrap">
+                               {d1.toLocaleString('default', { month: 'short' })}
+                             </span>
+                           )}
+                        </div>
+                     )
+                  })}
+                </div>
+
+                {/* Grid Area (Days + Heatmap) */}
+                <div className="flex gap-2">
+                  {/* Day Labels */}
+                  <div className="flex flex-col gap-[3px] md:gap-1 mt-0">
+                    {['', 'Mon', '', 'Wed', '', 'Fri', ''].map((day, i) => (
+                      <div key={i} className="h-[10px] md:h-3 text-[9px] text-[#aaa] font-bold leading-none flex items-center justify-end w-5 md:w-6">
+                        {day}
+                      </div>
                     ))}
                   </div>
-                ))}
+
+                  {/* Heatmap Grid */}
+                  <div className="flex gap-[3px] md:gap-1">
+                    {calendar.map((week, weekIdx) => (
+                      <div key={weekIdx} className="flex flex-col gap-[3px] md:gap-1">
+                        {week.contributionDays.map((day: any) => (
+                          <div
+                            key={day.date}
+                            title={`${day.contributionCount} submissions on ${day.date}`}
+                            className={`w-[10px] h-[10px] md:w-3 md:h-3 rounded-[2px] ${getHeatmapColor(day.contributionCount)} hover:ring-1 ring-[#111] transition-all cursor-pointer`}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* 4. RECENT SUBMISSIONS */}
+          {/* 7. RECENT SUBMISSIONS */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}
             className="lg:col-span-4 glassCard  rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
@@ -314,6 +437,51 @@ export default function LeetcodeSection() {
 
         </div>
       </div>
+
+      {/* Achievements Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#111]/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}
+            ></motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-white rounded-[2rem] p-6 md:p-8 max-w-4xl w-full shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              <div className="flex justify-between items-center mb-8 border-b border-[#eee] pb-4 shrink-0">
+                <h3 className="text-2xl md:text-3xl font-black text-[#111] tracking-tight flex items-center gap-3">
+                  <Trophy className="text-[#FFA116]" size={28} /> Badges & Achievements
+                </h3>
+                <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-[#555]">
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="overflow-y-auto custom-scrollbar flex-1 pr-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                  {[
+                    { img: 'dcc-2026-3.png', name: 'March 2026' },
+                    { img: 'dcc-2026-4.png', name: 'April 2026' },
+                    { img: '50_1080_1080.png', name: '50 Days Badge' },
+                    { img: '100_1080_1080.png', name: '100 Days Badge' },
+                  ].map((badge, idx) => (
+                    <div key={idx} className="flex flex-col items-center gap-3 group">
+                      <div className="w-full aspect-square rounded-[1.5rem] bg-[#fafafa] border border-[#eee] flex items-center justify-center p-6 group-hover:shadow-lg group-hover:-translate-y-2 transition-all duration-300">
+                        <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
+                      </div>
+                      <span className="text-sm font-bold text-[#333] text-center">{badge.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

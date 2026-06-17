@@ -234,6 +234,10 @@ const LEETCODE_GRAPHQL_QUERY = `
         }
       }
       submissionCalendar
+      languageProblemCount {
+        languageName
+        problemsSolved
+      }
     }
     recentSubmissionList(username: $username, limit: 10) {
       title
@@ -241,6 +245,12 @@ const LEETCODE_GRAPHQL_QUERY = `
       timestamp
       statusDisplay
       lang
+    }
+    userContestRanking(username: $username) {
+      attendedContestsCount
+      rating
+      globalRanking
+      topPercentage
     }
   }
 `;

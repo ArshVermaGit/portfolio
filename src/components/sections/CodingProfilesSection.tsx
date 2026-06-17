@@ -12,13 +12,13 @@ export default function CodingProfilesSection() {
   return (
     <section id="coding-profiles" className="py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden isolate">
 
-      
 
-      
+
+
       {/* Background blob removed as requested */}
 
       <div className="max-w-[1280px] mx-auto">
-        <motion.h2 
+        <motion.h2
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -38,17 +38,17 @@ export default function CodingProfilesSection() {
         </motion.h2>
 
         {/* 2x2 LUXURIOUS DASHBOARD GRID */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           transition={{ staggerChildren: 0.1 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6"
         >
-          
+
           {/* 1. LEETCODE DASHBOARD CARD */}
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
-            <motion.a 
+            <motion.a
               href="https://leetcode.com/u/arsh-leetcode/" target="_blank" rel="noreferrer"
               className="group relative flex flex-col bg-[#1a1a1a] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#333333] text-white p-6 gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
@@ -117,7 +117,7 @@ export default function CodingProfilesSection() {
 
           {/* 2. GEEKSFORGEEKS DASHBOARD CARD */}
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
-            <motion.a 
+            <motion.a
               href="https://www.geeksforgeeks.org/profile/arshver3wu0" target="_blank" rel="noreferrer"
               className="group relative flex flex-col bg-[#111111] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#222] text-white p-6 gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
@@ -183,7 +183,7 @@ export default function CodingProfilesSection() {
 
           {/* 3. KAGGLE DASHBOARD CARD */}
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
-            <motion.a 
+            <motion.a
               href="https://www.kaggle.com/arshvermadev" target="_blank" rel="noreferrer"
               className="group relative flex flex-col bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.2)] transition-shadow duration-500 text-[#111111] p-6 gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
@@ -238,7 +238,7 @@ export default function CodingProfilesSection() {
 
           {/* 4. HUGGING FACE DASHBOARD CARD */}
           <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full">
-            <motion.a 
+            <motion.a
               href="https://huggingface.co/ArshVerma" target="_blank" rel="noreferrer"
               className="group relative flex flex-col sm:flex-row bg-[#0B0F19] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e293b] text-white p-6 gap-6 flex-1"
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
