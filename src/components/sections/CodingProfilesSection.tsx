@@ -61,7 +61,7 @@ export default function CodingProfilesSection() {
                 <div>
                   <h3 className="text-xl font-bold leading-tight flex items-center gap-2">Arsh Verma <span className="w-3 h-3 bg-green-500 rounded-full inline-block"></span></h3>
                   <p className="text-xs text-[#888888] mb-1">arsh-leetcode</p>
-                  <p className="text-sm font-semibold">Rank <span className="text-white">5,21,863</span></p>
+                  <p className="text-sm font-semibold">Rank <span className="text-white">5,12,892</span></p>
                 </div>
               </div>
 
@@ -81,22 +81,22 @@ export default function CodingProfilesSection() {
                 <div className="flex-[1.5] bg-[#282828] rounded-xl p-4 flex items-center gap-4 border border-[#333]">
                   <div className="relative w-20 h-20 flex items-center justify-center rounded-full border-4 border-[#FFA116] border-r-transparent border-b-transparent shrink-0">
                     <div className="text-center">
-                      <p className="text-xl font-bold leading-none">278</p>
+                      <p className="text-xl font-bold leading-none">282</p>
                       <p className="text-[8px] text-[#888]">Solved</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 flex-1">
                     <div className="flex justify-between items-center text-[10px] bg-[#333] px-2 py-1 rounded">
                       <span className="text-teal-400">Easy</span>
-                      <span className="font-bold text-white">108/949</span>
+                      <span className="font-bold text-white">109/950</span>
                     </div>
                     <div className="flex justify-between items-center text-[10px] bg-[#333] px-2 py-1 rounded">
                       <span className="text-yellow-500">Med.</span>
-                      <span className="font-bold text-white">135/2067</span>
+                      <span className="font-bold text-white">137/2069</span>
                     </div>
                     <div className="flex justify-between items-center text-[10px] bg-[#333] px-2 py-1 rounded">
                       <span className="text-red-500">Hard</span>
-                      <span className="font-bold text-white">35/942</span>
+                      <span className="font-bold text-white">36/943</span>
                     </div>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function CodingProfilesSection() {
 
               {/* Bottom Bar: Submissions */}
               <div className="bg-[#282828] rounded-xl p-4 border border-[#333] flex justify-between items-center mt-auto">
-                <p className="text-xs font-bold text-white">752 <span className="text-[#888] font-normal">submissions in the past one year</span></p>
+                <p className="text-xs font-bold text-white">768 <span className="text-[#888] font-normal">submissions in the past one year</span></p>
                 <div className="flex gap-1">
                   {[...Array(15)].map((_, i) => (
                     <div key={i} className={`w-2 h-2 rounded-[1px] ${i % 3 === 0 ? 'bg-green-500' : 'bg-[#333]'}`}></div>
@@ -112,7 +112,10 @@ export default function CodingProfilesSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">LeetCode</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/leetcode/FFA116" alt="LeetCode" className="w-4 h-4" />
+              LeetCode
+            </p>
           </motion.div>
 
           {/* 2. GEEKSFORGEEKS DASHBOARD CARD */}
@@ -178,7 +181,10 @@ export default function CodingProfilesSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">GeeksForGeeks</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/geeksforgeeks/2F8D46" alt="GeeksForGeeks" className="w-4 h-4" />
+              GeeksForGeeks
+            </p>
           </motion.div>
 
           {/* 3. KAGGLE DASHBOARD CARD */}
@@ -211,29 +217,46 @@ export default function CodingProfilesSection() {
 
               {/* Nav Mock */}
               <div className="flex gap-6 border-b border-[#eee] pb-2 mt-4">
-                <span className="text-xs text-[#888]">About</span>
-                <span className="text-xs font-bold text-[#111] border-b-2 border-[#111] pb-2 -mb-[9px]">Models (1)</span>
-                <span className="text-xs text-[#888]">Code (1)</span>
+                <span className="text-xs text-[#888]">Datasets (1)</span>
+                <span className="text-xs font-bold text-[#111] border-b-2 border-[#111] pb-2 -mb-[9px]">Models (2)</span>
+                <span className="text-xs text-[#888]">Code (2)</span>
               </div>
 
               {/* Content Mock */}
               <div className="flex-1 flex flex-col gap-4 mt-auto">
-                <h4 className="font-bold text-lg">Public Models (1)</h4>
-                <div className="border border-[#eee] rounded-xl p-4 flex gap-4 items-center group-hover:border-[#ccc] transition-colors">
-                  <div className="w-10 h-10 rounded-full border border-[#eee] p-1 bg-[#f5f5f5]">
-                    <img src={defaultPfp} className="w-full h-full rounded-full grayscale opacity-50" />
+                <h4 className="font-bold text-lg">Public Models (2)</h4>
+                
+                <div className="border border-[#eee] rounded-xl p-3 flex gap-3 items-center group-hover:border-[#ccc] transition-colors overflow-hidden">
+                  <div className="w-10 h-10 rounded-full border border-[#eee] p-0.5 bg-[#f5f5f5] shrink-0">
+                    <img src="/instagram-profile-photo.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
                   </div>
-                  <div>
-                    <h5 className="text-sm font-bold text-[#1a73e8]">REVIEW.AI</h5>
-                    <p className="text-[10px] text-[#666] mt-1 truncate max-w-[200px]">BERT-base-uncased fine-tuned on the massive Amazon Reviews Multi dataset...</p>
+                  <div className="flex-1 min-w-0">
+                    <h5 className="text-sm font-bold text-[#1a73e8] truncate">REVIEW.AI</h5>
+                    <p className="text-[10px] text-[#666] mt-0.5 truncate">BERT-base-uncased fine-tuned on the massive Amazon...</p>
                   </div>
-                  <div className="ml-auto border border-[#eee] px-2 py-1 rounded-md text-[10px] font-bold text-[#111] flex items-center gap-1">
+                  <div className="ml-auto border border-[#eee] px-2 py-1 rounded-md text-[10px] font-bold text-[#111] flex items-center gap-1 shrink-0">
+                    ^ 0
+                  </div>
+                </div>
+
+                <div className="border border-[#eee] rounded-xl p-3 flex gap-3 items-center group-hover:border-[#ccc] transition-colors overflow-hidden">
+                  <div className="w-10 h-10 rounded-full border border-[#eee] p-0.5 bg-[#f5f5f5] shrink-0">
+                    <img src="/instagram-profile-photo.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h5 className="text-sm font-bold text-[#1a73e8] truncate">CodeLens</h5>
+                    <p className="text-[10px] text-[#666] mt-0.5 truncate">An AI agent fine-tuned to act as a Senior Code Reviewer...</p>
+                  </div>
+                  <div className="ml-auto border border-[#eee] px-2 py-1 rounded-md text-[10px] font-bold text-[#111] flex items-center gap-1 shrink-0">
                     ^ 0
                   </div>
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">Kaggle</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle" className="w-4 h-4" />
+              Kaggle
+            </p>
           </motion.div>
 
           {/* 4. HUGGING FACE DASHBOARD CARD */}
@@ -262,18 +285,29 @@ export default function CodingProfilesSection() {
               </div>
 
               {/* Right Content */}
-              <div className="flex-1 flex flex-col gap-6 pt-2">
+              <div className="flex-1 flex flex-col gap-6 pt-2 overflow-hidden">
                 {/* Spaces Section */}
                 <div>
-                  <h4 className="text-xs font-bold flex items-center gap-2 mb-3"><span className="w-3 h-3 grid grid-cols-2 gap-[1px]"><span className="bg-blue-400"></span><span className="bg-purple-400"></span><span className="bg-orange-400"></span><span className="bg-green-400"></span></span> Spaces <span className="text-[#94a3b8] font-normal">1</span></h4>
-                  <div className="bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl p-4 flex flex-col gap-2 h-24 justify-between group-hover:scale-[1.02] transition-transform origin-left">
-                    <div className="flex justify-between items-start">
-                      <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded font-medium">Sleeping</span>
-                      <span className="text-[10px] font-medium flex items-center gap-1">🤍 1</span>
+                  <h4 className="text-xs font-bold flex items-center gap-2 mb-3"><span className="w-3 h-3 grid grid-cols-2 gap-[1px]"><span className="bg-blue-400"></span><span className="bg-purple-400"></span><span className="bg-orange-400"></span><span className="bg-green-400"></span></span> Spaces <span className="text-[#94a3b8] font-normal">2</span></h4>
+                  <div className="flex gap-3">
+                    <div className="flex-1 bg-gradient-to-r from-[#00b4db] to-[#0083b0] rounded-xl p-3 flex flex-col gap-1 h-[84px] justify-between group-hover:scale-[1.02] transition-transform origin-left min-w-0">
+                      <div className="flex justify-between items-start">
+                        <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded font-medium">Running</span>
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-xs truncate">CodeLens Environment 🔎</h5>
+                        <p className="text-[8px] opacity-80 mt-0.5 truncate">View live CodeLens leaderboard and stats</p>
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="font-bold text-sm">CodeLens Environment 🔎</h5>
-                      <p className="text-[10px] opacity-80 mt-1">View live CodeLens leaderboard and stats</p>
+                    
+                    <div className="flex-1 bg-gradient-to-r from-[#4b6cb7] to-[#182848] rounded-xl p-3 flex flex-col gap-1 h-[84px] justify-between group-hover:scale-[1.02] transition-transform origin-left min-w-0">
+                      <div className="flex justify-between items-start">
+                        <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded font-medium">Running</span>
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-xs truncate">Review AI 🚀</h5>
+                        <p className="text-[8px] opacity-80 mt-0.5 truncate">3 days ago</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -281,8 +315,16 @@ export default function CodingProfilesSection() {
                 {/* Empty Sections */}
                 <div className="mt-auto flex flex-col gap-4">
                   <div>
-                    <h4 className="text-xs font-bold flex items-center gap-2 mb-2"><span className="w-3 h-3 bg-gray-400 rounded-sm"></span> Models <span className="text-[#94a3b8] font-normal">0</span></h4>
-                    <p className="text-xs text-[#475569]">None yet</p>
+                    <h4 className="text-xs font-bold flex items-center gap-2 mb-2"><span className="w-3 h-3 bg-gray-400 rounded-sm"></span> Models <span className="text-[#94a3b8] font-normal">1</span></h4>
+                    <div className="border border-[#1e293b] bg-[#0f172a]/50 rounded-lg p-2.5 flex justify-between items-center">
+                      <div className="min-w-0 pr-2">
+                        <h5 className="text-[10px] font-bold text-gray-200 truncate flex items-center gap-1.5">
+                          <img src="/hugging-face-profile-picture.jpeg" className="w-3 h-3 rounded-full object-cover" />
+                          ArshVerma/codelens_reviewer_lora
+                        </h5>
+                        <p className="text-[8px] text-[#64748b] mt-0.5">Updated about 12 hours ago</p>
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <h4 className="text-xs font-bold flex items-center gap-2 mb-2"><span className="w-3 h-3 bg-gray-400 rounded-sm"></span> Datasets <span className="text-[#94a3b8] font-normal">0</span></h4>
@@ -291,7 +333,10 @@ export default function CodingProfilesSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">Hugging Face</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/huggingface/FFD21E" alt="Hugging Face" className="w-4 h-4" />
+              Hugging Face
+            </p>
           </motion.div>
 
         </motion.div>

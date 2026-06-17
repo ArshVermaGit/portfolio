@@ -68,7 +68,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">LinkedIn</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" className="w-4 h-4" />
+              LinkedIn
+            </p>
           </motion.div>
 
           {/* 2. GITHUB CARD (Standard) */}
@@ -91,7 +94,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">GitHub</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" className="w-4 h-4" />
+              GitHub
+            </p>
           </motion.div>
 
           {/* 3. X (TWITTER) CARD (Standard) */}
@@ -122,7 +128,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">X (Twitter)</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/x/000000" alt="X" className="w-3.5 h-3.5" />
+              X (Twitter)
+            </p>
           </motion.div>
 
           {/* 4. DISCORD CARD (Standard) */}
@@ -154,7 +163,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">Discord</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" className="w-4 h-4" />
+              Discord
+            </p>
           </motion.div>
 
           {/* 5. YOUTUBE CARD (Wide) */}
@@ -179,7 +191,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">YouTube</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" className="w-4 h-4" />
+              YouTube
+            </p>
           </motion.div>
 
           {/* 6. DEV.TO CARD (Standard) */}
@@ -202,7 +217,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">DEV.to</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/devdotto/000000" alt="DEV.to" className="w-4 h-4" />
+              DEV.to
+            </p>
           </motion.div>
 
           {/* 7. GMAIL CARD (Wide) */}
@@ -233,7 +251,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">Gmail</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail" className="w-4 h-4" />
+              Gmail
+            </p>
           </motion.div>
 
           {/* 8. WHATSAPP CARD (Standard) */}
@@ -265,7 +286,10 @@ export default function ContactSection() {
                  </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">WhatsApp</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" className="w-4 h-4" />
+              WhatsApp
+            </p>
           </motion.div>
 
           {/* 9. INSTAGRAM CARD (Standard) */}
@@ -294,7 +318,10 @@ export default function ContactSection() {
                 </div>
               </div>
             </motion.a>
-            <p className="text-center text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">Instagram</p>
+            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+              <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" className="w-4 h-4" />
+              Instagram
+            </p>
           </motion.div>
 
         </motion.div>
