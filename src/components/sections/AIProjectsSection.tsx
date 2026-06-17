@@ -195,7 +195,7 @@ export default function AIProjectsSection() {
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Machine Learning Models & Intelligence Systems.</span>
         </motion.h2>
         
-        <div className="flex justify-center items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1000px] mx-auto">
           {aiProjects.map((project, idx) => (
             <motion.div 
               key={project.id}
