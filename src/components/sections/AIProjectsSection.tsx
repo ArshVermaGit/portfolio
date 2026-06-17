@@ -62,10 +62,16 @@ function AIProjectModal({
   hasPrev: boolean,
   hasNext: boolean
 }) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
   // Prevent body scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
-    return () => { document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start(); };
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    return () => { 
+      document.body.style.overflow = ''; 
+      document.documentElement.style.overflow = '';
+    };
   }, []);
 
   return createPortal(
@@ -167,10 +173,10 @@ function AIProjectModal({
 
                <section>
                  <h3 className="text-3xl font-black text-[#111] mb-8 text-center uppercase tracking-widest opacity-80 mt-10">Visuals & Metrics</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   {project.screenshots.map((img: any, idx: number) => (
-                     <div key={idx} className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
-                       <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {project.screenshots.map((img: any, idx: number) => (
+                      <div key={idx} onClick={() => setSelectedImageIndex(idx)} className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                        <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
                          <img 
                            src={img.src} 
                            alt={img.alt} 
@@ -196,6 +202,55 @@ function AIProjectModal({
           
         </div>
       </motion.div>
+
+      {/* Image Viewer Sub-Modal */}
+      <AnimatePresence>
+        {selectedImageIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 overscroll-none"
+          >
+            {/* Prev Button */}
+            {selectedImageIndex > 0 && (
+              <div className="absolute inset-y-0 left-2 md:left-6 flex items-center z-[10000] pointer-events-none">
+                <button 
+                  onClick={() => setSelectedImageIndex(prev => prev! - 1)}
+                  className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10"
+                >
+                  <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+              </div>
+            )}
+
+            {/* Next Button */}
+            {selectedImageIndex < project.screenshots.length - 1 && (
+              <div className="absolute inset-y-0 right-2 md:right-6 flex items-center z-[10000] pointer-events-none">
+                <button 
+                  onClick={() => setSelectedImageIndex(prev => prev! + 1)}
+                  className="pointer-events-auto p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all hover:scale-110 shadow-lg border border-white/10"
+                >
+                  <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+              </div>
+            )}
+
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedImageIndex(null)}
+              className="absolute top-4 right-4 md:top-8 md:right-8 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-white/10"
+            >
+              <X size={20} strokeWidth={3} />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
+              className="w-full max-w-5xl aspect-video glassCard border border-[#eaeaea] rounded-[2rem] shadow-2xl relative flex flex-col items-center justify-center bg-white/90 overflow-hidden"
+            >
+              <img src={project.screenshots[selectedImageIndex].src} className="w-full h-full object-contain p-2 md:p-6" alt={project.screenshots[selectedImageIndex].alt} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>,
     document.body
   );
