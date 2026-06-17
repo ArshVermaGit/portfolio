@@ -33,6 +33,7 @@ export default function YoutubeSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVideoIdx, setSelectedVideoIdx] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -88,7 +89,9 @@ export default function YoutubeSection() {
     );
   }
 
-  const recentVideos = data.items.slice(0, 4);
+  const videosPerPage = 2;
+  const totalPages = Math.ceil(data.items.length / videosPerPage);
+  const currentVideos = data.items.slice(currentPage * videosPerPage, (currentPage + 1) * videosPerPage);
 
   return (
     <section id="youtube" className="isolate py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden">
@@ -119,8 +122,8 @@ export default function YoutubeSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500"
-            whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             {/* Banner Mock */}
             <div className="h-32 w-full bg-cover bg-center relative" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
@@ -160,25 +163,30 @@ export default function YoutubeSection() {
             </div>
           </motion.div>
 
-          <div className="lg:col-span-8 flex flex-col gap-4">
-            <div className="flex items-center justify-between mb-4 px-4">
-              <h4 className="text-xl font-bold flex items-center gap-2">
+          {/* RIGHT: Recent Uploads */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-8 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold tracking-tight flex items-center gap-2">
                 <Play size={20} className="fill-[#111]" /> Recent Uploads
-              </h4>
-              <span className="text-xs font-bold text-[#888] uppercase tracking-widest">{recentVideos.length} Videos</span>
+              </h3>
+              <span className="text-[9px] font-black text-[#888] uppercase tracking-widest">{data.items.length} Videos</span>
             </div>
 
-            <div className="flex flex-col gap-3">
-              {recentVideos.map((video, idx) => (
+            <div className="flex flex-col gap-4 flex-1 justify-center">
+              {currentVideos.map((video, idx) => {
+                const globalIdx = currentPage * videosPerPage + idx;
+                return (
                 <motion.div 
                   key={video.guid}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  onClick={() => setSelectedVideoIdx(idx)}
-                  whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
-                  className="group flex flex-col sm:flex-row items-center gap-6 p-4 rounded-3xl glassCard shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 cursor-pointer"
+                  onClick={() => setSelectedVideoIdx(globalIdx)}
+                  className="group flex flex-col sm:flex-row items-center gap-6 p-5 rounded-3xl glassCard shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
                 >
                   <div className="relative w-full sm:w-48 xl:w-56 aspect-video rounded-2xl overflow-hidden shrink-0 shadow-sm border border-[#eee]">
                     <img 
@@ -209,9 +217,37 @@ export default function YoutubeSection() {
                     <Play size={16} className="ml-1 group-hover:fill-white" />
                   </div>
                 </motion.div>
-              ))}
+              )})}
             </div>
-          </div>
+
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#eee]">
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                  disabled={currentPage === 0}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === 0 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-gray-50 hover:bg-gray-100 hover:text-[#111]'}`}
+                >
+                  <ChevronLeft size={16} /> Previous
+                </button>
+                <div className="flex gap-1.5">
+                  {Array.from({ length: totalPages }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentPage(idx)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all ${currentPage === idx ? 'bg-[#FF0000] scale-125' : 'bg-gray-200 hover:bg-gray-300'}`}
+                    />
+                  ))}
+                </div>
+                <button 
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                  disabled={currentPage === totalPages - 1}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === totalPages - 1 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-gray-50 hover:bg-gray-100 hover:text-[#111]'}`}
+                >
+                  Next <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
+          </motion.div>
 
         </div>
       </div>
@@ -227,46 +263,46 @@ export default function YoutubeSection() {
               className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
             >
               {/* Left Navigation */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : recentVideos.length - 1);
-                }} 
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-              >
-                <ChevronLeft size={24} strokeWidth={2.5} />
-              </button>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : data.items.length - 1);
+              }} 
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronLeft size={24} strokeWidth={2.5} />
+            </button>
 
-              {/* Right Navigation */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedVideoIdx(prev => prev! < recentVideos.length - 1 ? prev! + 1 : 0);
-                }} 
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-              >
-                <ChevronRight size={24} strokeWidth={2.5} />
-              </button>
+            {/* Right Navigation */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedVideoIdx(prev => prev! < data.items.length - 1 ? prev! + 1 : 0);
+              }} 
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+            >
+              <ChevronRight size={24} strokeWidth={2.5} />
+            </button>
 
-              <motion.div 
-                key={recentVideos[selectedVideoIdx].guid} // Re-animate when video changes
-                initial={{ scale: 0.95, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
+            <motion.div 
+              key={data.items[selectedVideoIdx].guid} // Re-animate when video changes
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
+            >
+              <button 
+                onClick={() => setSelectedVideoIdx(null)}
+                className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
               >
-                <button 
-                  onClick={() => setSelectedVideoIdx(null)}
-                  className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
-                >
-                  <X size={20} strokeWidth={3} />
-                </button>
-                
-                <iframe 
-                  src={`https://www.youtube.com/embed/${recentVideos[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
-                  title={recentVideos[selectedVideoIdx].title}
+                <X size={20} strokeWidth={3} />
+              </button>
+              
+              <iframe 
+                src={`https://www.youtube.com/embed/${data.items[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
+                title={data.items[selectedVideoIdx].title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full border-0"
