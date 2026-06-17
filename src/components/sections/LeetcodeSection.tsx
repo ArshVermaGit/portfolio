@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X } from 'lucide-react';
+import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X, Medal, Terminal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface AllQuestionsCount {
@@ -96,11 +96,28 @@ function parseLeetCodeCalendar(submissionCalendar: string) {
   return calendar;
 }
 
+const leetcodeBadges = [
+  { img: 'dcc-2026-3.png', name: 'March 2026' },
+  { img: 'dcc-2026-4.png', name: 'April 2026' },
+  { img: '50_1080_1080.png', name: '50 Days Badge' },
+  { img: '100_1080_1080.png', name: '100 Days Badge' },
+];
+
 export default function LeetcodeSection() {
   const [data, setData] = useState<LeetCodeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedBadgeIndex !== null) {
+      document.body.style.overflow = 'hidden';
+      if ((window as any).lenis) (window as any).lenis.stop();
+    } else {
+      document.body.style.overflow = 'auto';
+      if ((window as any).lenis) (window as any).lenis.start();
+    }
+  }, [selectedBadgeIndex]);
 
   useEffect(() => {
     async function fetchData() {
@@ -183,11 +200,11 @@ export default function LeetcodeSection() {
             </a>
 
             <div className="w-full grid grid-cols-2 gap-4">
-              <div className="bg-white/80 rounded-2xl p-4 flex flex-col items-center justify-center border border-[#eee] shadow-sm">
+              <div className="glassCard rounded-3xl p-4 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#888] flex items-center gap-1.5 mb-1.5"><Trophy size={12} className="text-[#FFA116]" /> Global Rank</span>
                 <span className="text-xl font-black text-[#111]">{matchedUser.profile.ranking.toLocaleString()}</span>
               </div>
-              <div className="bg-white/80 rounded-2xl p-4 flex flex-col items-center justify-center border border-[#eee] shadow-sm">
+              <div className="glassCard rounded-3xl p-4 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#888] flex items-center gap-1.5 mb-1.5"><Shield size={12} className="text-[#00b8a3]" /> Reputation</span>
                 <span className="text-xl font-black text-[#111]">{matchedUser.profile.reputation}</span>
               </div>
@@ -203,8 +220,8 @@ export default function LeetcodeSection() {
             <div className="flex flex-col md:flex-row gap-8 items-center h-full">
               
               {/* Total Solved Hero Block */}
-              <div className="bg-[#FFA116] text-white py-12 md:p-8 rounded-[1.5rem] flex flex-col items-center justify-center shrink-0 w-full md:w-56 shadow-lg shadow-[#FFA116]/20 relative overflow-hidden md:h-full">
-                <Flame size={120} className="absolute -right-4 -bottom-4 text-white opacity-10 rotate-12" />
+              <div className="bg-[#FFA116] text-white py-12 md:p-8 rounded-[2rem] flex flex-col items-center justify-center shrink-0 w-full md:w-56 shadow-lg shadow-[#FFA116]/20 relative overflow-hidden md:h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group">
+                <Flame size={120} className="absolute -right-4 -bottom-4 text-white opacity-10 rotate-12 group-hover:scale-110 group-hover:opacity-20 transition-all duration-500" />
                 <p className="text-[10px] font-black uppercase tracking-widest text-white/90 mb-1 relative z-10">Total Solved</p>
                 <p className="text-5xl font-black tracking-tighter relative z-10">{totalSolved}</p>
               </div>
@@ -249,11 +266,11 @@ export default function LeetcodeSection() {
           {/* 3. CONTESTS PARTICIPATED */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-6 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold text-[#111] tracking-tight">Contests</h3>
+              <h3 className="text-xl font-bold text-[#111] tracking-tight flex items-center gap-2"><Trophy size={20} className="text-[#111]" /> Contests</h3>
               <span className="text-[9px] font-black uppercase tracking-widest bg-blue-500/10 text-blue-600 px-2.5 py-1 rounded-full flex items-center gap-1">
                 <Trophy size={10} /> 1,325
               </span>
@@ -275,50 +292,23 @@ export default function LeetcodeSection() {
             </div>
           </motion.div>
 
-          {/* 4. LANGUAGES USED */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 }}
-            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
-            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold text-[#111] tracking-tight">Languages</h3>
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3 justify-center">
-               {[
-                 { languageName: 'C++', problemsSolved: 226 },
-                 { languageName: 'JavaScript', problemsSolved: 30 },
-                 { languageName: 'TypeScript', problemsSolved: 22 },
-                 { languageName: 'Python3', problemsSolved: 4 },
-                 { languageName: 'Python', problemsSolved: 3 },
-                 { languageName: 'MySQL', problemsSolved: 2 }
-               ].slice(0, 5).map((lang, idx) => (
-                 <div key={idx} className="flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-[#555] bg-[#f5f5f5] border border-[#eee] px-2.5 py-1 rounded-lg tracking-wide">{lang.languageName}</span>
-                   <span className="text-sm font-black text-[#111]">{lang.problemsSolved} <span className="text-[10px] text-[#888] font-bold ml-0.5">solved</span></span>
-                 </div>
-               ))}
-            </div>
-          </motion.div>
-
           {/* 5. ACHIEVEMENTS */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-6 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold text-[#111] tracking-tight">Achievements</h3>
-              <button onClick={() => setIsModalOpen(true)} className="text-[11px] font-bold text-[#888] uppercase tracking-widest hover:text-[#FFA116] transition-colors flex items-center gap-1">
+              <h3 className="text-xl font-bold text-[#111] tracking-tight flex items-center gap-2"><Medal size={20} className="text-[#111]" /> Achievements</h3>
+              <button onClick={() => setSelectedBadgeIndex(0)} className="text-[11px] font-bold text-[#888] uppercase tracking-widest hover:text-[#FFA116] transition-colors flex items-center gap-1">
                 View All <ExternalLink size={12} />
               </button>
             </div>
 
-            <div className="flex-1 flex justify-between items-center w-full">
-               {['dcc-2026-3.png', 'dcc-2026-4.png', '50_1080_1080.png', '100_1080_1080.png'].map((badge, idx) => (
-                  <div key={idx} className="w-[22%] aspect-square max-w-[100px] rounded-[1.5rem] bg-white border border-[#eee] shadow-sm flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-md transition-all cursor-pointer group" onClick={() => setIsModalOpen(true)}>
-                    <img src={`/Leetcode/${badge}`} alt="Badge" className="w-[80%] h-[80%] object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
+            <div className="flex-1 grid grid-cols-4 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
+               {leetcodeBadges.slice(0, 4).map((badge, idx) => (
+                  <div key={idx} className="relative group glassCard border border-[#eaeaea] p-4 rounded-[1.5rem] hover:bg-white hover:border-[#ddd] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg cursor-pointer aspect-square flex items-center justify-center w-full max-w-[130px]" onClick={() => setSelectedBadgeIndex(idx)}>
+                    <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-[90%] h-[90%] object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
                   </div>
                ))}
             </div>
@@ -332,7 +322,7 @@ export default function LeetcodeSection() {
           >
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
               <div>
-                <h3 className="text-xl font-bold text-[#111] tracking-tight">Activity Heatmap</h3>
+                <h3 className="text-xl font-bold text-[#111] tracking-tight flex items-center gap-2"><Activity size={20} className="text-[#111]" /> Activity Heatmap</h3>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-[#888] mt-1.5 flex items-center gap-1"><CalendarIcon size={12} /> Last 9 Months</p>
               </div>
               <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#888]">
@@ -404,32 +394,32 @@ export default function LeetcodeSection() {
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold text-[#111] tracking-tight">Recent Solutions</h3>
+              <h3 className="text-xl font-bold text-[#111] tracking-tight flex items-center gap-2"><CheckCircle size={20} className="text-[#111]" /> Recent Solutions</h3>
               <span className="text-[9px] font-black uppercase tracking-widest bg-[#FFA116]/10 text-[#FFA116] px-2.5 py-1 rounded-full flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 bg-[#FFA116] rounded-full animate-pulse"></div> Live
               </span>
             </div>
 
-            <div className="flex flex-col gap-2 flex-1 justify-center">
+            <div className="flex flex-col gap-4 flex-1 justify-center">
               {recentSubmissionList.slice(0, 2).map((sub, idx) => (
                 <a 
                   key={`sub-${idx}`} 
                   href={`https://leetcode.com/problems/${sub.titleSlug}/`} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="flex flex-col gap-2 p-4 rounded-2xl bg-white/80 border border-[#eee] hover:border-[#FFA116]/50 hover:shadow-sm transition-all group"
+                  className="glassCard rounded-3xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group flex flex-col gap-2 flex-1"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-[13px] font-bold text-[#111] leading-snug line-clamp-1 group-hover:text-[#FFA116] transition-colors flex items-center gap-1.5">
-                      <Code2 size={14} className="text-[#ccc] group-hover:text-[#FFA116] transition-colors shrink-0" /> {sub.title}
+                    <p className="text-[14px] font-bold text-[#111] leading-snug line-clamp-1 group-hover:text-[#FFA116] transition-colors flex items-center gap-1.5">
+                      <Code2 size={16} className="text-[#ccc] group-hover:text-[#FFA116] transition-colors shrink-0" /> {sub.title}
                     </p>
                     <span className="text-[9px] font-black uppercase tracking-widest text-[#00b8a3] shrink-0 bg-[#00b8a3]/10 px-2 py-0.5 rounded-md">{sub.statusDisplay}</span>
                   </div>
-                  <div className="flex items-center justify-between pl-5">
-                    <span className="text-[9px] font-bold text-[#888] uppercase tracking-widest">
+                  <div className="flex items-center justify-between pl-6">
+                    <span className="text-[10px] font-bold text-[#888] uppercase tracking-widest">
                       {new Date(parseInt(sub.timestamp) * 1000).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </span>
-                    <span className="text-[9px] font-black text-[#555] bg-gray-100 px-2 py-0.5 rounded-md uppercase tracking-widest">{sub.lang}</span>
+                    <span className="text-[10px] font-bold text-[#555] bg-[#f5f5f5] px-2 py-0.5 rounded-md">{sub.lang}</span>
                   </div>
                 </a>
               ))}
@@ -439,49 +429,63 @@ export default function LeetcodeSection() {
         </div>
       </div>
 
-      {/* Achievements Modal */}
+      {/* Badge Modal */}
       {typeof document !== 'undefined' && createPortal(
         <AnimatePresence>
-          {isModalOpen && (
-            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+          {selectedBadgeIndex !== null && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4"
+            >
               <motion.div 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-[#111]/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}
-              ></motion.div>
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative bg-white rounded-[2rem] p-6 md:p-8 max-w-4xl w-full shadow-2xl flex flex-col max-h-[90vh]"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", bounce: 0.3 }}
+                className="relative bg-white rounded-[2rem] p-10 max-w-sm w-full flex flex-col items-center shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex justify-between items-center mb-8 border-b border-[#eee] pb-4 shrink-0">
-                  <h3 className="text-2xl md:text-3xl font-black text-[#111] tracking-tight flex items-center gap-3">
-                    <Trophy className="text-[#FFA116]" size={28} /> Badges & Achievements
-                  </h3>
-                  <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-[#555]">
-                    <X size={24} />
+                <button 
+                  onClick={() => setSelectedBadgeIndex(null)}
+                  className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                >
+                  <X size={20} className="text-gray-600" />
+                </button>
+
+                <img 
+                  src={`/Leetcode/${leetcodeBadges[selectedBadgeIndex].img}`} 
+                  alt={leetcodeBadges[selectedBadgeIndex].name} 
+                  className="w-48 h-48 object-contain mb-6 drop-shadow-xl"
+                />
+                <h3 className="text-2xl font-black tracking-tight text-[#111]">{leetcodeBadges[selectedBadgeIndex].name}</h3>
+                
+                <div className="fixed inset-y-0 left-4 md:left-10 flex items-center">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === 0 ? leetcodeBadges.length - 1 : prev - 1));
+                    }}
+                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                  >
+                    <ChevronLeft size={32} />
                   </button>
                 </div>
-                
-                <div className="overflow-y-auto custom-scrollbar flex-1 pr-2">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                    {[
-                      { img: 'dcc-2026-3.png', name: 'March 2026' },
-                      { img: 'dcc-2026-4.png', name: 'April 2026' },
-                      { img: '50_1080_1080.png', name: '50 Days Badge' },
-                      { img: '100_1080_1080.png', name: '100 Days Badge' },
-                    ].map((badge, idx) => (
-                      <div key={idx} className="flex flex-col items-center gap-3 group">
-                        <div className="w-full aspect-square rounded-[1.5rem] bg-[#fafafa] border border-[#eee] flex items-center justify-center p-6 group-hover:shadow-lg group-hover:-translate-y-2 transition-all duration-300">
-                          <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
-                        </div>
-                        <span className="text-sm font-bold text-[#333] text-center">{badge.name}</span>
-                      </div>
-                    ))}
-                  </div>
+
+                <div className="fixed inset-y-0 right-4 md:right-10 flex items-center">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === leetcodeBadges.length - 1 ? 0 : prev + 1));
+                    }}
+                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                  >
+                    <ChevronRight size={32} />
+                  </button>
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>,
         document.body

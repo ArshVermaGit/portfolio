@@ -56,10 +56,15 @@ export default function YoutubeSection() {
   useEffect(() => {
     if (selectedVideoIdx !== null) {
       document.body.style.overflow = 'hidden';
+      if ((window as any).lenis) (window as any).lenis.stop();
     } else {
       document.body.style.overflow = 'auto';
+      if ((window as any).lenis) (window as any).lenis.start();
     }
-    return () => { document.body.style.overflow = 'auto'; };
+    return () => { 
+      document.body.style.overflow = 'auto'; 
+      if ((window as any).lenis) (window as any).lenis.start();
+    };
   }, [selectedVideoIdx]);
 
   if (loading) {
