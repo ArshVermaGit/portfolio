@@ -176,7 +176,7 @@ export default function LeetcodeSection() {
           className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="LeetCode" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm" />
+            <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="LeetCode" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm transform -rotate-3" />
             LeetCode
           </div>
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">My competitive programming journey.</span>

@@ -17,12 +17,14 @@ import {
   Briefcase,
   Trophy,
   Menu,
-  X
+  X,
+  GraduationCap
 } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'hero', icon: Home, label: 'Home' },
   { id: 'about', icon: User, label: 'About' },
+  { id: 'education', icon: GraduationCap, label: 'Education' },
   { id: 'tech-stack', icon: Cpu, label: 'Tech Stack' },
   { id: 'works', icon: Layers, label: 'Featured Work' },
   { id: 'ai-projects', icon: Bot, label: 'AI Projects' },

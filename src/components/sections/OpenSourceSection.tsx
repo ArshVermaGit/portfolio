@@ -111,7 +111,7 @@ export default function OpenSourceSection() {
           className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <GitPullRequest className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm text-[#3DA639]" strokeWidth={2.5} />
+            <GitPullRequest className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm text-[#3DA639] transform -rotate-3" strokeWidth={2.5} />
             Open Source
           </div>
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Contributing to the global developer community.</span>

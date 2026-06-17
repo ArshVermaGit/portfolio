@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import HeroSection from './components/sections/HeroSection'
 import AboutSection from './components/sections/AboutSection'
 import StatementSection from './components/sections/StatementSection'
+import EducationSection from './components/sections/EducationSection'
 import TechStackSection from './components/sections/TechStackSection'
 import ProjectsSection from './components/sections/ProjectsSection'
 import AIProjectsSection from './components/sections/AIProjectsSection'
@@ -136,6 +137,7 @@ export default function App() {
         <HeroSection imageRef={heroRef} />
         <AboutSection imageRef={aboutRef} />
         <StatementSection />
+        <EducationSection />
         <TechStackSection />
         <ProjectsSection />
         <AIProjectsSection />

@@ -160,7 +160,7 @@ export default function GithubSection() {
           className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <img src="https://skillicons.dev/icons?i=github" alt="GitHub" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm" />
+            <img src="https://skillicons.dev/icons?i=github" alt="GitHub" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm transform rotate-3" />
             GitHub
           </div>
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">My daily contribution graph.</span>
