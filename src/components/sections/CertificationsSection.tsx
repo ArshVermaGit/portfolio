@@ -59,32 +59,40 @@ function CertModal({
 }) {
   // Prevent body scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
-    return () => {
-      document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start();
+    document.body.style.overflow = 'hidden'; 
+    document.documentElement.style.overflow = 'hidden';
+    if ((window as any).lenis) (window as any).lenis.stop();
+    return () => { 
+      document.body.style.overflow = ''; 
+      document.documentElement.style.overflow = '';
+      if ((window as any).lenis) (window as any).lenis.start(); 
     };
   }, []);
 
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10 overscroll-none"
     >
       <motion.div
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-5xl h-full max-h-[90vh] bg-[#f4f4f2] rounded-[2rem] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative"
+        className="w-full max-w-5xl h-full max-h-[90vh] bg-[#f4f4f2] rounded-[2rem] overflow-hidden flex flex-col shadow-2xl relative"
       >
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons (Outside Modal Box) */}
         {hasPrev && (
-          <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md hidden md:flex">
-            <ChevronLeft size={24} strokeWidth={2.5} />
-          </button>
+          <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
+              <ChevronLeft size={32} />
+            </button>
+          </div>
         )}
         {hasNext && (
-          <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md hidden md:flex">
-            <ChevronRight size={24} strokeWidth={2.5} />
-          </button>
+          <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
+              <ChevronRight size={32} />
+            </button>
+          </div>
         )}
 
         {/* Header */}
@@ -225,10 +233,10 @@ export default function CertificationsSection() {
           <CertModal 
             cert={certificates[selectedIdx]}
             onClose={() => setSelectedIdx(null)}
-            onPrev={() => setSelectedIdx(prev => prev! > 0 ? prev! - 1 : certificates.length - 1)}
-            onNext={() => setSelectedIdx(prev => prev! < certificates.length - 1 ? prev! + 1 : 0)}
-            hasPrev={certificates.length > 1}
-            hasNext={certificates.length > 1}
+            onPrev={() => setSelectedIdx(prev => prev! > 0 ? prev! - 1 : prev)}
+            onNext={() => setSelectedIdx(prev => prev! < certificates.length - 1 ? prev! + 1 : prev)}
+            hasPrev={selectedIdx > 0}
+            hasNext={selectedIdx < certificates.length - 1}
           />
         )}
       </AnimatePresence>

@@ -95,7 +95,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" className="w-4 h-4 object-contain" />
               GitHub
             </p>
           </motion.div>
@@ -129,7 +129,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/x/000000" alt="X" className="w-3.5 h-3.5" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X" className="w-3.5 h-3.5 object-contain" />
               X (Twitter)
             </p>
           </motion.div>
@@ -164,7 +164,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/fr/4/4f/Discord_Logo_sans_texte.svg" alt="Discord" className="w-4 h-4 object-contain" />
               Discord
             </p>
           </motion.div>
@@ -192,7 +192,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" className="w-4 h-4 object-contain" />
               YouTube
             </p>
           </motion.div>
@@ -218,7 +218,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/devdotto/000000" alt="DEV.to" className="w-4 h-4" />
+              <span className="bg-black text-white px-1 py-0.5 rounded text-[8px] leading-none">DEV</span>
               DEV.to
             </p>
           </motion.div>
@@ -252,7 +252,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" className="w-4 h-4 object-contain" />
               Gmail
             </p>
           </motion.div>
@@ -287,7 +287,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-4 h-4 object-contain" />
               WhatsApp
             </p>
           </motion.div>
@@ -319,7 +319,7 @@ export default function ContactSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-4 h-4 object-contain" />
               Instagram
             </p>
           </motion.div>

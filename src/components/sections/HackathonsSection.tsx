@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, X, Calendar, Award, Code, ArrowUpRight } from 'lucide-react';
+import { Trophy, X, Calendar, Award, Code, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const hackathons = [
   {
@@ -40,7 +40,21 @@ const hackathons = [
   }
 ];
 
-function HackathonModal({ hackathon, onClose }: { hackathon: typeof hackathons[0], onClose: () => void }) {
+function HackathonModal({ 
+  hackathon, 
+  onClose,
+  onPrev,
+  onNext,
+  hasPrev,
+  hasNext
+}: { 
+  hackathon: typeof hackathons[0], 
+  onClose: () => void,
+  onPrev: () => void,
+  onNext: () => void,
+  hasPrev: boolean,
+  hasNext: boolean
+}) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
     return () => { document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start(); };
@@ -49,13 +63,29 @@ function HackathonModal({ hackathon, onClose }: { hackathon: typeof hackathons[0
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-10"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 md:p-10"
     >
       <motion.div
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative"
+        className="w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col shadow-2xl relative"
       >
+        {/* Navigation Buttons (Outside Modal Box) */}
+        {hasPrev && (
+          <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
+              <ChevronLeft size={32} />
+            </button>
+          </div>
+        )}
+        {hasNext && (
+          <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
+            <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110">
+              <ChevronRight size={32} />
+            </button>
+          </div>
+        )}
+
         <button onClick={onClose} className="absolute top-6 right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-[#eaeaea]">
           <X size={20} strokeWidth={3} />
         </button>
@@ -213,6 +243,10 @@ export default function HackathonsSection() {
           <HackathonModal 
             hackathon={hackathons[selectedIdx]} 
             onClose={() => setSelectedIdx(null)} 
+            onPrev={() => setSelectedIdx(prev => prev! > 0 ? prev! - 1 : prev)}
+            onNext={() => setSelectedIdx(prev => prev! < hackathons.length - 1 ? prev! + 1 : prev)}
+            hasPrev={selectedIdx > 0}
+            hasNext={selectedIdx < hackathons.length - 1}
           />
         )}
       </AnimatePresence>

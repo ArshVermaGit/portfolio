@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X, Medal, Terminal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X, Medal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface AllQuestionsCount {
@@ -461,29 +461,33 @@ export default function LeetcodeSection() {
                 />
                 <h3 className="text-2xl font-black tracking-tight text-[#111]">{leetcodeBadges[selectedBadgeIndex].name}</h3>
                 
-                <div className="fixed inset-y-0 left-4 md:left-10 flex items-center">
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === 0 ? leetcodeBadges.length - 1 : prev - 1));
-                    }}
-                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
-                  >
-                    <ChevronLeft size={32} />
-                  </button>
-                </div>
+                {selectedBadgeIndex !== null && selectedBadgeIndex > 0 && (
+                  <div className="fixed inset-y-0 left-4 md:left-10 flex items-center z-[10000] pointer-events-none">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedBadgeIndex(prev => prev === null ? null : (prev === 0 ? prev : prev - 1));
+                      }}
+                      className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                    >
+                      <ChevronLeft size={32} />
+                    </button>
+                  </div>
+                )}
 
-                <div className="fixed inset-y-0 right-4 md:right-10 flex items-center">
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === leetcodeBadges.length - 1 ? 0 : prev + 1));
-                    }}
-                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
-                  >
-                    <ChevronRight size={32} />
-                  </button>
-                </div>
+                {selectedBadgeIndex !== null && selectedBadgeIndex < leetcodeBadges.length - 1 && (
+                  <div className="fixed inset-y-0 right-4 md:right-10 flex items-center z-[10000] pointer-events-none">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedBadgeIndex(prev => prev === null ? null : (prev === leetcodeBadges.length - 1 ? prev : prev + 1));
+                      }}
+                      className="pointer-events-auto p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                    >
+                      <ChevronRight size={32} />
+                    </button>
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           )}

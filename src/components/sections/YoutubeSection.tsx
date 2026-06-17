@@ -263,26 +263,30 @@ export default function YoutubeSection() {
               className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
             >
               {/* Left Navigation */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : data.items.length - 1);
-              }} 
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-            >
-              <ChevronLeft size={24} strokeWidth={2.5} />
-            </button>
+              {selectedVideoIdx !== null && selectedVideoIdx > 0 && (
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : prev);
+                  }} 
+                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                >
+                  <ChevronLeft size={24} strokeWidth={2.5} />
+                </button>
+              )}
 
             {/* Right Navigation */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedVideoIdx(prev => prev! < data.items.length - 1 ? prev! + 1 : 0);
-              }} 
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-            >
-              <ChevronRight size={24} strokeWidth={2.5} />
-            </button>
+            {selectedVideoIdx !== null && selectedVideoIdx < data.items.length - 1 && (
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedVideoIdx(prev => prev! < data.items.length - 1 ? prev! + 1 : prev);
+                }} 
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+              >
+                <ChevronRight size={24} strokeWidth={2.5} />
+              </button>
+            )}
 
             <motion.div 
               key={data.items[selectedVideoIdx].guid} // Re-animate when video changes

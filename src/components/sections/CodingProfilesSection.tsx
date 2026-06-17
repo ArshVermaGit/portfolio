@@ -113,7 +113,7 @@ export default function CodingProfilesSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/leetcode/FFA116" alt="LeetCode" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode" className="w-4 h-4 object-contain opacity-80" />
               LeetCode
             </p>
           </motion.div>
@@ -182,7 +182,7 @@ export default function CodingProfilesSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/geeksforgeeks/2F8D46" alt="GeeksForGeeks" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg" alt="GeeksForGeeks" className="w-4 h-4 object-contain" />
               GeeksForGeeks
             </p>
           </motion.div>
@@ -254,7 +254,7 @@ export default function CodingProfilesSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/kaggle/20BEFF" alt="Kaggle" className="w-4 h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png" alt="Kaggle" className="w-8 h-4 object-contain" />
               Kaggle
             </p>
           </motion.div>
@@ -334,7 +334,7 @@ export default function CodingProfilesSection() {
               </div>
             </motion.a>
             <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <img src="https://cdn.simpleicons.org/huggingface/FFD21E" alt="Hugging Face" className="w-4 h-4" />
+              <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" className="w-4 h-4 object-contain" />
               Hugging Face
             </p>
           </motion.div>

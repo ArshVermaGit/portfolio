@@ -331,34 +331,38 @@ export default function OpenSourceSection() {
               className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
             >
               {/* Left Navigation */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setModalState(prev => {
-                    if (!prev) return null;
-                    const list = prev.type === 'apertre' ? apertreBadges : gssocBadges;
-                    return { ...prev, index: prev.index > 0 ? prev.index - 1 : list.length - 1 };
-                  });
-                }} 
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-              >
-                <ChevronLeft size={24} strokeWidth={2.5} />
-              </button>
+              {modalState.index > 0 && (
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setModalState(prev => {
+                      if (!prev) return null;
+                      return { ...prev, index: prev.index > 0 ? prev.index - 1 : prev.index };
+                    });
+                  }} 
+                  className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                >
+                  <ChevronLeft size={24} strokeWidth={2.5} />
+                </button>
+              )}
   
               {/* Right Navigation */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setModalState(prev => {
-                    if (!prev) return null;
-                    const list = prev.type === 'apertre' ? apertreBadges : gssocBadges;
-                    return { ...prev, index: prev.index < list.length - 1 ? prev.index + 1 : 0 };
-                  });
-                }} 
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-              >
-                <ChevronRight size={24} strokeWidth={2.5} />
-              </button>
+              {((modalState.type === 'apertre' && modalState.index < apertreBadges.length - 1) || 
+                (modalState.type === 'gssoc' && modalState.index < gssocBadges.length - 1)) && (
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setModalState(prev => {
+                      if (!prev) return null;
+                      const list = prev.type === 'apertre' ? apertreBadges : gssocBadges;
+                      return { ...prev, index: prev.index < list.length - 1 ? prev.index + 1 : prev.index };
+                    });
+                  }} 
+                  className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+                >
+                  <ChevronRight size={24} strokeWidth={2.5} />
+                </button>
+              )}
   
               <motion.div 
                 key={`${modalState.type}-${modalState.index}`} // Add key to animate when index changes
