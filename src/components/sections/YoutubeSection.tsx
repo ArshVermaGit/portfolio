@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Play, Calendar, X, Activity, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -211,64 +212,66 @@ export default function YoutubeSection() {
       </div>
 
       {/* Embedded Video Modal */}
-      <AnimatePresence>
-        {selectedVideoIdx !== null && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
-            onClick={() => setSelectedVideoIdx(null)}
-          >
-            {/* Left Navigation */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : recentVideos.length - 1);
-              }} 
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-            >
-              <ChevronLeft size={24} strokeWidth={2.5} />
-            </button>
-
-            {/* Right Navigation */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedVideoIdx(prev => prev! < recentVideos.length - 1 ? prev! + 1 : 0);
-              }} 
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
-            >
-              <ChevronRight size={24} strokeWidth={2.5} />
-            </button>
-
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedVideoIdx !== null && (
             <motion.div 
-              key={recentVideos[selectedVideoIdx].guid} // Re-animate when video changes
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/60 backdrop-blur-md"
             >
+              {/* Left Navigation */}
               <button 
-                onClick={() => setSelectedVideoIdx(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedVideoIdx(prev => prev! > 0 ? prev! - 1 : recentVideos.length - 1);
+                }} 
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
               >
-                <X size={20} strokeWidth={3} />
+                <ChevronLeft size={24} strokeWidth={2.5} />
               </button>
-              
-              <iframe 
-                src={`https://www.youtube.com/embed/${recentVideos[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
-                title={recentVideos[selectedVideoIdx].title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              ></iframe>
+
+              {/* Right Navigation */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedVideoIdx(prev => prev! < recentVideos.length - 1 ? prev! + 1 : 0);
+                }} 
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-white/90 text-[#111] rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-2xl backdrop-blur-md"
+              >
+                <ChevronRight size={24} strokeWidth={2.5} />
+              </button>
+
+              <motion.div 
+                key={recentVideos[selectedVideoIdx].guid} // Re-animate when video changes
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-6xl bg-black rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] aspect-video border border-white/20"
+              >
+                <button 
+                  onClick={() => setSelectedVideoIdx(null)}
+                  className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl border border-[#eaeaea]"
+                >
+                  <X size={20} strokeWidth={3} />
+                </button>
+                
+                <iframe 
+                  src={`https://www.youtube.com/embed/${recentVideos[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
+                  title={recentVideos[selectedVideoIdx].title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                ></iframe>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }

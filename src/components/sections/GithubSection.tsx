@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react';
-import { GitPullRequest, CircleDot, Star, GitFork, BookOpen, MapPin, Calendar, Users } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { GitPullRequest, CircleDot, Star, GitFork, BookOpen, MapPin, Calendar, Users, Trophy, X, ChevronLeft, ChevronRight, Activity, UserCheck, Code, GitCommit, Flame } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const badgesList = [
+  { name: "Pull Shark", file: "pull-shark-default-498c279a747d.png" },
+  { name: "Pair Extraordinaire", file: "pair-extraordinaire-default-579438a20e01.png" },
+  { name: "Starstruck", file: "starstruck-default--light-a594e2a027e0.png" },
+  { name: "Public Sponsor", file: "public-sponsor-default-9fa68986b057.png" },
+  { name: "Galaxy Brain", file: "galaxy-brain-default-847262c21056.png" },
+  { name: "YOLO", file: "yolo-default-be0bbff04951.png" },
+  { name: "Quickdraw", file: "quickdraw-default--light-8f798b35341a.png" }
+];
 
 interface ContributionDay {
   contributionCount: number;
@@ -70,6 +81,26 @@ export default function GithubSection() {
   const [data, setData] = useState<GithubData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedBadgeIndex(null);
+      if (e.key === 'ArrowRight') setSelectedBadgeIndex(prev => prev === null ? null : (prev === badgesList.length - 1 ? 0 : prev + 1));
+      if (e.key === 'ArrowLeft') setSelectedBadgeIndex(prev => prev === null ? null : (prev === 0 ? badgesList.length - 1 : prev - 1));
+    };
+    if (selectedBadgeIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
+    } else {
+      document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start();
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start();
+    };
+  }, [selectedBadgeIndex]);
 
   useEffect(() => {
     async function fetchData() {
@@ -192,7 +223,7 @@ export default function GithubSection() {
               <div className="w-[1px] h-12 bg-[#eeeeee]"></div>
               <div className="flex flex-col items-center gap-1">
                 <span className="text-4xl font-black tracking-tighter text-[#111111]">{data.profile.following}</span>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#888888]">Following</span>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#888888] flex items-center gap-1.5"><UserCheck size={14} /> Following</span>
               </div>
             </motion.div>
 
@@ -202,7 +233,7 @@ export default function GithubSection() {
               className="glassCard  rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500"
               whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
-              <h4 className="text-lg font-bold tracking-tight mb-6">Top Languages</h4>
+              <h4 className="text-lg font-bold tracking-tight mb-6 flex items-center gap-2"><Code size={20} /> Top Languages</h4>
               <div className="flex flex-wrap gap-3">
                 {data.topLanguages.map((lang, idx) => (
                   <div key={idx} className="flex items-center gap-2 px-4 py-2 bg-[#f5f5f5] rounded-full text-sm font-semibold border border-[#eeeeee] hover:bg-[#ececec] transition-colors">
@@ -224,13 +255,13 @@ export default function GithubSection() {
               className="grid grid-cols-2 md:grid-cols-4 gap-6"
             >
               {[
-                { label: 'CONTRIBUTIONS', value: data.stats.totalContributions },
-                { label: 'TOTAL STARS', value: data.stats.totalStars },
-                { label: 'TOTAL FORKS', value: data.stats.totalForks },
-                { label: 'MAX STREAK', value: `${data.stats.maxStreak} Days` },
+                { label: 'CONTRIBUTIONS', value: data.stats.totalContributions, icon: <GitCommit size={14} /> },
+                { label: 'TOTAL STARS', value: data.stats.totalStars, icon: <Star size={14} /> },
+                { label: 'TOTAL FORKS', value: data.stats.totalForks, icon: <GitFork size={14} /> },
+                { label: 'MAX STREAK', value: `${data.stats.maxStreak} Days`, icon: <Flame size={14} /> },
               ].map((stat, idx) => (
                 <motion.div key={idx} whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }} className="glassCard  rounded-[2rem] p-4 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-center items-center text-center">
-                  <p className="text-[10px] md:text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-2 md:mb-3">{stat.label}</p>
+                  <p className="text-[10px] md:text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-2 md:mb-3 flex items-center gap-1.5 justify-center">{stat.icon} {stat.label}</p>
                   <p className="text-3xl md:text-5xl font-black tracking-tighter text-[#111111]">{stat.value}</p>
                 </motion.div>
               ))}
@@ -244,7 +275,7 @@ export default function GithubSection() {
             >
               <div className="flex justify-between items-end mb-8">
                 <div>
-                  <h3 className="text-xl font-bold tracking-tight">Historical Heatmap</h3>
+                  <h3 className="text-xl font-bold tracking-tight flex items-center gap-2"><Activity size={20} /> Historical Heatmap</h3>
                   <p className="text-sm font-medium text-[#888888] mt-1">Last 12 months</p>
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-[#888888]">
@@ -325,30 +356,32 @@ export default function GithubSection() {
                 initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
                 className="flex flex-col gap-5"
               >
-                <h3 className="text-xl font-bold tracking-tight px-1">Recent Activity</h3>
-                <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea] overflow-hidden flex flex-col flex-1 relative z-10">
-                  <div className="px-6 py-5 border-b border-[#eaeaea]">
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#888]">Merged PRs & Closed Issues</span>
-                  </div>
-                  
-                  <div className="flex flex-col flex-1 bg-white">
-                    {[...data.recentPRs.map((pr: any) => ({...pr, type: 'pr'})), ...data.recentIssues.map((issue: any) => ({...issue, type: 'issue'}))]
-                      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                      .slice(0, 3)
-                      .map((item, idx) => (
-                        <a key={idx} href={item.url} target="_blank" rel="noreferrer" className="flex items-start gap-4 p-6 border-b border-[#eaeaea] last:border-0 hover:bg-[#fafafa] transition-colors group">
-                          {item.type === 'pr' ? (
-                            <GitPullRequest size={20} className="text-[#a64aff] shrink-0 mt-1" strokeWidth={2} />
-                          ) : (
-                            <CircleDot size={20} className="text-[#a64aff] shrink-0 mt-1" strokeWidth={2} />
-                          )}
-                          <div className="flex flex-col gap-1.5">
-                            <p className="text-[15px] font-bold text-[#111] leading-snug group-hover:text-[#a64aff] transition-colors line-clamp-2">{item.title}</p>
-                            <p className="text-[13px] font-bold text-[#888]">{item.type === 'pr' ? 'Merged' : 'Closed'} • {new Date(item.createdAt).toLocaleDateString('en-GB')}</p>
-                          </div>
-                        </a>
-                      ))}
-                  </div>
+                <h3 className="text-xl font-bold tracking-tight flex items-center gap-2 px-1">
+                  <GitPullRequest size={20} /> Recent Activity
+                </h3>
+                <div className="flex flex-col gap-5 flex-1">
+                  {[...data.recentPRs.map((pr: any) => ({...pr, type: 'pr'})), ...data.recentIssues.map((issue: any) => ({...issue, type: 'issue'}))]
+                    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                    .slice(0, 3)
+                    .map((item, idx) => (
+                      <a 
+                        key={idx} 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="glassCard rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group flex items-start gap-4 flex-1"
+                      >
+                        {item.type === 'pr' ? (
+                          <GitPullRequest size={20} className="text-[#a64aff] shrink-0 mt-1" strokeWidth={2} />
+                        ) : (
+                          <CircleDot size={20} className="text-[#a64aff] shrink-0 mt-1" strokeWidth={2} />
+                        )}
+                        <div className="flex flex-col gap-1.5">
+                          <p className="text-[15px] font-bold text-[#111] leading-snug group-hover:text-[#a64aff] transition-colors line-clamp-2">{item.title}</p>
+                          <p className="text-[13px] font-bold text-[#888]">{item.type === 'pr' ? 'Merged PR' : 'Closed Issue'} • {new Date(item.createdAt).toLocaleDateString('en-GB')}</p>
+                        </div>
+                      </a>
+                    ))}
                 </div>
               </motion.div>
 
@@ -356,7 +389,97 @@ export default function GithubSection() {
           </div>
 
         </div>
+
+        {/* Achievements */}
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={cardVariants}
+          className="glassCard rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 mt-10"
+          whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+        >
+          <h3 className="text-xl font-bold tracking-tight mb-8 flex items-center justify-center md:justify-start gap-2">
+            <Trophy size={20} className="text-[#111111]" /> Achievements
+          </h3>
+          <div className="flex flex-wrap gap-4 md:gap-6 items-center justify-center md:justify-evenly w-full">
+            {badgesList.map((badge, idx) => (
+              <div 
+                key={idx} 
+                onClick={() => setSelectedBadgeIndex(idx)}
+                className="relative group bg-white/50 border border-[#eaeaea] p-3 rounded-2xl hover:bg-white hover:border-[#ddd] transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer"
+              >
+                <img 
+                  src={`/Github/${badge.file}`} 
+                  alt={badge.name} 
+                  className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
+
+      {/* Badge Modal */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedBadgeIndex !== null && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4"
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", bounce: 0.3 }}
+                className="relative bg-white rounded-[2rem] p-10 max-w-sm w-full flex flex-col items-center shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setSelectedBadgeIndex(null)}
+                  className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                >
+                  <X size={20} className="text-gray-600" />
+                </button>
+
+                <img 
+                  src={`/Github/${badgesList[selectedBadgeIndex].file}`} 
+                  alt={badgesList[selectedBadgeIndex].name} 
+                  className="w-48 h-48 object-contain mb-6 drop-shadow-xl"
+                />
+                <h3 className="text-2xl font-black tracking-tight text-[#111]">{badgesList[selectedBadgeIndex].name}</h3>
+                
+                <div className="fixed inset-y-0 left-4 md:left-10 flex items-center">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === 0 ? badgesList.length - 1 : prev - 1));
+                    }}
+                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                  >
+                    <ChevronLeft size={32} />
+                  </button>
+                </div>
+
+                <div className="fixed inset-y-0 right-4 md:right-10 flex items-center">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBadgeIndex(prev => prev === null ? null : (prev === badgesList.length - 1 ? 0 : prev + 1));
+                    }}
+                    className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-all hover:scale-110"
+                  >
+                    <ChevronRight size={32} />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
     </section>
   );
 }

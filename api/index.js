@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
-
+import { XMLParser } from 'fast-xml-parser';
 dotenv.config();
 
 const app = express();
@@ -288,16 +288,47 @@ const YOUTUBE_CHANNEL_ID = 'UCfoFOfJ6RuGqfnjCZANwJGQ';
 app.get('/api/youtube', async (req, res) => {
   try {
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-    
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(rssUrl);
 
-    if (response.data.status !== 'ok') {
-      console.error('YouTube RSS Errors:', response.data.message);
-      return res.status(500).json({ error: 'YouTube API error', details: response.data.message });
+    const parser = new XMLParser({
+      ignoreAttributes: false,
+      attributeNamePrefix: "@_"
+    });
+    
+    const parsed = parser.parse(response.data);
+    const feed = parsed.feed;
+
+    if (!feed || !feed.entry) {
+      return res.status(500).json({ error: 'YouTube API error', details: 'No entries found' });
     }
 
-    res.json(response.data);
+    // Ensure entry is an array
+    const entries = Array.isArray(feed.entry) ? feed.entry : [feed.entry];
+
+    const items = entries.map(entry => {
+      const mediaGroup = entry['media:group'] || {};
+      const thumbnail = mediaGroup['media:thumbnail'] ? mediaGroup['media:thumbnail']['@_url'] : '';
+      const description = mediaGroup['media:description'] || '';
+
+      return {
+        title: entry.title,
+        pubDate: entry.published,
+        link: entry.link ? entry.link['@_href'] : '',
+        guid: entry.id,
+        author: entry.author ? entry.author.name : '',
+        thumbnail: thumbnail,
+        description: description
+      };
+    });
+
+    res.json({
+      status: 'ok',
+      feed: {
+        title: feed.title,
+        author: feed.author ? feed.author.name : ''
+      },
+      items: items
+    });
   } catch (error) {
     console.error('Error fetching YouTube data:', error.response?.data || error.message);
     res.status(500).json({ error: 'Failed to fetch YouTube data' });

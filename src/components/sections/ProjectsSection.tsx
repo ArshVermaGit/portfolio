@@ -54,9 +54,9 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
 
   // Prevent body scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start();
     };
   }, []);
 
@@ -82,7 +82,6 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-10"
-      onClick={onClose}
     >
       <motion.div
         key={project.repo} // Animate on change
@@ -332,12 +331,12 @@ export default function ProjectsSection() {
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedProjectIndex !== null) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'; if ((window as any).lenis) (window as any).lenis.start();
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'; if ((window as any).lenis) (window as any).lenis.start();
     };
   }, [selectedProjectIndex]);
 

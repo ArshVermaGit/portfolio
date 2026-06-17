@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -439,49 +440,52 @@ export default function LeetcodeSection() {
       </div>
 
       {/* Achievements Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#111]/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}
-            ></motion.div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-[2rem] p-6 md:p-8 max-w-4xl w-full shadow-2xl flex flex-col max-h-[90vh]"
-            >
-              <div className="flex justify-between items-center mb-8 border-b border-[#eee] pb-4 shrink-0">
-                <h3 className="text-2xl md:text-3xl font-black text-[#111] tracking-tight flex items-center gap-3">
-                  <Trophy className="text-[#FFA116]" size={28} /> Badges & Achievements
-                </h3>
-                <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-[#555]">
-                  <X size={24} />
-                </button>
-              </div>
-              
-              <div className="overflow-y-auto custom-scrollbar flex-1 pr-2">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                  {[
-                    { img: 'dcc-2026-3.png', name: 'March 2026' },
-                    { img: 'dcc-2026-4.png', name: 'April 2026' },
-                    { img: '50_1080_1080.png', name: '50 Days Badge' },
-                    { img: '100_1080_1080.png', name: '100 Days Badge' },
-                  ].map((badge, idx) => (
-                    <div key={idx} className="flex flex-col items-center gap-3 group">
-                      <div className="w-full aspect-square rounded-[1.5rem] bg-[#fafafa] border border-[#eee] flex items-center justify-center p-6 group-hover:shadow-lg group-hover:-translate-y-2 transition-all duration-300">
-                        <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
-                      </div>
-                      <span className="text-sm font-bold text-[#333] text-center">{badge.name}</span>
-                    </div>
-                  ))}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+              <motion.div 
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-[#111]/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}
+              ></motion.div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white rounded-[2rem] p-6 md:p-8 max-w-4xl w-full shadow-2xl flex flex-col max-h-[90vh]"
+              >
+                <div className="flex justify-between items-center mb-8 border-b border-[#eee] pb-4 shrink-0">
+                  <h3 className="text-2xl md:text-3xl font-black text-[#111] tracking-tight flex items-center gap-3">
+                    <Trophy className="text-[#FFA116]" size={28} /> Badges & Achievements
+                  </h3>
+                  <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-[#555]">
+                    <X size={24} />
+                  </button>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                
+                <div className="overflow-y-auto custom-scrollbar flex-1 pr-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                    {[
+                      { img: 'dcc-2026-3.png', name: 'March 2026' },
+                      { img: 'dcc-2026-4.png', name: 'April 2026' },
+                      { img: '50_1080_1080.png', name: '50 Days Badge' },
+                      { img: '100_1080_1080.png', name: '100 Days Badge' },
+                    ].map((badge, idx) => (
+                      <div key={idx} className="flex flex-col items-center gap-3 group">
+                        <div className="w-full aspect-square rounded-[1.5rem] bg-[#fafafa] border border-[#eee] flex items-center justify-center p-6 group-hover:shadow-lg group-hover:-translate-y-2 transition-all duration-300">
+                          <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                        <span className="text-sm font-bold text-[#333] text-center">{badge.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }

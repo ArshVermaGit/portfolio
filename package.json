@@ -17,6 +17,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "fast-xml-parser": "^5.9.1",
     "framer-motion": "^12.40.0",
     "lenis": "^1.3.23",
     "lucide-react": "^1.18.0",

@@ -50,15 +50,14 @@ const aiProjects = [
 function AIProjectModal({ project, onClose }: { project: any, onClose: () => void }) {
   // Prevent body scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = 'auto'; };
+    document.body.style.overflow = 'hidden'; if ((window as any).lenis) (window as any).lenis.stop();
+    return () => { document.body.style.overflow = 'auto'; if ((window as any).lenis) (window as any).lenis.start(); };
   }, []);
 
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-10"
-      onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
