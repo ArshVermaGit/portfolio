@@ -123,7 +123,7 @@ export default function GithubSection() {
 
   if (loading) {
     return (
-      <section className="py-24 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
+      <section id="github" className="py-32 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
 
       
         <div className="animate-pulse text-lg font-medium tracking-tight">Loading GitHub Activity...</div>
@@ -133,7 +133,7 @@ export default function GithubSection() {
 
   if (error || !data) {
     return (
-      <section className="py-24 px-6 bg-transparent text-[#111111]">
+      <section id="github" className="py-32 px-6 bg-transparent text-[#111111]">
         <div className="max-w-[1280px] mx-auto text-center border border-red-200 bg-red-50 p-8 rounded-2xl">
           <h2 className="text-xl font-bold text-red-600 mb-2">GitHub Integration Error</h2>
           <p className="text-red-800 text-sm">{error}</p>

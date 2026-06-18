@@ -152,7 +152,7 @@ export default function LeetcodeSection() {
 
   if (loading) {
     return (
-      <section className="py-24 px-6 relative bg-transparent overflow-hidden min-h-[600px] flex items-center justify-center">
+      <section id="leetcode" className="py-32 px-6 relative bg-transparent overflow-hidden min-h-[600px] flex items-center justify-center">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(#FFA116_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]"></div>
         <div className="animate-pulse flex flex-col items-center gap-4">
           <div className="w-16 h-16 rounded-2xl bg-[#FFA116]/20"></div>
@@ -163,7 +163,7 @@ export default function LeetcodeSection() {
   }
 
   if (error || !data) {
-    return null; 
+    return <section id="leetcode"></section>; 
   }
 
   const { matchedUser, recentSubmissionList } = data;
@@ -175,7 +175,7 @@ export default function LeetcodeSection() {
   const hardSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Hard')?.count || 0;
 
   return (
-    <section id="competitive" className="py-24 px-6 relative bg-transparent overflow-hidden">
+    <section id="leetcode" className="py-32 px-6 relative bg-transparent overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(#FFA116_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]"></div>
       
       <div className="max-w-[1280px] mx-auto relative z-10">

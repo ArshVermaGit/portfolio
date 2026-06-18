@@ -28,10 +28,16 @@ interface YoutubeData {
   items: YoutubeItem[];
 }
 
+const getVideoId = (url: string) => {
+  if (!url) return '';
+  if (url.includes('v=')) return url.split('v=')[1].split('&')[0];
+  if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
+  return url.split('/').pop() || '';
+};
+
 export default function YoutubeSection() {
   const [data, setData] = useState<YoutubeData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [selectedVideoIdx, setSelectedVideoIdx] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -40,13 +46,47 @@ export default function YoutubeSection() {
       try {
         const response = await fetch('/api/youtube');
         if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Failed to fetch data');
+          throw new Error('Failed to fetch data');
         }
         const result = await response.json();
-        setData(result);
+        if (result && result.items && result.items.length > 0) {
+          setData(result);
+        } else {
+          throw new Error('No videos found');
+        }
       } catch (err: any) {
-        setError(err.message);
+        console.warn('Falling back to mock YouTube data due to error:', err);
+        setData({
+          status: 'ok',
+          feed: {
+            url: 'https://www.youtube.com/channel/UCfoFOfJ6RuGqfnjCZANwJGQ',
+            title: 'Arsh Creates',
+            link: 'https://www.youtube.com/channel/UCfoFOfJ6RuGqfnjCZANwJGQ',
+            author: 'Arsh Creates',
+            description: 'Sharing knowledge and tutorials.',
+            image: '/youtube-profile-photo.jpeg'
+          },
+          items: [
+            {
+              title: 'SentinelOps | DevOps AI Co-Pilot by Arsh Verma',
+              pubDate: '2026-02-28T17:44:04+00:00',
+              link: 'https://www.youtube.com/watch?v=9lXyiMOj0Pw',
+              guid: 'yt:video:9lXyiMOj0Pw',
+              author: 'ARSH VERMA',
+              thumbnail: 'https://i2.ytimg.com/vi/9lXyiMOj0Pw/hqdefault.jpg',
+              description: 'SentinelOps is an autonomous DevOps AI co-pilot designed to transform reactive workflows into predictive decision intelligence.'
+            },
+            {
+              title: 'SimplyPDF — Free Online PDF Tools | Web Dev Project Demo | Arsh Verma',
+              pubDate: '2026-02-10T19:48:20+00:00',
+              link: 'https://www.youtube.com/watch?v=SdoFA6ISg1A',
+              guid: 'yt:video:SdoFA6ISg1A',
+              author: 'ARSH VERMA',
+              thumbnail: 'https://i2.ytimg.com/vi/SdoFA6ISg1A/hqdefault.jpg',
+              description: 'SimplyPDF is a free online PDF tool that allows you to merge, split, compress, and convert PDF files with ease.'
+            }
+          ]
+        });
       } finally {
         setLoading(false);
       }
@@ -70,7 +110,7 @@ export default function YoutubeSection() {
 
   if (loading) {
     return (
-      <section className="py-24 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
+      <section id="youtube" className="py-32 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
 
       
         <div className="animate-pulse text-lg font-bold tracking-tight text-[#FF0000]">Loading YouTube Playlist...</div>
@@ -78,12 +118,12 @@ export default function YoutubeSection() {
     );
   }
 
-  if (error || !data || data.items.length === 0) {
+  if (!data || data.items.length === 0) {
     return (
-      <section className="py-24 px-6 bg-transparent text-[#111111]">
+      <section id="youtube" className="py-32 px-6 bg-transparent text-[#111111]">
         <div className="max-w-[1280px] mx-auto text-center border border-red-200 bg-red-50 p-8 rounded-3xl">
-          <h2 className="text-xl font-bold text-red-600 mb-2">YouTube Integration Error</h2>
-          <p className="text-red-800 text-sm">{error || "No videos found."}</p>
+          <h2 className="text-xl font-bold text-red-600 mb-2">No Videos</h2>
+          <p className="text-red-800 text-sm">No videos found.</p>
         </div>
       </section>
     );
@@ -305,7 +345,7 @@ export default function YoutubeSection() {
               </button>
               
               <iframe 
-                src={`https://www.youtube.com/embed/${data.items[selectedVideoIdx].link.split('v=')[1]}?autoplay=1&color=red`} 
+                src={`https://www.youtube.com/embed/${getVideoId(data.items[selectedVideoIdx].link)}?autoplay=1&color=red`} 
                 title={data.items[selectedVideoIdx].title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
