@@ -5,6 +5,23 @@ import { Trophy, X, Calendar, Award, Code, ArrowUpRight, ChevronLeft, ChevronRig
 
 const hackathons = [
   {
+    id: 4,
+    title: 'DesignVerse 2026',
+    date: 'Jun 18 – 21, 2026',
+    shortDescription: 'A four-day online design hackathon for students passionate about UI/UX, Frontend, and Design Thinking.',
+    description: 'DesignVerse 2026 is a four-day online design hackathon tailored for students passionate about UI/UX Design, Frontend, Graphic Design, Product Design, Branding, Design Thinking, Innovation, and Creative Problem Solving.',
+    link: 'https://unstop.com/p/designverse-2026-vit-bhopal-university-vit-bhopal-1699267',
+    logo: '/designverse.png',
+    certificate: '/designverse-certificate.png',
+    project: {
+      title: "MannSaathi",
+      logo: "/mannsaathi-logo.png",
+      about: "An anonymous, multilingual AI healthcare companion that breaks the hesitation to seek medical help.",
+      tech: ["Healthcare AI", "NLP", "Transformers", "Next.js"],
+      link: "https://github.com/ArshVermaGit/mannsaathi"
+    }
+  },
+  {
     id: 3,
     title: 'Dev Season of Code (DSOC) 2026',
     date: 'Jan 26 – Mar 18, 2026',
@@ -107,7 +124,7 @@ function HackathonModal({
 
              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 mt-8 md:mt-10 w-full md:w-auto">
                <a href={hackathon.link} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
-                 <Trophy className="text-yellow-500 w-5 h-5 md:w-5 md:h-5" /> Devpost / Details
+                 <Trophy className="text-yellow-500 w-5 h-5 md:w-5 md:h-5" /> {hackathon.link.includes('unstop.com') ? 'UnStop Link' : 'Devpost / Details'}
                </a>
                <a href={hackathon.project.link} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-base md:text-lg">
                  <ArrowUpRight className="w-5 h-5 md:w-5 md:h-5" /> View Project
@@ -181,7 +198,7 @@ export default function HackathonsSection() {
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Building, competing, and innovating.</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
             {hackathons.map((hackathon, idx) => (
               <motion.div 
                 key={hackathon.id}
@@ -190,7 +207,7 @@ export default function HackathonsSection() {
                 viewport={{ once: true, margin: "-50px" }} 
                 whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
                 transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-                className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full max-w-[450px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 mx-auto border border-[#eaeaea]"
+                className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea]"
                 onClick={() => setSelectedIdx(idx)}
               >
                 <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] flex flex-col relative overflow-hidden">

@@ -9,6 +9,7 @@ const projects = [
     repo: "SimplyPDF",
     logo: "/simplypdf.png",
     screenshot: "/1.png",
+    video: "https://youtu.be/SdoFA6ISg1A?si=PHtdfhaNgcFCAmQ5",
     about: "The Ultimate, Privacy-Focused PDF Swiss-Army Knife. SimplyPDF provides a seamless and secure environment to manipulate, edit, and organize your PDF files completely locally without sacrificing user experience.",
     features: [
       "100% Privacy Focused & Local Processing",
@@ -229,6 +230,25 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
 
                </div>
             </div>
+
+            {/* Video Demo Section */}
+            {project.video && (
+              <div className="px-6 pb-12 md:px-12 md:pb-16 bg-transparent flex-1">
+                 <div className="max-w-6xl mx-auto">
+                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6">Video Demo</h3>
+                   <div className="bg-[#111] border border-[#eee] rounded-[2rem] overflow-hidden shadow-xl w-full aspect-video">
+                     <iframe 
+                       src={`https://www.youtube.com/embed/${project.video.includes('v=') ? project.video.split('v=')[1]?.split('&')[0] : project.video.split('youtu.be/')[1]?.split('?')[0]}`}
+                       className="w-full h-full"
+                       title="YouTube video player"
+                       frameBorder="0"
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                       allowFullScreen
+                     ></iframe>
+                   </div>
+                 </div>
+              </div>
+            )}
 
           </div>
         )}

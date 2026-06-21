@@ -204,68 +204,70 @@ export default function YoutubeSection() {
           </motion.div>
 
           {/* RIGHT: Recent Uploads */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.4 }}
-            className="lg:col-span-8 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-bold tracking-tight flex items-center gap-2">
-                <Play size={20} className="fill-[#111]" /> Recent Uploads
-              </h3>
-              <span className="text-[9px] font-black text-[#888] uppercase tracking-widest">{data.items.length} Videos</span>
-            </div>
+          <div className="lg:col-span-8 flex flex-col h-full">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4 }}
+              className="glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col flex-1"
+              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-bold tracking-tight flex items-center gap-2">
+                  <Play size={20} className="fill-[#111]" /> Recent Uploads
+                </h3>
+                <span className="text-[9px] font-black text-[#888] uppercase tracking-widest">{data.items.length} Videos</span>
+              </div>
 
-            <div className="flex flex-col gap-4 flex-1 justify-center">
-              {currentVideos.map((video, idx) => {
-                const globalIdx = currentPage * videosPerPage + idx;
-                return (
-                <motion.div 
-                  key={video.guid}
-                  onClick={() => setSelectedVideoIdx(globalIdx)}
-                  className="group flex flex-col sm:flex-row items-center gap-6 p-5 rounded-3xl glassCard shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
-                >
-                  <div className="relative w-full sm:w-48 xl:w-56 aspect-video rounded-2xl overflow-hidden shrink-0 shadow-sm border border-[#eee]">
-                    <img 
-                      src={video.thumbnail} 
-                      alt={video.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                      <div className="w-10 h-10 bg-white/30  rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 border border-white/40">
-                        <Play size={16} className="ml-0.5 fill-white" />
+              <div className="flex flex-col gap-4 flex-1 justify-center">
+                {currentVideos.map((video, idx) => {
+                  const globalIdx = currentPage * videosPerPage + idx;
+                  return (
+                  <motion.div 
+                    key={video.guid}
+                    onClick={() => setSelectedVideoIdx(globalIdx)}
+                    className="group flex flex-col sm:flex-row items-center gap-6 p-5 rounded-3xl glassCard shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                  >
+                    <div className="relative w-full sm:w-48 xl:w-56 aspect-video rounded-2xl overflow-hidden shrink-0 shadow-sm border border-[#eee]">
+                      <img 
+                        src={video.thumbnail} 
+                        alt={video.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <div className="w-10 h-10 bg-white/30  rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 border border-white/40">
+                          <Play size={16} className="ml-0.5 fill-white" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Video Details */}
-                  <div className="flex-1 flex flex-col w-full">
-                    <h4 className="text-lg md:text-xl font-bold text-[#111] leading-tight line-clamp-2 mb-2 group-hover:text-[#FF0000] transition-colors">
-                      {video.title}
-                    </h4>
-                    <p className="text-xs font-bold text-[#888] uppercase tracking-widest flex items-center gap-1.5 mt-auto">
-                      <Calendar size={14} className="text-[#ccc]" />
-                      {new Date(video.pubDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </p>
-                  </div>
+                    
+                    {/* Video Details */}
+                    <div className="flex-1 flex flex-col w-full">
+                      <h4 className="text-lg md:text-xl font-bold text-[#111] leading-tight line-clamp-2 mb-2 group-hover:text-[#FF0000] transition-colors">
+                        {video.title}
+                      </h4>
+                      <p className="text-xs font-bold text-[#888] uppercase tracking-widest flex items-center gap-1.5 mt-auto">
+                        <Calendar size={14} className="text-[#ccc]" />
+                        {new Date(video.pubDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </p>
+                    </div>
 
-                  {/* Play Indicator */}
-                  <div className="hidden md:flex shrink-0 w-12 h-12 rounded-full border border-[#eee] items-center justify-center text-[#ccc] group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white transition-all duration-300">
-                    <Play size={16} className="ml-1 group-hover:fill-white" />
-                  </div>
-                </motion.div>
-              )})}
-            </div>
+                    {/* Play Indicator */}
+                    <div className="hidden md:flex shrink-0 w-12 h-12 rounded-full border border-[#eee] items-center justify-center text-[#ccc] group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white transition-all duration-300">
+                      <Play size={16} className="ml-1 group-hover:fill-white" />
+                    </div>
+                  </motion.div>
+                )})}
+              </div>
+            </motion.div>
 
             {totalPages > 1 && (
-              <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#eee]">
+              <div className="flex items-center justify-between mt-6 px-4">
                 <button 
                   onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
                   disabled={currentPage === 0}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === 0 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-gray-50 hover:bg-gray-100 hover:text-[#111]'}`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === 0 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-white hover:bg-gray-50 hover:text-[#111] shadow-sm border border-[#eee]'}`}
                 >
                   <ChevronLeft size={16} /> Previous
                 </button>
@@ -281,13 +283,13 @@ export default function YoutubeSection() {
                 <button 
                   onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
                   disabled={currentPage === totalPages - 1}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === totalPages - 1 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-gray-50 hover:bg-gray-100 hover:text-[#111]'}`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold tracking-wide transition-all ${currentPage === totalPages - 1 ? 'text-[#ccc] cursor-not-allowed bg-transparent' : 'text-[#555] bg-white hover:bg-gray-50 hover:text-[#111] shadow-sm border border-[#eee]'}`}
                 >
                   Next <ChevronRight size={16} />
                 </button>
               </div>
             )}
-          </motion.div>
+          </div>
 
         </div>
       </div>

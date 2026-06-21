@@ -44,6 +44,30 @@ const aiProjects = [
     limitations: 'The model is optimized for English e-commerce product reviews. It may underperform on reviews in other languages or on text from heavily different domains (like medical text or legal documents).\nSarcasm remains a challenging edge case for the classifier.',
     system: 'This model can be used as a standalone component for inference via Python scripts, or integrated as the core intelligence engine within a larger system.\n\nIn our original architecture, this model acts as the intelligence layer behind a Flask REST API (app.py), which serves predictions to a web-based dashboard and logs historical inferences to an SQLite database.\n\nDownstream Dependencies: When using the model outputs downstream, ensure the receiving system maps the predicted label IDs (0, 1, 2) back to their respective string representations (Negative, Neutral, Positive) for human readability.',
     tech: ['BERT', 'NLP', 'PyTorch']
+  },
+  {
+    id: 'mannsaathi',
+    title: 'MannSaathi',
+    shortDescription: 'An anonymous, multilingual AI healthcare companion that breaks the hesitation to seek medical help.',
+    logo: '/mannsaathi-logo.png',
+    screenshots: [
+      { src: '/mann.png', alt: 'MannSaathi Dashboard' },
+      { src: '/mann-sy.png', alt: 'MannSaathi Symptoms Checker' },
+      { src: '/mannai.png', alt: 'MannSaathi AI' }
+    ],
+    video: 'https://www.youtube.com/watch?v=c58bVmaaMQ0',
+    huggingFaceUrl: 'https://huggingface.co/ArshVerma/mannsaathi-symptom-classifier-large',
+    kaggleUrl: 'https://www.kaggle.com/code/arshvermadev/massive-multilingual-medical-diagnostic-ai/',
+    githubUrl: 'https://github.com/ArshVermaGit/mannsaathi',
+    datasetUrl: 'https://huggingface.co/datasets/gretelai/symptom_to_diagnosis',
+    liveUrl: 'https://mannsaathi-mukk.onrender.com',
+    modelSummary: 'MannSaathi is a multilingual medical diagnostic AI that serves as an anonymous healthcare companion. It aims to break the hesitation individuals feel when seeking medical help by providing an accessible, private, and intelligent diagnostic tool.',
+    details: 'The project is trained on comprehensive medical datasets, including gretelai/symptom_to_diagnosis and medalpaca/medical_meadow_wikidoc. It utilizes advanced NLP techniques to understand and analyze symptoms described in multiple languages, making healthcare guidance accessible to a broader audience.',
+    usage: 'Users interact with the platform through a web-based dashboard where they can converse with the AI or use the dedicated symptom checker. The system predicts potential conditions based on the described symptoms and provides preliminary medical advice. Note: It is not a replacement for professional medical diagnosis.',
+    codeSnippet: `import torch\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch.nn.functional as F\n\nmodel_name = "ArshVerma/mannsaathi-symptom-classifier-large"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSequenceClassification.from_pretrained(model_name)\n\ndef predict_symptom(text):\n    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)\n    with torch.no_grad():\n        outputs = model(**inputs)\n        probs = F.softmax(outputs.logits, dim=1)\n        predicted_class_id = probs.argmax().item()\n        confidence = probs[0][predicted_class_id].item()\n    return model.config.id2label[predicted_class_id], confidence\n\nprediction, score = predict_symptom("I have a severe headache and have been feeling nauseous.")\nprint(f"Condition: {prediction} (Confidence: {score:.2f})")`,
+    limitations: 'While highly accurate for common symptoms, the model may struggle with complex, rare, or overlapping medical conditions. It relies on the user providing clear descriptions. As an AI model, it should only be used as a preliminary guidance tool, and users are strongly advised to consult certified medical professionals for official diagnoses and treatment.',
+    system: 'The backend leverages Hugging Face Transformers for inference. The model is integrated into a modern web application featuring a dashboard and an AI symptom checker, currently deployed live on Render. It processes multilingual inputs to return accurate medical assessments.',
+    tech: ['Healthcare AI', 'NLP', 'Transformers']
   }
 ];
 
@@ -131,9 +155,22 @@ function AIProjectModal({
                <a href={project.kaggleUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-base md:text-lg">
                  <Database className="w-5 h-5 md:w-6 md:h-6" /> Kaggle Weights
                </a>
-               <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
-                 <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Live Demo
-               </a>
+               {(project.huggingFaceUrl && project.huggingFaceUrl.includes('/spaces/')) ? (
+                 <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                   <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Live Demo
+                 </a>
+               ) : (
+                 project.huggingFaceUrl && (
+                   <a href={project.huggingFaceUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                     <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Hugging Face
+                   </a>
+                 )
+               )}
+               {project.liveUrl && (
+                 <a href={project.liveUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
+                   <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Live Demo
+                 </a>
+               )}
                {project.datasetUrl && (
                  <a href={project.datasetUrl} target="_blank" rel="noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-blue-50 text-blue-600 border border-blue-100 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-blue-100 transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg">
                    <Database className="w-5 h-5 md:w-6 md:h-6" /> Dataset
@@ -173,6 +210,22 @@ function AIProjectModal({
 
                <section>
                  <h3 className="text-3xl font-black text-[#111] mb-8 text-center uppercase tracking-widest opacity-80 mt-10">Visuals & Metrics</h3>
+                 
+                 {project.video && (
+                   <div className="mb-12 bg-[#111] border border-[#eee] rounded-[2rem] overflow-hidden shadow-xl w-full max-w-5xl mx-auto">
+                     <div className="aspect-video relative overflow-hidden flex items-center justify-center bg-black">
+                       <iframe 
+                         src={`https://www.youtube.com/embed/${project.video.split('v=')[1]?.split('&')[0]}`}
+                         className="w-full h-full"
+                         title="YouTube video player"
+                         frameBorder="0"
+                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                         allowFullScreen
+                       ></iframe>
+                     </div>
+                   </div>
+                 )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {project.screenshots.map((img: any, idx: number) => (
                       <div key={idx} onClick={() => setSelectedImageIndex(idx)} className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-pointer">
@@ -279,7 +332,7 @@ export default function AIProjectsSection() {
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Machine Learning Models & Intelligence Systems.</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
           {aiProjects.map((project, idx) => (
             <motion.div 
               key={project.id}
