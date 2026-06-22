@@ -19,28 +19,30 @@ export default function Footer() {
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col md:flex-row items-center md:items-end justify-between gap-12">
         
         {/* Left: Copyright */}
-        <div className="flex flex-col items-center md:items-start gap-1 text-blue-50">
-          <p className="font-black text-white text-2xl tracking-widest uppercase mb-2 drop-shadow-md">Arsh Verma</p>
-          <p className="font-medium text-sm opacity-90">© {new Date().getFullYear()} All rights reserved.</p>
-          <p className="font-medium text-sm flex items-center gap-1 opacity-90">Designed with <span className="text-white drop-shadow-md">♥</span> by Arsh</p>
+        <div className="flex flex-col items-center md:items-start gap-1.5 text-white">
+          <p className="font-black text-white text-4xl md:text-5xl tracking-tighter mb-2 drop-shadow-xl">Arsh Verma.</p>
+          <p className="font-semibold text-sm md:text-base text-white/90 drop-shadow-md">© {new Date().getFullYear()} All rights reserved.</p>
+          <p className="font-semibold text-sm md:text-base text-white/90 drop-shadow-md flex items-center gap-1.5">
+            Designed with <span className="text-red-500 drop-shadow-md">♥</span> by Arsh
+          </p>
         </div>
 
         {/* Right: Socials */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-          <a href="https://github.com/ArshVermaGit" target="_blank" rel="noreferrer" className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 group">
-            GitHub <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#111]" />
+        <div className="flex flex-wrap justify-center md:justify-end gap-3 md:gap-4">
+          <a href="https://github.com/ArshVermaGit" target="_blank" rel="noreferrer" className="px-5 py-2.5 bg-white/10 hover:bg-white border border-white/30 backdrop-blur-md rounded-full text-white hover:text-black text-sm font-bold tracking-wide transition-all hover:-translate-y-1 shadow-lg hover:shadow-2xl flex items-center gap-2 group">
+            GitHub <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
-          <a href="https://www.linkedin.com/in/arshvermadev/" target="_blank" rel="noreferrer" className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 group">
-            LinkedIn <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#111]" />
+          <a href="https://www.linkedin.com/in/arshvermadev/" target="_blank" rel="noreferrer" className="px-5 py-2.5 bg-white/10 hover:bg-white border border-white/30 backdrop-blur-md rounded-full text-white hover:text-black text-sm font-bold tracking-wide transition-all hover:-translate-y-1 shadow-lg hover:shadow-2xl flex items-center gap-2 group">
+            LinkedIn <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
-          <a href="https://x.com/TheArshVerma" target="_blank" rel="noreferrer" className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 group">
-            Twitter <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#111]" />
+          <a href="https://x.com/TheArshVerma" target="_blank" rel="noreferrer" className="px-5 py-2.5 bg-white/10 hover:bg-white border border-white/30 backdrop-blur-md rounded-full text-white hover:text-black text-sm font-bold tracking-wide transition-all hover:-translate-y-1 shadow-lg hover:shadow-2xl flex items-center gap-2 group">
+            Twitter <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
-          <a href="https://www.youtube.com/@ArshCreates" target="_blank" rel="noreferrer" className="px-6 py-3.5 bg-white/50 hover:bg-white/60 border border-white/60 backdrop-blur-md rounded-2xl text-xs md:text-sm font-bold uppercase tracking-widest text-[#111111] transition-all hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 group">
-            YouTube <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#111]" />
+          <a href="https://www.youtube.com/@ArshCreates" target="_blank" rel="noreferrer" className="px-5 py-2.5 bg-white/10 hover:bg-white border border-white/30 backdrop-blur-md rounded-full text-white hover:text-black text-sm font-bold tracking-wide transition-all hover:-translate-y-1 shadow-lg hover:shadow-2xl flex items-center gap-2 group">
+            YouTube <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
 
