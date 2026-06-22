@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Play, Calendar, X, Activity, Video, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Calendar, X, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface YoutubeFeed {
@@ -182,14 +182,22 @@ export default function YoutubeSection() {
               <p className="text-sm text-[#666] font-bold uppercase tracking-wider mb-6">@ArshCreates</p>
 
               <div className="w-full grid grid-cols-2 gap-3 mb-6">
-                <div className="bg-white rounded-2xl p-4 border border-[#eee] flex flex-col items-center justify-center">
-                  <Activity size={18} className="text-[#888] mb-1" />
-                  <span className="font-black text-[#111] text-lg">Active</span>
-                </div>
-                <div className="bg-white rounded-2xl p-4 border border-[#eee] flex flex-col items-center justify-center">
-                  <Video size={18} className="text-[#888] mb-1" />
-                  <span className="font-black text-[#111] text-lg">Creator</span>
-                </div>
+                <button 
+                  onClick={() => setSelectedVideoIdx(0)}
+                  className="bg-white rounded-2xl p-3 border border-[#eee] flex flex-col items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                >
+                  <Play size={18} className="text-[#888] mb-1 group-hover:text-red-600 group-hover:fill-red-600 transition-colors" />
+                  <span className="font-black text-[#111] text-sm group-hover:text-red-600 transition-colors">Play Latest</span>
+                </button>
+                <a 
+                  href="https://www.youtube.com/@ArshCreates/videos"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-white rounded-2xl p-3 border border-[#eee] flex flex-col items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                >
+                  <Video size={18} className="text-[#888] mb-1 group-hover:text-red-600 transition-colors" />
+                  <span className="font-black text-[#111] text-sm group-hover:text-red-600 transition-colors">All Videos</span>
+                </a>
               </div>
 
               <a 
@@ -253,10 +261,7 @@ export default function YoutubeSection() {
                       </p>
                     </div>
 
-                    {/* Play Indicator */}
-                    <div className="hidden md:flex shrink-0 w-12 h-12 rounded-full border border-[#eee] items-center justify-center text-[#ccc] group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white transition-all duration-300">
-                      <Play size={16} className="ml-1 group-hover:fill-white" />
-                    </div>
+
                   </motion.div>
                 )})}
               </div>
