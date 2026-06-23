@@ -13,6 +13,7 @@ const hackathons = [
     link: 'https://unstop.com/p/designverse-2026-vit-bhopal-university-vit-bhopal-1699267',
     logo: '/designverse.png',
     certificate: '/designverse-certificate.png',
+    winner: true,
     project: {
       title: "MannSaathi",
       logo: "/mannsaathi-logo.png",
@@ -210,6 +211,14 @@ export default function HackathonsSection() {
                 className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-[#eaeaea]"
                 onClick={() => setSelectedIdx(idx)}
               >
+                {/* Winner Ribbon */}
+                {hackathon.winner && (
+                  <div className="absolute top-0 left-0 w-32 h-32 overflow-hidden rounded-tl-[3rem] z-20 pointer-events-none">
+                    <div className="absolute top-7 -left-9 w-40 bg-[#fbc336] text-[#6b4703] font-black text-xs text-center py-1.5 uppercase tracking-[0.2em] transform -rotate-45 shadow-md border-y border-[#fcd34d]/60">
+                      Winner
+                    </div>
+                  </div>
+                )}
                 <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] flex flex-col relative overflow-hidden">
                    <div className="w-full h-52 bg-white relative overflow-hidden flex items-center justify-center border-b border-[#eaeaea]">
                      <div className="absolute inset-0 opacity-60">
