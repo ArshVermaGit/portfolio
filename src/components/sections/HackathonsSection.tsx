@@ -112,13 +112,25 @@ function HackathonModal({
           
           <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
              <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mb-6 md:mb-8 relative rounded-2xl overflow-hidden shadow-sm border border-[#eee] bg-white shrink-0">
+                {hackathon.winner && (
+                  <div className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 overflow-hidden z-20 pointer-events-none rounded-tl-2xl">
+                    <div className="absolute top-5 -left-8 sm:top-7 sm:-left-9 w-32 sm:w-40 bg-[#fbc336] text-[#6b4703] font-black text-[10px] sm:text-xs text-center py-1 sm:py-1.5 uppercase tracking-[0.2em] transform -rotate-45 shadow-md border-y border-[#fcd34d]/60">
+                      Winner
+                    </div>
+                  </div>
+                )}
                 <img src={hackathon.logo} alt={hackathon.title} className="w-full h-full object-contain p-4" />
              </div>
              
-             <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
                <div className="px-3 py-1 md:px-4 md:py-1.5 bg-[#f8fafc] text-[#8b5cf6] rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-[#e2e8f0] flex items-center gap-1.5 md:gap-2">
                  <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" /> {hackathon.date}
                </div>
+               {hackathon.winner && (
+                 <div className="px-3 py-1 md:px-4 md:py-1.5 bg-yellow-50 text-yellow-600 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-yellow-200 flex items-center gap-1.5 md:gap-2 shadow-sm">
+                   <Trophy className="w-3 h-3 md:w-3.5 md:h-3.5" /> 1st Place Winner
+                 </div>
+               )}
              </div>
              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-4 md:mb-6">{hackathon.title}</h2>
              <p className="text-lg md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{hackathon.description}</p>
