@@ -51,15 +51,15 @@ function ResearchModal({ pub, onClose }: { pub: any, onClose: () => void }) {
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-xl p-3 md:p-10 overscroll-none"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-xl p-0 sm:p-4 md:p-10 overscroll-none"
     >
       <motion.div
         key={pub.id}
         initial={{ scale: 0.95, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-6xl h-full max-h-[95vh] bg-[#fdfdfd] rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative"
+        className="w-full max-w-6xl h-[100dvh] max-h-[100dvh] md:h-full md:max-h-[95vh] bg-[#fdfdfd] rounded-none sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative"
       >
-        <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/20 hover:bg-black/40 backdrop-blur-xl text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl border border-white/20">
+        <button onClick={onClose} className="absolute top-6 right-4 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/20 hover:bg-black/40 backdrop-blur-xl text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl border border-white/20">
           <X size={22} strokeWidth={2.5} />
         </button>
 
@@ -335,7 +335,7 @@ export default function ResearchSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2.5rem] overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 border border-white/60 p-6 md:p-10"
+            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2.5rem] overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 border border-white/60 p-6 md:p-10 order-2 lg:order-1"
             whileHover={{ y: -5, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex flex-col items-center text-center">
@@ -378,7 +378,7 @@ export default function ResearchSection() {
             </div>
           </motion.div>
 
-          <div className="lg:col-span-8 flex flex-col h-full">
+          <div className="lg:col-span-8 flex flex-col h-full order-1 lg:order-2">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
