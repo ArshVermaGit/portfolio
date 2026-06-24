@@ -32,7 +32,7 @@ export default function CodingProfilesSection() {
             <div className="p-3 md:p-4 bg-gradient-to-tr from-[#8E2DE2] to-[#4A00E0] rounded-2xl md:rounded-3xl shadow-md transform rotate-3">
               <Terminal className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={2.5} />
             </div>
-            Coding & AI Profiles
+            Coding & Research
           </div>
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Tracking my continuous learning.</span>
         </motion.h2>
