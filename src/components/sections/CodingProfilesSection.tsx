@@ -340,86 +340,67 @@ export default function CodingProfilesSection() {
           </motion.div>
 
           {/* 5. ORCID DASHBOARD CARD */}
-          <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full lg:col-span-2 mt-4 lg:mt-0">
-            <motion.a
-              href="https://orcid.org/0009-0005-0171-857X" target="_blank" rel="noreferrer"
-              className="group relative flex flex-col md:flex-row bg-[#ffffff] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-shadow duration-500 border border-[#e5e7eb] text-[#111111] p-5 sm:p-6 gap-5 sm:gap-8 flex-1"
-              whileHover={{ scale: 1.02, y: -5, transition: { type: "spring", bounce: 0.5 } }}
-            >
-              {/* Left Identity Area */}
-              <div className="flex flex-col gap-4 items-start w-full md:w-[35%] md:border-r border-[#e5e7eb] md:pr-8">
-                 <div className="flex items-center justify-between w-full mb-2">
-                    <svg viewBox="0 0 256 256" className="w-8 h-8 fill-[#A6CE39]" xmlns="http://www.w3.org/2000/svg">
+          <div className="lg:col-span-2 flex justify-center w-full mt-4 lg:mt-0">
+            <motion.div variants={cardVariants} className="flex flex-col gap-3 h-full w-full lg:w-[calc(50%-0.75rem)]">
+              <motion.a
+                href="https://orcid.org/0009-0005-0171-857X" target="_blank" rel="noreferrer"
+                className="group relative flex flex-col bg-[#ffffff] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-shadow duration-500 border border-[#e5e7eb] text-[#111111] p-5 sm:p-6 gap-5 sm:gap-6 flex-1"
+                whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
+              >
+                {/* Header / Identity */}
+                <div className="flex gap-4 items-center">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#A6CE39] p-2 bg-[#f8f9fa] flex items-center justify-center">
+                    <svg viewBox="0 0 256 256" className="w-full h-full fill-[#A6CE39]" xmlns="http://www.w3.org/2000/svg">
                       <path d="M128,0C57.3,0,0,57.3,0,128c0,70.7,57.3,128,128,128c70.7,0,128-57.3,128-128C256,57.3,198.7,0,128,0z M90.4,195.5H62.9V91.2h27.5V195.5z M76.6,76.9c-8.8,0-15.9-7.1-15.9-15.9c0-8.8,7.1-15.9,15.9-15.9s15.9,7.1,15.9,15.9C92.5,69.8,85.4,76.9,76.6,76.9z M197.8,143.4c0,35.4-23.7,52.1-57.1,52.1h-39.7V91.2h39.7c33.4,0,57.1,16.8,57.1,52.1V143.4z M170.3,143.4c0-20.9-10.7-30.8-31.5-30.8h-10.2v61.7h10.2C159.5,174.3,170.3,164.4,170.3,143.4z"/>
                     </svg>
-                    <span className="text-[10px] text-[#888] font-bold uppercase tracking-wider">Connecting Research</span>
-                 </div>
-                 <div>
-                   <h3 className="text-2xl sm:text-3xl font-black leading-tight mb-2 text-[#333]">Arsh Verma</h3>
-                   <div className="bg-[#f8f9fa] px-4 py-2.5 rounded-xl border border-[#eaeaea]">
-                     <p className="text-sm text-[#111] font-bold flex items-center gap-2">
-                       <span className="w-2.5 h-2.5 rounded-full bg-[#A6CE39] animate-pulse"></span>
-                       0009-0005-0171-857X
-                     </p>
-                   </div>
-                 </div>
-                 <div className="mt-auto pt-4 flex gap-2 w-full">
-                   <div className="bg-transparent border border-[#A6CE39] text-[#A6CE39] px-4 py-2 rounded-lg text-xs font-bold w-full text-center group-hover:bg-[#A6CE39] group-hover:text-white transition-colors duration-300">Preview public record</div>
-                 </div>
-              </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-black leading-tight uppercase tracking-wider text-[#333]">Arsh Verma</h3>
+                    <p className="text-xs text-[#888888] font-bold mt-1 tracking-wider uppercase">Connecting Research</p>
+                  </div>
+                </div>
 
-              {/* Right Content Area */}
-              <div className="flex-1 flex flex-col gap-4 w-full">
-                 <div className="border border-[#eaeaea] rounded-2xl overflow-hidden bg-white shadow-sm">
-                   <div className="bg-[#f8f9fa] px-5 py-3 border-b border-[#eaeaea] flex items-center justify-between">
-                     <h4 className="text-sm font-black text-[#333]">Biography</h4>
-                     <span className="text-[10px] bg-white border border-[#ddd] px-2.5 py-1 rounded-md text-[#555] flex items-center gap-1.5 shadow-sm">
-                       <span className="w-2 h-2 rounded-full bg-green-500"></span> Everyone
-                     </span>
-                   </div>
-                   <div className="p-5">
-                     <p className="text-[13px] sm:text-sm text-[#555] leading-[1.7] font-medium">
-                       Arsh Verma is a researcher, designer, and software engineer working at the intersection of Human-Computer Interaction (HCI), User Experience (UX), Artificial Intelligence, and Digital Health. His work focuses on designing trustworthy and human-centered AI systems, with particular interest in healthcare technologies...
-                     </p>
-                   </div>
-                 </div>
+                {/* Middle Section: Stats Panels */}
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:h-32">
+                  {/* ID Panel */}
+                  <div className="flex-[1.2] bg-[#f8f9fa] rounded-xl p-4 flex flex-col justify-center border border-[#eaeaea]">
+                    <p className="text-[10px] text-[#888] uppercase tracking-wider mb-2 font-bold">ORCID iD</p>
+                    <p className="text-sm sm:text-base font-black text-[#333] flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#A6CE39] animate-pulse"></span>
+                      0009-0005-0171-857X
+                    </p>
+                  </div>
+                  
+                  {/* Activities Panel */}
+                  <div className="flex-1 bg-[#f8f9fa] rounded-xl p-4 flex flex-col gap-2 border border-[#eaeaea] justify-center">
+                    <div className="flex justify-between items-center bg-white px-3 py-2 rounded-lg border border-[#f0f0f0] shadow-sm">
+                      <span className="text-[10px] text-[#888] uppercase font-bold">Works</span>
+                      <span className="font-bold text-[#A6CE39]">1+</span>
+                    </div>
+                    <div className="flex justify-between items-center bg-white px-3 py-2 rounded-lg border border-[#f0f0f0] shadow-sm">
+                      <span className="text-[10px] text-[#888] uppercase font-bold">Employment</span>
+                      <span className="font-bold text-[#333]">0</span>
+                    </div>
+                  </div>
+                </div>
 
-                 <div className="flex flex-col sm:flex-row gap-4">
-                   <div className="flex-1 border border-[#eaeaea] rounded-2xl overflow-hidden bg-white shadow-sm">
-                     <div className="bg-[#f8f9fa] px-5 py-3 border-b border-[#eaeaea] flex items-center justify-between">
-                       <h4 className="text-[13px] font-black text-[#333]">Activities</h4>
-                     </div>
-                     <div className="p-4">
-                       <div className="flex items-center justify-between py-1.5 border-b border-[#f5f5f5]">
-                         <span className="text-[13px] font-bold text-[#555]">Employment</span>
-                         <span className="text-xs font-black text-white bg-[#333] px-2 py-0.5 rounded">0</span>
-                       </div>
-                       <div className="flex items-center justify-between py-1.5 mt-1">
-                         <span className="text-[13px] font-bold text-[#555]">Works</span>
-                         <span className="text-xs font-black text-white bg-[#333] px-2 py-0.5 rounded">1+</span>
-                       </div>
-                     </div>
-                   </div>
-
-                   <div className="flex-[1.2] border border-[#eaeaea] rounded-2xl overflow-hidden bg-white shadow-sm">
-                     <div className="bg-[#f8f9fa] px-5 py-3 border-b border-[#eaeaea] flex items-center justify-between">
-                       <h4 className="text-[13px] font-black text-[#333]">Emails & domains</h4>
-                     </div>
-                     <div className="p-4 flex items-center justify-between">
-                       <p className="text-[13px] text-[#444] font-bold">arshverma.dev@gmail.com</p>
-                       <span className="text-[10px] font-black uppercase text-red-600 bg-red-50 border border-red-100 px-2 py-1 rounded shrink-0">Hidden</span>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </motion.a>
-            <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
-              <svg viewBox="0 0 256 256" className="w-4 h-4 fill-[#A6CE39]" xmlns="http://www.w3.org/2000/svg">
-                <path d="M128,0C57.3,0,0,57.3,0,128c0,70.7,57.3,128,128,128c70.7,0,128-57.3,128-128C256,57.3,198.7,0,128,0z M90.4,195.5H62.9V91.2h27.5V195.5z M76.6,76.9c-8.8,0-15.9-7.1-15.9-15.9c0-8.8,7.1-15.9,15.9-15.9s15.9,7.1,15.9,15.9C92.5,69.8,85.4,76.9,76.6,76.9z M197.8,143.4c0,35.4-23.7,52.1-57.1,52.1h-39.7V91.2h39.7c33.4,0,57.1,16.8,57.1,52.1V143.4z M170.3,143.4c0-20.9-10.7-30.8-31.5-30.8h-10.2v61.7h10.2C159.5,174.3,170.3,164.4,170.3,143.4z"/>
-              </svg>
-              ORCID
-            </p>
-          </motion.div>
+                {/* Bottom Bar */}
+                <div className="bg-[#f8f9fa] rounded-xl p-4 border border-[#eaeaea] flex justify-between items-center mt-auto">
+                  <p className="text-[11px] sm:text-xs font-bold text-[#555] break-all">arshverma.dev@gmail.com</p>
+                  <div className="bg-white border border-[#A6CE39] text-[#A6CE39] px-3 py-1.5 rounded-lg text-[10px] font-bold group-hover:bg-[#A6CE39] group-hover:text-white transition-colors shrink-0 ml-2 shadow-sm">
+                    View Record
+                  </div>
+                </div>
+              </motion.a>
+              
+              <p className="flex items-center justify-center gap-2 text-[10px] text-[#111111] font-black uppercase tracking-widest shrink-0">
+                <svg viewBox="0 0 256 256" className="w-4 h-4 fill-[#A6CE39]" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M128,0C57.3,0,0,57.3,0,128c0,70.7,57.3,128,128,128c70.7,0,128-57.3,128-128C256,57.3,198.7,0,128,0z M90.4,195.5H62.9V91.2h27.5V195.5z M76.6,76.9c-8.8,0-15.9-7.1-15.9-15.9c0-8.8,7.1-15.9,15.9-15.9s15.9,7.1,15.9,15.9C92.5,69.8,85.4,76.9,76.6,76.9z M197.8,143.4c0,35.4-23.7,52.1-57.1,52.1h-39.7V91.2h39.7c33.4,0,57.1,16.8,57.1,52.1V143.4z M170.3,143.4c0-20.9-10.7-30.8-31.5-30.8h-10.2v61.7h10.2C159.5,174.3,170.3,164.4,170.3,143.4z"/>
+                </svg>
+                ORCID
+              </p>
+            </motion.div>
+          </div>
 
         </motion.div>
       </div>
