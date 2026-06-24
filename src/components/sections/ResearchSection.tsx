@@ -59,27 +59,25 @@ function ResearchModal({ pub, onClose }: { pub: any, onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-6xl h-[100dvh] max-h-[100dvh] md:h-full md:max-h-[95vh] bg-[#fdfdfd] rounded-none sm:rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative"
       >
-        <button onClick={onClose} className="absolute top-6 right-4 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-black/20 hover:bg-black/40 backdrop-blur-xl text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl border border-white/20">
+        <button onClick={onClose} className="absolute top-6 right-4 md:top-6 md:right-6 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-gray-100 backdrop-blur-xl text-[#111] rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg border border-[#eaeaea]">
           <X size={22} strokeWidth={2.5} />
         </button>
 
         <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ccc] [&::-webkit-scrollbar-thumb]:rounded-full">
           
-          {/* Stunning Deep Blue Header */}
-          <div className="w-full relative min-h-[320px] md:min-h-[450px] shrink-0 bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] flex items-center justify-center overflow-hidden pt-8 pb-16 md:py-16">
-            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-            
-            {/* Glowing Orb */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-500 rounded-full blur-[120px] opacity-30 mix-blend-screen pointer-events-none" />
+          {/* Clean White Header */}
+          <div className="w-full relative min-h-[320px] md:min-h-[450px] shrink-0 bg-[#f8f9fa] flex items-center justify-center overflow-hidden pt-8 pb-16 md:py-16">
+            <div className="absolute inset-0 opacity-[0.2] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
             
             <motion.div 
               initial={{ y: 40, rotate: -4 }}
               animate={{ y: 0, rotate: -4 }}
-              className="w-[180px] md:w-[280px] aspect-[1/1.4] bg-white rounded-lg shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 relative z-10 overflow-hidden group hover:rotate-0 hover:scale-105 transition-all duration-700 ease-out cursor-pointer"
+              className="w-[180px] md:w-[280px] aspect-[1/1.4] bg-white rounded-lg shadow-[0_30px_60px_rgba(0,0,0,0.15),0_10px_20px_rgba(0,0,0,0.05)] border border-[#eaeaea] relative z-10 overflow-hidden group hover:rotate-0 hover:scale-105 hover:-translate-y-4 transition-all duration-700 ease-out cursor-pointer"
             >
               <div className="absolute inset-0 pointer-events-none overflow-hidden bg-white">
-                <img src="/research_1.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top opacity-95 mix-blend-multiply pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent z-10 pointer-events-none" />
+                <img src="/research_1.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
+                <div className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black/5 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.02)] pointer-events-none" />
               </div>
             </motion.div>
           </div>
