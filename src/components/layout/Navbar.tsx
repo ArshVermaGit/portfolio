@@ -18,7 +18,8 @@ import {
   Trophy,
   Menu,
   X,
-  GraduationCap
+  GraduationCap,
+  BookOpen
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -30,6 +31,7 @@ const SECTIONS = [
   { id: 'ai-projects', icon: Bot, label: 'AI Projects' },
   { id: 'experience', icon: Briefcase, label: 'Experience' },
   { id: 'hackathons', icon: Trophy, label: 'Hackathons' },
+  { id: 'research', icon: BookOpen, label: 'Research' },
   { id: 'certifications', icon: Award, label: 'Certifications' },
   { id: 'open-source', icon: GitPullRequest, label: 'Open Source' },
   { id: 'github', icon: GitBranch, label: 'GitHub' },
