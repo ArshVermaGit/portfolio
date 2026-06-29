@@ -68,28 +68,28 @@ export default function ExperienceSection() {
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
                 transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-                className="group glassCard rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 relative overflow-hidden cursor-pointer"
+                className="group glassCard rounded-[2rem] p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-10 relative overflow-hidden cursor-pointer"
               >
-                <div className="flex items-center gap-6 relative z-10 flex-1">
-                  <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-white rounded-2xl flex items-center justify-center overflow-hidden border border-[#eee] shadow-sm group-hover:border-[#14b8a6] group-hover:scale-110 transition-all duration-500 p-2">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 relative z-10 flex-1 w-full">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 bg-white rounded-2xl flex items-center justify-center overflow-hidden border border-[#eee] shadow-sm group-hover:border-[#14b8a6] group-hover:scale-110 transition-all duration-500 p-2">
                     <img src={exp.logo} alt={exp.organisation} className="w-full h-full object-contain rounded-xl" />
                   </div>
                   
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-black text-[#111] tracking-tight mb-1 group-hover:text-[#14b8a6] transition-colors">{exp.role}</h3>
-                    <p className="text-[11px] md:text-xs font-bold text-[#888] uppercase tracking-widest flex items-center gap-1.5 mb-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] inline-block"></span> 
+                  <div className="flex-1 w-full">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#111] tracking-tight mb-1 group-hover:text-[#14b8a6] transition-colors">{exp.role}</h3>
+                    <p className="text-[10px] sm:text-[11px] md:text-xs font-bold text-[#888] uppercase tracking-widest flex flex-wrap items-center gap-1.5 mb-2 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] inline-block shrink-0"></span> 
                       {exp.organisation} • {exp.location}
                     </p>
-                    <p className="text-sm md:text-base text-[#555] font-medium leading-relaxed line-clamp-2 max-w-2xl">
+                    <p className="text-xs sm:text-sm md:text-base text-[#555] font-medium leading-relaxed line-clamp-2 max-w-2xl">
                       {exp.shortDescription}
                     </p>
                   </div>
                 </div>
 
                 {exp.certificates && exp.certificates.length > 0 && (
-                  <div className="flex items-center gap-4 md:gap-8 bg-white/80 px-4 py-3 md:px-5 md:py-4 rounded-[1.5rem] border border-[#eaeaea] group-hover:border-[#14b8a6]/20 transition-colors w-full md:w-auto justify-center relative z-10 shrink-0">
-                    <div className="flex flex-nowrap items-center justify-center gap-2 md:gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4 md:gap-8 bg-white/80 px-3 sm:px-4 py-2.5 sm:py-3 md:px-5 md:py-4 rounded-[1.5rem] border border-[#eaeaea] group-hover:border-[#14b8a6]/20 transition-colors w-full md:w-auto justify-center relative z-10 shrink-0">
+                    <div className="flex flex-nowrap items-center justify-center gap-2 sm:gap-2 md:gap-4">
                       {exp.certificates.map((cert, certIdx) => (
                         <div 
                           key={certIdx}
