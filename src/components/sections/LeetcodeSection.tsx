@@ -129,6 +129,10 @@ export default function LeetcodeSection() {
       document.body.style.overflow = 'auto';
       if ((window as any).lenis) (window as any).lenis.start();
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+      if ((window as any).lenis) (window as any).lenis.start();
+    };
   }, [selectedBadgeIndex]);
 
   useEffect(() => {

@@ -92,9 +92,11 @@ function AIProjectModal({
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
+    if ((window as any).lenis) (window as any).lenis.stop();
     return () => { 
       document.body.style.overflow = ''; 
       document.documentElement.style.overflow = '';
+      if ((window as any).lenis) (window as any).lenis.start();
     };
   }, []);
 

@@ -117,139 +117,143 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
              <p className="font-bold text-[#888] tracking-widest uppercase text-sm animate-pulse">Loading GitHub Data...</p>
           </div>
         ) : (
-          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
             
-            {/* Top Header: Massive Screenshot */}
-            <div className="w-full bg-[#f9f9f9] relative min-h-[200px] sm:min-h-[250px] md:min-h-[400px] lg:min-h-[450px] border-b border-[#eee] shrink-0">
-               <img 
-                  src={project.screenshot} 
-                  alt={`${project.title} Screenshot`} 
-                  className="w-full h-full object-cover absolute inset-0" 
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-[#ccc] font-bold tracking-widest uppercase text-xl">No Screenshot Available</div>`;
-                  }}
-                />
-            </div>
-
-            {/* Middle Section: Meta Info & Buttons */}
-            <div className="px-6 py-8 md:px-12 md:py-10 flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-between border-b border-[#eee] bg-white">
-               <div className="flex-1">
-                 <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight text-[#111] mb-3 md:mb-4">{project.title}</h2>
-                 <p className="text-lg sm:text-xl text-[#666] font-medium leading-relaxed max-w-3xl">{data?.description || "No description provided."}</p>
-                 
-                 <div className="flex flex-wrap items-center gap-3 md:gap-4 mt-5 md:mt-6">
-                    <div className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
-                       <Star className="w-4 h-4 md:w-[18px] md:h-[18px] text-[#e3b341] fill-[#e3b341]" />
-                       <span className="font-bold text-[#111] text-base md:text-lg">{data?.stargazers_count || 0}</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-[#f9f9f9] rounded-full border border-[#eee]">
-                       <GitFork className="w-4 h-4 md:w-[18px] md:h-[18px] text-[#888]" />
-                       <span className="font-bold text-[#111] text-base md:text-lg">{data?.forks_count || 0}</span>
-                    </div>
-                 </div>
+            {/* Top Section: Meta Info & Logo */}
+            <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
+               <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mb-6 md:mb-8 relative shrink-0">
+                  <img src={project.logo} alt={project.title} className="w-full h-full object-contain drop-shadow-sm" />
                </div>
+               
+               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6">
+                 <div className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-emerald-100 flex items-center gap-1.5 shrink-0">
+                   <Layers className="w-3 h-3 md:w-4 md:h-4" /> Web Application
+                 </div>
+                 {data?.stargazers_count > 0 && (
+                   <div className="px-3 py-1 bg-amber-50 text-amber-600 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase border border-amber-100 flex items-center gap-1.5 shrink-0">
+                     <Star className="w-3 h-3 md:w-4 md:h-4 fill-amber-500" /> {data.stargazers_count} Stars
+                   </div>
+                 )}
+               </div>
+               
+               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-[#111] mb-4 md:mb-6">{project.title}</h2>
+               <p className="text-lg md:text-2xl text-[#666] font-medium leading-relaxed max-w-4xl">{data?.description || project.about}</p>
 
-               <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0">
+               <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 mt-8 md:mt-10 w-full md:w-auto">
                  <a 
                    href={data?.html_url || `https://github.com/ArshVermaGit/${project.repo}`} 
                    target="_blank" 
                    rel="noreferrer"
-                   className="px-8 py-4 bg-[#111] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg"
+                   className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-[#f4f4f5] text-[#111] border border-[#e4e4e7] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#e4e4e7] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg"
                  >
-                   <Code size={20} /> View Repo
+                   <img src="https://skillicons.dev/icons?i=github" className="w-5 h-5" alt="Github" /> Repository
                  </a>
                  {data?.homepage && (
                    <a 
                      href={data.homepage} 
                      target="_blank" 
                      rel="noreferrer"
-                     className="px-8 py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-lg"
+                     className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white border-2 border-[#111] text-[#111] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#f9f9f9] transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-base md:text-lg"
                    >
-                     <ArrowUpRight size={20} /> Live Demo
+                     <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" /> Live Demo
                    </a>
                  )}
                </div>
             </div>
 
-            {/* Bottom Section: Curated Details */}
-            <div className="p-6 md:p-12 bg-transparent flex-1">
-               <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {/* Bottom Section: Single Column Details */}
+            <div className="px-6 py-12 md:px-16 md:py-20 bg-[#f9f9f9] flex-1">
+               <div className="max-w-4xl mx-auto flex flex-col gap-12 md:gap-16">
                  
-                 {/* About & Features */}
-                 <div className="bg-white p-6 md:p-10 rounded-[2rem] shadow-sm  flex flex-col h-full">
-                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6">About the Project</h3>
-                   <p className="text-lg text-[#555] font-medium leading-relaxed mb-10">{project.about}</p>
-                   
-                   <h4 className="text-xl font-bold text-[#111] mb-6 flex items-center gap-2">
-                     <Sparkles size={20} className="text-indigo-500" /> Key Features
-                   </h4>
-                   <ul className="flex flex-col gap-4 flex-1">
+                 <section>
+                   <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Sparkles className="text-indigo-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> About the Project</h3>
+                   <p className="text-lg md:text-xl text-[#555] font-medium leading-relaxed">{project.about}</p>
+                 </section>
+
+                 <section>
+                   <h3 className="text-2xl md:text-3xl font-black text-[#111] flex items-center gap-3 mb-4 md:mb-6"><Code className="text-emerald-500 w-6 h-6 md:w-7 md:h-7 shrink-0" /> Key Features</h3>
+                   <ul className="flex flex-col gap-4">
                      {project.features.map((feature: string, i: number) => (
                        <li key={i} className="flex items-start gap-4">
-                         <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5">
-                           <span className="text-sm font-black">✓</span>
+                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                           <span className="text-sm md:text-base font-black">✓</span>
                          </div>
-                         <span className="text-[#333] font-medium text-lg">{feature}</span>
+                         <span className="text-[#555] font-medium text-lg md:text-xl">{feature}</span>
                        </li>
                      ))}
                    </ul>
-                 </div>
+                 </section>
 
-                 {/* Tech Stack */}
-                 <div className="bg-white p-6 sm:p-8 md:p-10 rounded-[2rem] shadow-sm flex flex-col h-full">
-                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6 md:mb-8">Tech Stack</h3>
-                   <div className="flex flex-wrap gap-3 md:gap-4">
+                 <section className="bg-white p-6 sm:p-8 md:p-12 rounded-[2rem] shadow-sm border border-[#eee]">
+                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6 md:mb-8">Tech Stack & Infrastructure</h3>
+                   <div className="flex flex-wrap gap-3 md:gap-4 mb-8">
                      {project.tech.map((tech: string, i: number) => (
-                       <div key={i} className="px-4 py-3 md:px-6 md:py-4 bg-[#f9f9f9] hover:bg-[#f0f0f0] border border-[#eee] hover:border-[#ddd] rounded-2xl flex items-center gap-3 transition-all hover:-translate-y-1 hover:shadow-sm cursor-default">
+                       <div key={i} className="px-4 py-3 md:px-6 md:py-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl flex items-center gap-3 shadow-sm">
                          <img src={`https://skillicons.dev/icons?i=${tech}`} className="w-8 h-8 md:w-10 md:h-10 drop-shadow-sm" alt={tech} />
                          <span className="font-bold text-[#111] text-base md:text-lg capitalize">{tech}</span>
                        </div>
                      ))}
                    </div>
                    
-                   <div className="mt-auto pt-10">
-                     <div className="flex items-center justify-between p-6 bg-[#f9f9f9] border border-[#eee] rounded-2xl">
-                        <div className="flex flex-col">
-                          <span className="text-xs font-black text-[#888] uppercase tracking-widest mb-1.5">Project Status</span>
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                            <span className="font-bold text-[#111] tracking-tight">Actively Maintained</span>
-                          </div>
+                   <div className="flex items-center justify-between p-6 bg-[#f9f9f9] border border-[#eee] rounded-2xl">
+                      <div className="flex flex-col">
+                        <span className="text-xs font-black text-[#888] uppercase tracking-widest mb-1.5">Project Status</span>
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                          <span className="font-bold text-[#111] tracking-tight">Actively Maintained</span>
                         </div>
-                        
-                        {data?.license && (
-                          <div className="flex flex-col text-right border-l border-[#ddd] pl-6">
-                            <span className="text-xs font-black text-[#888] uppercase tracking-widest mb-1.5">License</span>
-                            <span className="font-bold text-[#111] tracking-tight truncate max-w-[120px]" title={data.license.name}>{data.license.spdx_id || data.license.name}</span>
-                          </div>
-                        )}
-                     </div>
+                      </div>
+                      
+                      {data?.license && (
+                        <div className="flex flex-col text-right border-l border-[#ddd] pl-6">
+                          <span className="text-xs font-black text-[#888] uppercase tracking-widest mb-1.5">License</span>
+                          <span className="font-bold text-[#111] tracking-tight truncate max-w-[120px]" title={data.license.name}>{data.license.spdx_id || data.license.name}</span>
+                        </div>
+                      )}
                    </div>
-                 </div>
+                 </section>
+
+                 {project.video && (
+                   <section className="mb-12">
+                     <div className="bg-[#111] border border-[#eee] rounded-[2rem] overflow-hidden shadow-xl w-full max-w-5xl mx-auto">
+                       <div className="aspect-video relative overflow-hidden flex items-center justify-center bg-black">
+                         <iframe 
+                           src={`https://www.youtube.com/embed/${project.video.includes('v=') ? project.video.split('v=')[1]?.split('&')[0] : project.video.split('youtu.be/')[1]?.split('?')[0]}`}
+                           className="w-full h-full"
+                           title="YouTube video player"
+                           frameBorder="0"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                           allowFullScreen
+                         ></iframe>
+                       </div>
+                     </div>
+                   </section>
+                 )}
+
+                 {project.screenshot && (
+                   <section>
+                     <h3 className="text-3xl font-black text-[#111] mb-8 text-center uppercase tracking-widest opacity-80 mt-10">Visuals & Metrics</h3>
+                     
+                     <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+                       <div className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-default">
+                         <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
+                           <img 
+                             src={project.screenshot} 
+                             alt={`${project.title} Screenshot`} 
+                             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                           />
+                         </div>
+                         <div className="p-6 bg-white text-center">
+                           <p className="text-lg font-bold text-[#333]">{project.title} Dashboard</p>
+                         </div>
+                       </div>
+                     </div>
+                   </section>
+                 )}
 
                </div>
             </div>
-
-            {/* Video Demo Section */}
-            {project.video && (
-              <div className="px-6 pb-12 md:px-12 md:pb-16 bg-transparent flex-1">
-                 <div className="max-w-6xl mx-auto">
-                   <h3 className="text-2xl md:text-3xl font-black text-[#111] mb-6">Video Demo</h3>
-                   <div className="bg-[#111] border border-[#eee] rounded-[2rem] overflow-hidden shadow-xl w-full aspect-video">
-                     <iframe 
-                       src={`https://www.youtube.com/embed/${project.video.includes('v=') ? project.video.split('v=')[1]?.split('&')[0] : project.video.split('youtu.be/')[1]?.split('?')[0]}`}
-                       className="w-full h-full"
-                       title="YouTube video player"
-                       frameBorder="0"
-                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                       allowFullScreen
-                     ></iframe>
-                   </div>
-                 </div>
-              </div>
-            )}
-
+            
           </div>
         )}
       </motion.div>
