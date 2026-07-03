@@ -17,6 +17,12 @@ export default function ExperienceSection() {
       instagram: 'https://www.instagram.com/uxclub.vitb/',
       certificates: [
         {
+          src: "/UX_AL.jpg",
+          alt: "Appointment Letter",
+          title: "Appointment Letter",
+          description: "Official appointment letter as Core Member of the Tech Team."
+        },
+        {
           src: "/UX_certificate.jpg",
           alt: "UX Certificate",
           title: "Certificate of Appreciation",
