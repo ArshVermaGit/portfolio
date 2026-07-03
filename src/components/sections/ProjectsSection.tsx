@@ -234,8 +234,8 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
                    <section>
                      <h3 className="text-3xl font-black text-[#111] mb-8 text-center uppercase tracking-widest opacity-80 mt-10">Visuals & Metrics</h3>
                      
-                     <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-                       <div className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-default">
+                     <div className="flex justify-center w-full">
+                       <div className="w-full md:w-[calc(50%-1rem)] bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-default">
                          <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
                            <img 
                              src={project.screenshot} 

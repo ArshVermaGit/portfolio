@@ -228,9 +228,9 @@ function AIProjectModal({
                    </div>
                  )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex flex-wrap justify-center gap-8">
                     {project.screenshots.map((img: any, idx: number) => (
-                      <div key={idx} onClick={() => setSelectedImageIndex(idx)} className="bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <div key={idx} onClick={() => setSelectedImageIndex(idx)} className="w-full md:w-[calc(50%-1rem)] bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                         <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
                          <img 
                            src={img.src} 
