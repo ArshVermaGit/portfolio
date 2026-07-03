@@ -53,10 +53,10 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
-              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/linkedin-banner.jpeg')" }}>
+              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/socials/linkedin-banner.jpeg')" }}>
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute -bottom-10 left-6 w-20 h-20 rounded-full border-[4px] border-white bg-white overflow-hidden shadow-sm">
-                  <img src="/linkedin-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
+                  <img src="/socials/linkedin-profile.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
@@ -107,10 +107,10 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-black rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#333333] text-white flex-1"
             >
-              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/X-banner.jpg')" }}>
+              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/socials/x-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute -bottom-10 left-6 w-20 h-20 rounded-full border-[4px] border-black bg-black overflow-hidden shadow-sm">
-                  <img src="/x-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
+                  <img src="/socials/x-profile.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1">
@@ -141,10 +141,10 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-[#2b2d31] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 border border-[#1e1f22] text-white flex-1"
             >
-              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/discord-banner.jpg')" }}>
+              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/socials/discord-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="absolute -bottom-10 left-6 w-20 h-20 rounded-full border-[4px] border-[#2b2d31] bg-[#2b2d31] relative">
-                  <img src="/Discord-profile-photo.jpg" alt="Arsh Verma" className="w-full h-full object-cover rounded-full" />
+                  <img src="/socials/discord-profile.jpg" alt="Arsh Verma" className="w-full h-full object-cover rounded-full" />
                   <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#23a559] border-[4px] border-[#2b2d31] rounded-full"></div>
                 </div>
               </div>
@@ -176,10 +176,10 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
               className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] transition-shadow duration-500 flex-1"
             >
-              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
+              <div className="h-[100px] w-full relative bg-cover bg-center" style={{ backgroundImage: "url('/socials/youtube-banner.jpg')" }}>
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full border-[4px] border-white bg-white overflow-hidden shadow-sm">
-                  <img src="/youtube-profile-photo.jpeg" alt="Arsh Creates" className="w-full h-full object-cover" />
+                  <img src="/socials/youtube-profile.jpeg" alt="Arsh Creates" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="pt-12 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 text-center">
@@ -266,7 +266,7 @@ export default function ContactSection() {
             >
               <div className="bg-[#075E54] px-5 py-4 flex items-center gap-3 text-white shrink-0 z-10 relative shadow-sm">
                 <div className="w-10 h-10 rounded-full bg-white overflow-hidden shrink-0">
-                  <img src="/whatsapp-profile-photo.png" alt="Arsh" className="w-full h-full object-cover" />
+                  <img src="/socials/whatsapp-profile.png" alt="Arsh" className="w-full h-full object-cover" />
                 </div>
                 <div className="overflow-hidden">
                   <h3 className="text-base font-bold leading-tight truncate">Arsh Verma</h3>
@@ -302,7 +302,7 @@ export default function ContactSection() {
               <div className="pt-8 px-5 sm:px-6 pb-5 sm:pb-6 flex flex-col flex-1 items-center justify-center text-center">
                 <div className="w-20 h-20 rounded-full p-[3px] bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] mb-4">
                   <div className="w-full h-full rounded-full border-[3px] border-white overflow-hidden bg-white">
-                    <img src="/instagram-profile-photo.jpeg" alt="Arsh" className="w-full h-full object-cover" />
+                    <img src="/socials/instagram-profile.jpeg" alt="Arsh" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-[#111111] leading-tight">idc.arsh</h3>

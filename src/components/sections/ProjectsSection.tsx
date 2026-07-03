@@ -7,8 +7,8 @@ const projects = [
   {
     title: "SimplyPDF",
     repo: "SimplyPDF",
-    logo: "/simplypdf.png",
-    screenshot: "/1.png",
+    logo: "/projects/simplypdf-logo.png",
+    screenshot: "/projects/simplypdf-dashboard.png",
     video: "https://youtu.be/SdoFA6ISg1A?si=PHtdfhaNgcFCAmQ5",
     about: "The Ultimate, Privacy-Focused PDF Swiss-Army Knife. SimplyPDF provides a seamless and secure environment to manipulate, edit, and organize your PDF files completely locally without sacrificing user experience.",
     features: [
@@ -22,8 +22,8 @@ const projects = [
   {
     title: "RAW.AI",
     repo: "RAW.AI",
-    logo: "/rawai.png",
-    screenshot: "/2.png",
+    logo: "/projects/rawai-logo.png",
+    screenshot: "/projects/rawai-dashboard.png",
     about: "Bypass AI detection with human-grade rewriting. RAW.AI leverages an advanced proprietary 'Ultra Logic' engine to transform your AI-generated content into authentic, undetectable, and engaging text.",
     features: [
       "Advanced Humanization with 99.9% bypass rate",
@@ -36,8 +36,8 @@ const projects = [
   {
     title: "REELSPOT",
     repo: "REELSPOT",
-    logo: "/reelspot.png",
-    screenshot: "/3.png",
+    logo: "/projects/reelspot-logo.png",
+    screenshot: "/projects/reelspot-dashboard.png",
     about: "The Ultimate Social Media Experience. Redefined. Reelspot isn't just a downloader; it's a statement on software aesthetics designed for creators who value precision, privacy, and performance.",
     features: [
       "Native-speed downloads from Instagram, YouTube, TikTok",

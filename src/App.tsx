@@ -126,7 +126,7 @@ export default function App() {
         >
           {/* Profile image with blurred bottom edge blending into background */}
           <img 
-            src="/photo.png"
+            src="/hero/profile-photo.png"
             className="relative z-10 w-full h-full object-cover"
             style={{
               maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',

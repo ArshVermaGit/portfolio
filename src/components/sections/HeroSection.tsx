@@ -28,7 +28,7 @@ function ResumeModal({ onClose }: { onClose: () => void }) {
         <div className="px-8 py-6 bg-white border-b border-[#eee] flex items-center justify-between shrink-0 gap-4">
           <h3 className="text-2xl font-black text-[#111] tracking-tight">Resume</h3>
           <div className="flex items-center gap-4">
-            <a href="/RESUME.pdf" download className="hidden md:flex items-center justify-center gap-2 px-6 py-3 bg-[#111] text-white rounded-full font-bold text-sm hover:bg-black transition-colors shrink-0">
+            <a href="/hero/resume.pdf" download className="hidden md:flex items-center justify-center gap-2 px-6 py-3 bg-[#111] text-white rounded-full font-bold text-sm hover:bg-black transition-colors shrink-0">
                Download <Download size={16} />
             </a>
             <button onClick={onClose} className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md border border-[#eaeaea] shrink-0">
@@ -39,7 +39,7 @@ function ResumeModal({ onClose }: { onClose: () => void }) {
 
         <div className="flex-1 w-full bg-[#ebebeb] relative overflow-hidden" data-lenis-prevent="true">
           <iframe 
-            src="/RESUME.pdf#view=FitH" 
+            src="/hero/resume.pdf#view=FitH" 
             className="w-full h-full border-none"
             title="Resume"
           />
@@ -60,7 +60,7 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
       <div
         className="absolute inset-0 z-0 pointer-events-none block md:hidden"
         style={{
-          backgroundImage: "url('/landing_1.png')",
+          backgroundImage: "url('/hero/landing-dark.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -76,7 +76,7 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
       <div
         className="absolute inset-0 z-0 pointer-events-none hidden md:block"
         style={{
-          backgroundImage: "url('/landing.png')",
+          backgroundImage: "url('/hero/landing.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

@@ -8,9 +8,9 @@ const aiProjects = [
     id: 'codelens',
     title: 'CodeLens',
     shortDescription: 'An AI agent fine-tuned to act as a Senior Code Reviewer, capable of autonomously detecting bugs, security vulnerabilities, and architectural issues in PRs.',
-    logo: '/codelens-brand-v2.svg',
+    logo: '/ai-projects/codelens-logo.svg',
     screenshots: [
-      { src: '/Codelens.png', alt: 'CodeLens Dashboard' }
+      { src: '/ai-projects/codelens-dashboard.png', alt: 'CodeLens Dashboard' }
     ],
     huggingFaceUrl: 'https://huggingface.co/spaces/ArshVerma/CodeLens',
     kaggleUrl: 'https://www.kaggle.com/models/arshvermadev/codelens/',
@@ -28,11 +28,11 @@ const aiProjects = [
     id: 'review-ai',
     title: 'REVIEW.AI',
     shortDescription: 'Multi-class sentiment analysis model for e-commerce reviews based on BERT.',
-    logo: '/review-logo.png',
+    logo: '/ai-projects/review-logo.png',
     screenshots: [
-      { src: '/review.png', alt: 'Review.AI Dashboard', fallback: true },
-      { src: '/confusion_matrix copy.png', alt: 'Confusion Matrix' },
-      { src: '/training_loss_curve copy.png', alt: 'Training Loss Curve' }
+      { src: '/ai-projects/review-dashboard.png', alt: 'Review.AI Dashboard', fallback: true },
+      { src: '/ai-projects/confusion-matrix.png', alt: 'Confusion Matrix' },
+      { src: '/ai-projects/training-loss-curve.png', alt: 'Training Loss Curve' }
     ],
     huggingFaceUrl: 'https://huggingface.co/spaces/ArshVerma/review-ai',
     kaggleUrl: 'https://www.kaggle.com/models/arshvermadev/review-ai/',
@@ -49,11 +49,11 @@ const aiProjects = [
     id: 'mannsaathi',
     title: 'MannSaathi',
     shortDescription: 'An anonymous, multilingual AI healthcare companion that breaks the hesitation to seek medical help.',
-    logo: '/mannsaathi-logo.png',
+    logo: '/ai-projects/mannsaathi-logo.png',
     screenshots: [
-      { src: '/mann.png', alt: 'MannSaathi Dashboard' },
-      { src: '/mann-sy.png', alt: 'MannSaathi Symptoms Checker' },
-      { src: '/mannai.png', alt: 'MannSaathi AI' }
+      { src: '/ai-projects/mannsaathi-dashboard.png', alt: 'MannSaathi Dashboard' },
+      { src: '/ai-projects/mannsaathi-symptoms.png', alt: 'MannSaathi Symptoms Checker' },
+      { src: '/ai-projects/mannsaathi-ai.png', alt: 'MannSaathi AI' }
     ],
     video: 'https://www.youtube.com/watch?v=c58bVmaaMQ0',
     huggingFaceUrl: 'https://huggingface.co/ArshVerma/mannsaathi-symptom-classifier-large',

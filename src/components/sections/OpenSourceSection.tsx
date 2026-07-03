@@ -22,13 +22,13 @@ const organizations = [
 
 const apertreBadges = [
   { 
-    src: "/apertre_ticket.jpeg", 
+    src: "/open-source/apertre-ticket.jpeg", 
     alt: "Apertre Ticket", 
     title: "APERTRE 3.0 Ticket", 
     description: "Official ticket for APERTRE 3.0, representing selection as a mentee in this prestigious open-source program."
   },
   { 
-    src: "/APERTE.png", 
+    src: "/open-source/apertre-certificate.png", 
     alt: "Apertre Certificate", 
     title: "APERTRE Certificate", 
     description: "Official certificate of completion for successfully contributing to open-source projects under the APERTRE 3.0 initiative."
@@ -37,19 +37,19 @@ const apertreBadges = [
 
 const gssocBadges = [
   { 
-    src: "/gssoc-badge-gssoc_champion.png", 
+    src: "/open-source/gssoc-champion-badge.png", 
     alt: "Champion", 
     title: "GSSoC Champion", 
     description: "Awarded for exceptional performance and high-impact open-source contributions during GirlScript Summer of Code 2026."
   },
   { 
-    src: "/gssoc-badge-legend.png", 
+    src: "/open-source/gssoc-legend-badge.png", 
     alt: "Legend", 
     title: "GSSoC Legend", 
     description: "Achieved the 'Legend' status by consistently delivering top-tier pull requests and maintaining a strong commit streak."
   },
   { 
-    src: "/gssoc-badge-top_10.png", 
+    src: "/open-source/gssoc-top10-badge.png", 
     alt: "Top 10", 
     title: "GSSoC Top 10", 
     description: "Ranked among the Top 10 contributors out of thousands of participants worldwide in GSSoC '26."
@@ -221,7 +221,7 @@ export default function OpenSourceSection() {
             >
             <div className="flex items-center gap-6 relative z-10">
               <div className="w-16 h-16 bg-white rounded-2xl border border-[#eaeaea] shadow-sm flex items-center justify-center p-2 shrink-0 group-hover:scale-110 group-hover:border-[#3DA639]/30 transition-all duration-500">
-                <img src="/apertre_logo_mobile.svg" alt="Apertre" className="w-full h-full object-contain" />
+                <img src="/open-source/apertre-logo.svg" alt="Apertre" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h3 className="text-xl md:text-2xl font-black text-[#111] tracking-tight mb-1 group-hover:text-[#3DA639] transition-colors">APERTRE 3.0</h3>
@@ -239,7 +239,7 @@ export default function OpenSourceSection() {
                     setModalState({ type: 'apertre', index: 0 });
                   }}
                 >
-                  <img src="/apertre_ticket.jpeg" className="h-12 md:h-16 drop-shadow-sm rounded-lg object-contain group-hover:scale-[1.03] transition-transform duration-300" alt="Apertre Ticket" />
+                  <img src="/open-source/apertre-ticket.jpeg" className="h-12 md:h-16 drop-shadow-sm rounded-lg object-contain group-hover:scale-[1.03] transition-transform duration-300" alt="Apertre Ticket" />
                 </div>
                 <div 
                   className="relative group bg-white/50 border border-[#eaeaea] p-2 rounded-xl hover:bg-white hover:border-[#ddd] transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col items-center gap-1"
@@ -249,7 +249,7 @@ export default function OpenSourceSection() {
                     setModalState({ type: 'apertre', index: 1 });
                   }}
                 >
-                  <img src="/APERTE.png" className="h-12 md:h-16 drop-shadow-sm rounded-lg object-contain group-hover:scale-[1.03] transition-transform duration-300" alt="Apertre Certificate" />
+                  <img src="/open-source/apertre-certificate.png" className="h-12 md:h-16 drop-shadow-sm rounded-lg object-contain group-hover:scale-[1.03] transition-transform duration-300" alt="Apertre Certificate" />
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-[#ddd] to-transparent"></div>
@@ -285,7 +285,7 @@ export default function OpenSourceSection() {
                     setModalState({ type: 'gssoc', index: 0 });
                   }}
                 >
-                  <img src="/gssoc-badge-gssoc_champion.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Champion" />
+                  <img src="/open-source/gssoc-champion-badge.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Champion" />
                   <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-[#888] group-hover:text-[#f97316] transition-colors">Champion</span>
                 </div>
                 <div 
@@ -296,7 +296,7 @@ export default function OpenSourceSection() {
                     setModalState({ type: 'gssoc', index: 1 });
                   }}
                 >
-                  <img src="/gssoc-badge-legend.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Legend" />
+                  <img src="/open-source/gssoc-legend-badge.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Legend" />
                   <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-[#888] group-hover:text-[#f97316] transition-colors">Legend</span>
                 </div>
                 <div 
@@ -307,7 +307,7 @@ export default function OpenSourceSection() {
                     setModalState({ type: 'gssoc', index: 2 });
                   }}
                 >
-                  <img src="/gssoc-badge-top_10.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Top 10" />
+                  <img src="/open-source/gssoc-top10-badge.png" className="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm group-hover:scale-105 transition-transform duration-300" alt="Top 10" />
                   <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-[#888] group-hover:text-[#f97316] transition-colors">Top 10</span>
                 </div>
               </div>

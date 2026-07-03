@@ -64,7 +64,7 @@ export default function YoutubeSection() {
             link: 'https://www.youtube.com/channel/UCfoFOfJ6RuGqfnjCZANwJGQ',
             author: 'Arsh Creates',
             description: 'Sharing knowledge and tutorials.',
-            image: '/youtube-profile-photo.jpeg'
+            image: '/socials/youtube-profile.jpeg'
           },
           items: [
             {
@@ -166,13 +166,13 @@ export default function YoutubeSection() {
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             {/* Banner Mock */}
-            <div className="h-32 w-full bg-cover bg-center relative" style={{ backgroundImage: "url('/youtube-banner.jpg')" }}>
+            <div className="h-32 w-full bg-cover bg-center relative" style={{ backgroundImage: "url('/socials/youtube-banner.jpg')" }}>
               <div className="absolute inset-0 bg-black/20"></div>
             </div>
             
             <div className="px-8 pb-8 flex flex-col items-center -mt-12 relative z-10 text-center">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white bg-white shadow-md mb-4">
-                <img src="/youtube-profile-photo.jpeg" alt="Arsh Creates" className="w-full h-full object-cover" />
+                <img src="/socials/youtube-profile.jpeg" alt="Arsh Creates" className="w-full h-full object-cover" />
               </div>
               
               <h3 className="text-3xl font-black text-[#111] leading-tight flex items-center justify-center gap-2 mb-1">

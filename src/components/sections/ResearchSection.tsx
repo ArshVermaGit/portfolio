@@ -75,7 +75,7 @@ function ResearchModal({ pub, onClose }: { pub: any, onClose: () => void }) {
               className="w-[180px] md:w-[280px] aspect-[1/1.4] bg-white rounded-lg shadow-[0_30px_60px_rgba(0,0,0,0.15),0_10px_20px_rgba(0,0,0,0.05)] border border-[#eaeaea] relative z-10 overflow-hidden group hover:rotate-0 hover:scale-105 hover:-translate-y-4 transition-all duration-700 ease-out cursor-pointer"
             >
               <div className="absolute inset-0 pointer-events-none overflow-hidden bg-white">
-                <img src="/research_1.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
+                <img src="/research/research-paper.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
                 <div className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black/5 to-transparent pointer-events-none"></div>
                 <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.02)] pointer-events-none" />
               </div>
@@ -258,7 +258,7 @@ function ResearchListItem({ pub, onClick, idx }: { pub: any, onClick: () => void
 
          {/* PDF Paper Preview Wrapper */}
          <div className="w-[86%] h-[82%] bg-white rounded-t-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.12)] overflow-hidden relative group-hover:h-[96%] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] border border-[#e2e8f0] border-b-0 z-10">
-           <img src="/research_1.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
+           <img src="/research/research-paper.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
            <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.03)] pointer-events-none" />
          </div>
          

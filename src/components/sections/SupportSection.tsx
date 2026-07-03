@@ -82,7 +82,7 @@ export default function SupportSection() {
 
           <div className="w-full md:w-auto flex flex-col items-center gap-6 z-10">
             <div className="bg-white p-4 md:p-6 rounded-[2rem] shadow-2xl transform hover:-rotate-2 hover:scale-105 transition-all duration-300">
-              <img src="/qr-code.png" alt="Support QR Code" className="w-48 h-48 md:w-64 md:h-64 object-contain rounded-xl" />
+              <img src="/branding/qr-code.png" alt="Support QR Code" className="w-48 h-48 md:w-64 md:h-64 object-contain rounded-xl" />
             </div>
             <p className="text-xs font-bold text-[#888888] uppercase tracking-widest bg-white/10 px-4 py-2 rounded-full border border-white/10">Scan to Support</p>
           </div>

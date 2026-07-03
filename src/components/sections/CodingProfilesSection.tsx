@@ -128,7 +128,7 @@ export default function CodingProfilesSection() {
               {/* Header / Identity */}
               <div className="flex gap-4 items-center">
                 <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#2F8D46]">
-                  <img src="/youtube-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale opacity-80" />
+                  <img src="/socials/youtube-profile.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale opacity-80" />
                 </div>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold leading-tight uppercase tracking-wide">ARSH VERMA</h3>
@@ -205,7 +205,7 @@ export default function CodingProfilesSection() {
               <div className="flex gap-4 sm:gap-6 items-center relative z-10 pt-4">
                 <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border-4 border-[#20BEFF] p-1">
                   <div className="w-full h-full rounded-full overflow-hidden">
-                    <img src="/instagram-profile-photo.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale" />
+                    <img src="/socials/instagram-profile.jpeg" alt="Arsh Verma" className="w-full h-full object-cover grayscale" />
                   </div>
                 </div>
                 <div>
@@ -228,7 +228,7 @@ export default function CodingProfilesSection() {
                 
                 <div className="border border-[#eee] rounded-xl p-3 flex gap-3 items-center group-hover:border-[#ccc] transition-colors overflow-hidden">
                   <div className="w-10 h-10 rounded-full border border-[#eee] p-0.5 bg-[#f5f5f5] shrink-0">
-                    <img src="/instagram-profile-photo.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
+                    <img src="/socials/instagram-profile.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h5 className="text-sm font-bold text-[#1a73e8] truncate">REVIEW.AI</h5>
@@ -241,7 +241,7 @@ export default function CodingProfilesSection() {
 
                 <div className="border border-[#eee] rounded-xl p-3 flex gap-3 items-center group-hover:border-[#ccc] transition-colors overflow-hidden">
                   <div className="w-10 h-10 rounded-full border border-[#eee] p-0.5 bg-[#f5f5f5] shrink-0">
-                    <img src="/instagram-profile-photo.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
+                    <img src="/socials/instagram-profile.jpeg" className="w-full h-full rounded-full grayscale opacity-80 object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h5 className="text-sm font-bold text-[#1a73e8] truncate">CodeLens</h5>
@@ -269,7 +269,7 @@ export default function CodingProfilesSection() {
               {/* Left Sidebar */}
               <div className="w-full sm:w-1/3 flex sm:flex-col items-center sm:items-start gap-4 border-b sm:border-b-0 sm:border-r border-[#1e293b] pb-6 sm:pb-0 sm:pr-6">
                 <div className="w-16 h-16 sm:w-full sm:h-auto sm:aspect-square rounded-full overflow-hidden border border-[#334155] relative shrink-0">
-                  <img src="/hugging-face-profile-picture.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
+                  <img src="/socials/hugging-face-profile.jpeg" alt="Arsh Verma" className="w-full h-full object-cover" />
                   <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 bg-[#1e293b] text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full border border-[#334155] flex items-center gap-1">
                     ❤️ 1
                   </div>
@@ -319,7 +319,7 @@ export default function CodingProfilesSection() {
                     <div className="border border-[#1e293b] bg-[#0f172a]/50 rounded-lg p-2.5 flex justify-between items-center">
                       <div className="min-w-0 pr-2">
                         <h5 className="text-[10px] font-bold text-gray-200 truncate flex items-center gap-1.5">
-                          <img src="/hugging-face-profile-picture.jpeg" className="w-3 h-3 rounded-full object-cover" />
+                          <img src="/socials/hugging-face-profile.jpeg" className="w-3 h-3 rounded-full object-cover" />
                           ArshVerma/codelens_reviewer_lora
                         </h5>
                         <p className="text-[8px] text-[#64748b] mt-0.5">Updated about 12 hours ago</p>

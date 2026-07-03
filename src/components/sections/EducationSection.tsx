@@ -9,7 +9,7 @@ export default function EducationSection() {
       institution: 'Fatima Senior Secondary School',
       duration: '2010 - 2024',
       location: 'Gonda, Uttar Pradesh - 271002',
-      logo: '/Fatima.png',
+      logo: '/education/fatima-logo.png',
       website: 'https://fatimaschoolgonda.in',
     },
     {
@@ -18,7 +18,7 @@ export default function EducationSection() {
       institution: 'VIT Bhopal University',
       duration: '2024 - 2028',
       location: 'Bhopal-Indore Highway, Kothrikalan, Sehore, Madhya Pradesh – 466114',
-      logo: '/VIT.png',
+      logo: '/education/vit-logo.png',
       website: 'https://vitbhopal.ac.in',
     }
   ];

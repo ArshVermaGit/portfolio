@@ -13,17 +13,17 @@ export default function ExperienceSection() {
       shortDescription: 'Collaborating on UX projects, design events, and user-centered initiatives.',
       description: 'Core Member, UX Design Club | Collaborating on UX projects, design events, and initiatives that foster user-centered thinking and creativity across campus.',
       skills: ['UI/UX', 'JavaScript', 'TypeScript', 'React.js', 'Project Management', 'Teamwork'],
-      logo: '/UX.jpeg',
+      logo: '/experience/ux-army-logo.jpeg',
       instagram: 'https://www.instagram.com/uxclub.vitb/',
       certificates: [
         {
-          src: "/UX_AL.jpg",
+          src: "/experience/ux-army-appointment.jpg",
           alt: "Appointment Letter",
           title: "Appointment Letter",
           description: "Official appointment letter as Core Member of the Tech Team."
         },
         {
-          src: "/UX_certificate.jpg",
+          src: "/experience/ux-army-certificate.jpg",
           alt: "UX Certificate",
           title: "Certificate of Appreciation",
           description: "Awarded for outstanding contribution to the successful organization of the Design2Code 2.0 Frontend Hackathon."

@@ -11,12 +11,12 @@ const hackathons = [
     shortDescription: 'A four-day online design hackathon for students passionate about UI/UX, Frontend, and Design Thinking.',
     description: 'DesignVerse 2026 is a four-day online design hackathon tailored for students passionate about UI/UX Design, Frontend, Graphic Design, Product Design, Branding, Design Thinking, Innovation, and Creative Problem Solving.',
     link: 'https://unstop.com/p/designverse-2026-vit-bhopal-university-vit-bhopal-1699267',
-    logo: '/designverse.png',
-    certificate: '/designverse-certificate.png',
+    logo: '/hackathons/designverse-logo.png',
+    certificate: '/hackathons/designverse-certificate.png',
     winner: true,
     project: {
       title: "MannSaathi",
-      logo: "/mannsaathi-logo.png",
+      logo: "/ai-projects/mannsaathi-logo.png",
       about: "An anonymous, multilingual AI healthcare companion that breaks the hesitation to seek medical help.",
       tech: ["Healthcare AI", "NLP", "Transformers", "Next.js"],
       link: "https://github.com/ArshVermaGit/mannsaathi"
@@ -29,11 +29,11 @@ const hackathons = [
     shortDescription: 'A global hackathon encouraging innovation and real-world problem solving through technology.',
     description: 'Dev Season of Code (DSOC) 2026 is a global, professional hackathon designed to encourage innovation, collaboration, and real-world problem solving through technology. The event brings together coders, professionals, and independent developers to build impactful solutions across software engineering, artificial intelligence, data, and emerging technologies.',
     link: 'https://dev-season-of-code.devpost.com/?ref_content=default&ref_feature=challenge&ref_medium=portfolio&_gl=1*c33m6b*_gcl_au*MTI2NDM2ODgyLjE3ODE0Njg4NjQ.*_ga*MTk5NjQxODEwOC4xNzgxNDY4ODY1*_ga_0YHJK3Y10M*czE3ODE0NzM2ODYkbzIkZzEkdDE3ODE0NzM3MDEkajQ1JGwwJGgw',
-    logo: '/dev-logo.jpeg',
-    certificate: '/dev.png',
+    logo: '/hackathons/dev-logo.jpeg',
+    certificate: '/hackathons/dev-certificate.png',
     project: {
       title: "SentinelOps",
-      logo: "/SentinelOps.png",
+      logo: "/hackathons/sentinelops-logo.png",
       about: "SentinelOps is an autonomous, AI-powered DevOps co-pilot that helps developers understand their delivery pipelines better. It stops the \"fail-react\" loop by predicting risks at the PR gate and explaining CI/CD failures in plain English.",
       tech: ["ai", "devops", "automation", "python"],
       link: "https://github.com/ArshVermaGit/SentinelOps-Autonomous-DevOps-AI"
@@ -46,11 +46,11 @@ const hackathons = [
     shortDescription: 'A beginner-friendly, fully online hackathon designed to encourage learning and building without the stress.',
     description: 'The WiCS Online Hackathon is a 1-week, fully online, low-pressure hackathon focused on helping participants start projects they’ve been putting off. This event is beginner-friendly and designed to encourage learning, experimenting, and building without the stress of traditional hackathons.',
     link: 'https://da-wics-hackathon-26.devpost.com/?ref_feature=challenge&ref_medium=discover&_gl=1*1r2dxf8*_gcl_au*MTI2NDM2ODgyLjE3ODE0Njg4NjQ.*_ga*MTk5NjQxODEwOC4xNzgxNDY4ODY1*_ga_0YHJK3Y10M*czE3ODE0Njg4NjQkbzEkZzEkdDE3ODE0NjkxNzMkajU1JGwwJGgw',
-    logo: '/WiCS.jpg',
-    certificate: '/WiCS-certificate.jpeg',
+    logo: '/hackathons/wics-logo.jpg',
+    certificate: '/hackathons/wics-certificate.jpeg',
     project: {
       title: "SimplyPDF",
-      logo: "/simplypdf.png",
+      logo: "/projects/simplypdf-logo.png",
       about: "The Ultimate, Privacy-Focused PDF Swiss-Army Knife. SimplyPDF provides a seamless and secure environment to manipulate, edit, and organize your PDF files completely locally without sacrificing user experience.",
       tech: ["nextjs", "typescript", "tailwind", "vercel"],
       link: "https://github.com/ArshVermaGit/SimplyPDF"
