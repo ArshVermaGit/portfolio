@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, GitFork, ArrowUpRight, Code, Layers, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Star, ArrowUpRight, Code, Layers, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -52,6 +52,7 @@ const projects = [
 function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { project: any, onClose: () => void, onPrev: () => void, onNext: () => void, hasPrev: boolean, hasNext: boolean }) {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -117,7 +118,7 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
              <p className="font-bold text-[#888] tracking-widest uppercase text-sm animate-pulse">Loading GitHub Data...</p>
           </div>
         ) : (
-          <div data-lenis-prevent="true" className="flex flex-col h-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111]">
+          <div data-lenis-prevent="true" className={`flex flex-col h-full overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111] ${isImageOpen ? 'overflow-hidden' : 'overflow-y-auto'}`}>
             
             {/* Top Section: Meta Info & Logo */}
             <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
@@ -235,7 +236,7 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
                      <h3 className="text-3xl font-black text-[#111] mb-8 text-center uppercase tracking-widest opacity-80 mt-10">Visuals & Metrics</h3>
                      
                      <div className="flex justify-center w-full">
-                       <div className="w-full md:w-[calc(50%-1rem)] bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-default">
+                       <div onClick={() => setIsImageOpen(true)} className="w-full md:w-[calc(50%-1rem)] bg-white border border-[#eee] rounded-[2rem] overflow-hidden group shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                          <div className="aspect-[4/3] bg-white relative overflow-hidden flex items-center justify-center p-6 border-b border-[#eee]">
                            <img 
                              src={project.screenshot} 
@@ -257,6 +258,31 @@ function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNext }: { 
           </div>
         )}
       </motion.div>
+
+      {/* Image Viewer Sub-Modal */}
+      <AnimatePresence>
+        {isImageOpen && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 overscroll-none"
+          >
+            <button 
+              onClick={() => setIsImageOpen(false)}
+              className="absolute top-4 right-4 md:top-8 md:right-8 z-[10000] w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl border border-white/10"
+            >
+              <X size={20} strokeWidth={3} />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }} transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
+              className="w-full max-w-5xl aspect-video glassCard border border-[#eaeaea] rounded-[2rem] shadow-2xl relative flex flex-col items-center justify-center bg-white/90 overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={project.screenshot} className="w-full h-full object-contain p-2 md:p-6" alt={`${project.title} Screenshot`} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>,
     document.body
   );
