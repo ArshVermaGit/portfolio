@@ -131,6 +131,7 @@ function AIProjectModal({
           <X size={20} strokeWidth={3} />
         </button>
 
+        <div data-lenis-prevent="true" className={`flex flex-col h-full overscroll-contain [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#ddd] [&::-webkit-scrollbar-thumb]:rounded-full text-[#111] ${selectedImageIndex !== null ? 'overflow-hidden' : 'overflow-y-auto'}`}>
           
           {/* Top Section: Meta Info & Logo */}
           <div className="px-6 py-12 md:px-16 md:py-16 flex flex-col items-center justify-center border-b border-[#eee] bg-white text-center">
