@@ -25,6 +25,9 @@ interface LeetCodeData {
   allQuestionsCount: AllQuestionsCount[];
   matchedUser: {
     profile: {
+      realName: string;
+      userAvatar: string;
+      aboutMe: string;
       reputation: number;
       ranking: number;
     };
@@ -322,13 +325,24 @@ export default function LeetcodeSection() {
     );
   }
 
-  const { matchedUser, recentSubmissionList } = data;
+  const { matchedUser, recentSubmissionList, allQuestionsCount, userContestRanking } = data;
   const calendar = parseLeetCodeCalendar(matchedUser.submissionCalendar);
   
   const totalSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'All')?.count || 0;
   const easySolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Easy')?.count || 0;
   const mediumSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Medium')?.count || 0;
   const hardSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Hard')?.count || 0;
+
+  const totalQuestions = allQuestionsCount?.find(x => x.difficulty === 'All')?.count || 3977;
+  const totalEasyQuestions = allQuestionsCount?.find(x => x.difficulty === 'Easy')?.count || 951;
+  const totalMediumQuestions = allQuestionsCount?.find(x => x.difficulty === 'Medium')?.count || 2077;
+  const totalHardQuestions = allQuestionsCount?.find(x => x.difficulty === 'Hard')?.count || 949;
+
+  const attendedContests = userContestRanking?.attendedContestsCount || 0;
+  const contestRating = Math.round(userContestRanking?.rating || 0);
+  const globalRanking = userContestRanking?.globalRanking || 0;
+  const topPercentage = userContestRanking?.topPercentage || 100;
+  const totalContestUsers = topPercentage > 0 ? Math.round((globalRanking * 100) / topPercentage) : 0;
 
   return (
     <section id="leetcode" className="py-32 px-6 relative bg-transparent overflow-hidden">
@@ -359,10 +373,10 @@ export default function LeetcodeSection() {
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="w-20 h-20 rounded-[1rem] border-2 border-white shadow-sm overflow-hidden mb-4">
-              <img src="https://github.com/ArshVermaGit.png" alt="Arsh Verma" className="w-full h-full object-cover" />
+              <img src={matchedUser.profile.userAvatar || "https://github.com/ArshVermaGit.png"} alt={matchedUser.profile.realName || "Arsh Verma"} className="w-full h-full object-cover" />
             </div>
             
-            <h3 className="text-2xl font-black text-[#111] tracking-tight mb-0.5">Arsh Verma</h3>
+            <h3 className="text-2xl font-black text-[#111] tracking-tight mb-0.5">{matchedUser.profile.realName || "Arsh Verma"}</h3>
             <a href="https://leetcode.com/u/arsh-leetcode/" target="_blank" rel="noreferrer" className="text-[11px] font-bold text-[#888] uppercase tracking-widest hover:text-[#FFA116] transition-colors mb-6 flex items-center justify-center gap-1">
               @arsh-leetcode <ExternalLink size={12} />
             </a>
@@ -374,7 +388,7 @@ export default function LeetcodeSection() {
               </div>
               <div className="glassCard rounded-3xl p-4 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#888] flex items-center gap-1.5 mb-1.5"><Shield size={12} className="text-[#00b8a3]" /> Reputation</span>
-                <span className="text-xl font-black text-[#111]">{matchedUser.profile.reputation}</span>
+                <span className="text-xl font-black text-[#111]">{attendedContests}</span>
               </div>
             </div>
           </motion.div>
@@ -400,30 +414,30 @@ export default function LeetcodeSection() {
                 <div className="group">
                   <div className="flex items-end justify-between mb-2">
                     <span className="text-sm font-bold text-[#111] flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-[#00b8a3]"></div> Easy</span>
-                    <span className="text-lg font-black text-[#111]">{easySolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ 800+</span></span>
+                    <span className="text-lg font-black text-[#111]">{easySolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ {totalEasyQuestions}</span></span>
                   </div>
                   <div className="w-full bg-gray-200/50 rounded-full h-2.5 shadow-inner overflow-hidden">
-                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((easySolved / 800) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="bg-[#00b8a3] h-full rounded-full" />
+                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((easySolved / totalEasyQuestions) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="bg-[#00b8a3] h-full rounded-full" />
                   </div>
                 </div>
 
                 <div className="group">
                   <div className="flex items-end justify-between mb-2">
                     <span className="text-sm font-bold text-[#111] flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-[#ffc01e]"></div> Medium</span>
-                    <span className="text-lg font-black text-[#111]">{mediumSolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ 1500+</span></span>
+                    <span className="text-lg font-black text-[#111]">{mediumSolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ {totalMediumQuestions}</span></span>
                   </div>
                   <div className="w-full bg-gray-200/50 rounded-full h-2.5 shadow-inner overflow-hidden">
-                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((mediumSolved / 1500) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.1 }} className="bg-[#ffc01e] h-full rounded-full" />
+                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((mediumSolved / totalMediumQuestions) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.1 }} className="bg-[#ffc01e] h-full rounded-full" />
                   </div>
                 </div>
 
                 <div className="group">
                   <div className="flex items-end justify-between mb-2">
                     <span className="text-sm font-bold text-[#111] flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-[#ef4743]"></div> Hard</span>
-                    <span className="text-lg font-black text-[#111]">{hardSolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ 700+</span></span>
+                    <span className="text-lg font-black text-[#111]">{hardSolved} <span className="text-xs font-bold text-[#aaa] ml-1">/ {totalHardQuestions}</span></span>
                   </div>
                   <div className="w-full bg-gray-200/50 rounded-full h-2.5 shadow-inner overflow-hidden">
-                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((hardSolved / 700) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="bg-[#ef4743] h-full rounded-full" />
+                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${Math.min((hardSolved / totalHardQuestions) * 100, 100)}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="bg-[#ef4743] h-full rounded-full" />
                   </div>
                 </div>
 
@@ -440,22 +454,22 @@ export default function LeetcodeSection() {
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-[#111] tracking-tight flex items-center gap-2"><Trophy size={20} className="text-[#111]" /> Contests</h3>
               <span className="text-[9px] font-black uppercase tracking-widest bg-blue-500/10 text-blue-600 px-2.5 py-1 rounded-full flex items-center gap-1">
-                <Trophy size={10} /> 1,325
+                <Trophy size={10} /> {contestRating.toLocaleString()}
               </span>
             </div>
 
             <div className="flex-1 flex flex-col gap-4 justify-center">
                <div className="flex justify-between items-center border-b border-[#eee] pb-4">
                  <span className="text-sm font-bold text-[#555]">Attended</span>
-                 <span className="text-xl font-black text-[#111]">9</span>
+                 <span className="text-xl font-black text-[#111]">{attendedContests}</span>
                </div>
                <div className="flex justify-between items-center border-b border-[#eee] pb-4">
                  <span className="text-sm font-bold text-[#555]">Global Ranking</span>
-                 <span className="text-xl font-black text-[#111]">836,211 <span className="text-[12px] text-[#aaa] font-bold">/874,367</span></span>
+                 <span className="text-xl font-black text-[#111]">{globalRanking.toLocaleString()} <span className="text-[12px] text-[#aaa] font-bold">/{totalContestUsers > 0 ? totalContestUsers.toLocaleString() : '874,367'}</span></span>
                </div>
                <div className="flex justify-between items-center">
                  <span className="text-sm font-bold text-[#555]">Top</span>
-                 <span className="text-xl font-black text-[#111]">95.7%</span>
+                 <span className="text-xl font-black text-[#111]">{topPercentage}%</span>
                </div>
             </div>
           </motion.div>

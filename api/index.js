@@ -224,6 +224,9 @@ const LEETCODE_GRAPHQL_QUERY = `
     }
     matchedUser(username: $username) {
       profile {
+        realName
+        userAvatar
+        aboutMe
         reputation
         ranking
       }
