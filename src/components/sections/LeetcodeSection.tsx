@@ -333,7 +333,6 @@ export default function LeetcodeSection() {
   const mediumSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Medium')?.count || 0;
   const hardSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Hard')?.count || 0;
 
-  const totalQuestions = allQuestionsCount?.find(x => x.difficulty === 'All')?.count || 3977;
   const totalEasyQuestions = allQuestionsCount?.find(x => x.difficulty === 'Easy')?.count || 951;
   const totalMediumQuestions = allQuestionsCount?.find(x => x.difficulty === 'Medium')?.count || 2077;
   const totalHardQuestions = allQuestionsCount?.find(x => x.difficulty === 'Hard')?.count || 949;

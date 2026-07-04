@@ -322,15 +322,15 @@ export default function GithubSection() {
               whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
             >
               <img 
-                src="https://github.com/ArshVermaGit.png" 
-                alt={data.profile.name} 
+                src={data.profile.avatarUrl || "https://github.com/ArshVermaGit.png"} 
+                alt={data.profile.name || data.profile.login} 
                 className="w-36 h-36 rounded-full mb-6 filter grayscale border border-gray-200"
               />
               <h3 className="text-[2rem] font-bold tracking-tight mb-1">{data.profile.name || data.profile.login}</h3>
               <p className="text-xl text-[#888888] font-medium tracking-tight mb-8">@{data.profile.login}</p>
               
-              <p className="text-[#666666] leading-relaxed mb-10 max-w-[280px] font-medium">
-                Building. Shipping. Contributing.<br/>Learning. Repeating.
+              <p className="text-[#666666] leading-relaxed mb-10 max-w-[280px] font-medium whitespace-pre-line">
+                {data.profile.bio || "Building. Shipping. Contributing.\nLearning. Repeating."}
               </p>
 
               <div className="flex flex-col items-center gap-4 text-[15px] text-[#888888] font-medium w-full">
