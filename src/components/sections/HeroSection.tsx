@@ -113,7 +113,13 @@ export default function HeroSection({ imageRef }: { imageRef: any }) {
           whileHover={{ scale: 1.05 }}
           className="bg-[#f4f4f2]/90 backdrop-blur-3xl shadow-[0_20px_40px_rgba(0,0,0,0.2)] border border-white w-full md:w-auto px-6 py-3 rounded-full transition-all cursor-default flex items-center justify-center"
         >
-          <span className="text-xs md:text-sm font-black tracking-widest uppercase text-[#111111]">© 2026</span>
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-[#111111]">Open To Opportunities</span>
+          </div>
         </motion.div>
 
         <motion.button onClick={() => setIsModalOpen(true)} whileHover={{ y: -5, scale: 1.05 }} className="bg-[#f4f4f2]/90 backdrop-blur-3xl shadow-[0_20px_40px_rgba(0,0,0,0.2)] border border-white w-full md:w-auto px-6 py-3 rounded-full text-xs md:text-sm font-black uppercase tracking-widest text-[#111111] transition-all flex items-center justify-center gap-2 group">
