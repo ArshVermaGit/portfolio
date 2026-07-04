@@ -316,65 +316,67 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
     <motion.div 
       initial={{ opacity: 0, scale: 0.95, y: 30 }} 
       whileInView={{ opacity: 1, scale: 1, y: 0 }} 
-      whileHover={{ y: -10, scale: 1.02 }}
       viewport={{ once: true, margin: "-50px" }} 
+      whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", bounce: 0.5 } }}
       transition={{ duration: 0.8, delay: idx * 0.1, type: "spring", bounce: 0.4 }}
-      className="group glassCard rounded-[2rem] flex flex-col relative overflow-hidden cursor-pointer h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
+      className="group glassCard rounded-[3rem] p-2 flex flex-col relative cursor-pointer w-full max-w-[450px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 mx-auto border border-[#eaeaea]"
       onClick={onClick}
     >
-       {/* Cover Image Area */}
-       <div className={`w-full aspect-video bg-gradient-to-br ${bgGradient} group-hover:brightness-105 flex items-center justify-center relative overflow-hidden border-b border-[#eaeaea] group-hover:border-blue-100 transition-all duration-500`}>
-         {/* Subtle watermark */}
-         <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center scale-150 grayscale">
-            <img src={project.logo} className="w-full h-full object-cover blur-sm" alt="" />
+      <div className="flex-1 rounded-[2.5rem] bg-[#fafafa] border border-[#f0f0f0] flex flex-col relative overflow-hidden">
+         {/* Cover Image Area */}
+         <div className="w-full h-64 bg-white relative overflow-hidden flex items-center justify-center border-b border-[#eaeaea]">
+           {/* Cool glowing background effect */}
+           <div className="absolute inset-0 opacity-60">
+              <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/80 via-transparent to-transparent group-hover:scale-110 group-hover:from-purple-100/80 transition-all duration-1000"></div>
+           </div>
+           
+           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+           
+           <img 
+             src={project.logo} 
+             alt={project.title} 
+             className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700 relative z-10" 
+             onError={(e) => { e.currentTarget.style.display = 'none'; }}
+           />
+           
+           {/* Live Badge */}
+           <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-md rounded-full border border-[#eaeaea] shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981] animate-pulse"></span>
+              <span className="text-[10px] font-black tracking-widest uppercase text-[#555]">Active</span>
+           </div>
          </div>
 
-         <img 
-           src={project.logo} 
-           alt={project.title} 
-           className="w-24 h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-700 relative z-10" 
-           onError={(e) => { e.currentTarget.style.display = 'none'; }}
-         />
-         
-         {/* Live Badge in top left corner of the image */}
-         <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 bg-white/80 backdrop-blur-md rounded-full shadow-sm border border-white">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
-            <span className="text-[9px] font-black tracking-widest uppercase text-[#555]">Active</span>
-         </div>
-       </div>
-
-       {/* Content Area */}
-       <div className="flex-1 p-6 md:p-8 flex flex-col relative z-10 bg-white">
-         <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-2xl font-black text-[#111] tracking-tight group-hover:text-blue-600 transition-colors line-clamp-1">{project.title}</h3>
-            {data?.stargazers_count > 0 && (
-               <div className="flex items-center gap-1 shrink-0 px-2 py-1 bg-[#fffbf0] border border-[#fde68a] text-[#d97706] rounded-md text-[11px] font-bold shadow-sm">
-                  <Star size={12} className="fill-[#d97706]" /> {data.stargazers_count}
-               </div>
-            )}
-         </div>
-         <p className="text-[#666] font-medium text-[15px] leading-relaxed line-clamp-2 mb-6">
-           {data?.description || project.about}
-         </p>
-         
-         {/* Footer Area */}
-         <div className="mt-auto flex items-center justify-between">
-           <div className="flex items-center gap-2 overflow-hidden">
-              {project.tech.slice(0, 3).map((t: string) => (
-                 <span key={t} className="px-2.5 py-1 bg-[#f9f9f9] border border-[#eee] text-[#666] rounded-md text-[10px] font-bold tracking-widest uppercase shadow-sm group-hover:border-[#ddd] transition-colors">
-                    {t}
-                 </span>
-              ))}
-              {project.tech.length > 3 && (
-                 <span className="text-[10px] font-black text-[#999] tracking-widest uppercase shrink-0">+{project.tech.length - 3}</span>
+         {/* Content Area */}
+         <div className="flex-1 p-8 md:p-10 flex flex-col relative z-10 bg-white">
+           <div className="flex items-start justify-between gap-4 mb-4">
+              <h3 className="text-3xl font-black text-[#111] tracking-tight group-hover:text-blue-600 transition-colors line-clamp-1">{project.title}</h3>
+              {data?.stargazers_count > 0 && (
+                <div className="flex items-center gap-1 shrink-0 px-3 py-1.5 bg-[#fffbf0] border border-[#fde68a] text-[#d97706] rounded-xl text-[11px] font-bold shadow-sm">
+                   <Star size={12} className="fill-[#d97706]" /> {data.stargazers_count}
+                </div>
               )}
            </div>
-
-           <div className="w-8 h-8 rounded-full bg-white border border-[#eee] text-[#111] flex items-center justify-center group-hover:bg-[#111] group-hover:text-white transition-colors shadow-sm shrink-0">
-             <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+           
+           <p className="text-[#555] text-base md:text-lg leading-relaxed mb-8 line-clamp-2">
+             {data?.description || project.about}
+           </p>
+           
+           {/* Footer Area */}
+           <div className="mt-auto flex items-center justify-between border-t border-[#f5f5f5] pt-6">
+              <div className="flex items-center gap-2 overflow-hidden flex-wrap">
+                 {project.tech.map((t: string) => (
+                    <span key={t} className="px-3 py-1.5 bg-[#f8fafc] border border-[#e2e8f0] text-[#475569] rounded-xl text-[11px] font-bold tracking-widest uppercase shadow-sm group-hover:border-[#cbd5e1] transition-colors">
+                       {t}
+                    </span>
+                 ))}
+              </div>
+              
+              <div className="w-12 h-12 rounded-full bg-[#111] text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-md shrink-0 group-hover:bg-blue-600 ml-4">
+                <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
            </div>
          </div>
-       </div>
+      </div>
     </motion.div>
   );
 }
@@ -417,7 +419,7 @@ export default function ProjectsSection() {
           <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Selected open-source projects.</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
           {projects.map((project, idx) => (
             <ProjectListItem 
               key={idx} 
