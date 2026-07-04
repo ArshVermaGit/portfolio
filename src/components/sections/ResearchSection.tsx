@@ -242,48 +242,46 @@ function ResearchListItem({ pub, onClick, idx }: { pub: any, onClick: () => void
       whileInView={{ opacity: 1, y: 0 }} 
       viewport={{ once: true }} 
       transition={{ duration: 0.5, delay: idx * 0.1 }}
-      className="group flex flex-col md:flex-row gap-6 md:gap-8 p-4 md:p-6 rounded-[2rem] bg-white border border-[#f0f0f0] hover:border-blue-200 shadow-sm hover:shadow-[0_10px_40px_rgb(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-500 cursor-pointer w-full relative overflow-hidden"
+      className="group flex flex-col md:flex-row gap-6 md:gap-8 p-4 md:p-5 rounded-[2rem] bg-white border border-[#eaeaea] hover:border-transparent hover:bg-gradient-to-br hover:from-white hover:to-blue-50/50 hover:shadow-[0_20px_50px_-12px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer w-full relative overflow-hidden"
       onClick={onClick}
     >
-
-       <div className="relative w-full md:w-[200px] xl:w-[250px] shrink-0 aspect-[4/3] sm:aspect-[3/4.2] rounded-[1.5rem] overflow-hidden bg-gradient-to-br from-[#f8f9fa] to-[#e2e8f0] flex flex-col items-center justify-end shadow-inner border border-[#e2e8f0]">
+       <div className="relative w-full md:w-[220px] shrink-0 aspect-[4/3] sm:aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] flex items-center justify-center border border-[#e2e8f0]/60 group-hover:border-blue-200/50 transition-colors p-4 sm:p-5">
          
-         <div className="absolute inset-0 opacity-[0.4] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none mix-blend-overlay"></div>
+         <div className="absolute inset-0 opacity-[0.3] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none mix-blend-overlay"></div>
          
          {/* Live Badge */}
-         <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-white shadow-sm rounded-xl border border-[#e2e8f0] z-20 group-hover:border-[#2563eb]/30 transition-colors">
-            <span className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse shadow-[0_0_8px_#2563eb]"></span>
-            <span className="text-[10px] font-black tracking-widest uppercase text-[#1e293b]">Published</span>
+         <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-white/90 backdrop-blur-md shadow-sm rounded-lg border border-[#e2e8f0] z-20">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_#2563eb]"></span>
+            <span className="text-[9px] font-black tracking-widest uppercase text-[#1e293b]">Published</span>
          </div>
 
          {/* PDF Paper Preview Wrapper */}
-         <div className="w-[86%] h-[82%] bg-white rounded-t-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.12)] overflow-hidden relative group-hover:h-[96%] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] border border-[#e2e8f0] border-b-0 z-10">
-           <img src="/research/research-paper.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top pointer-events-none" />
-           <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.03)] pointer-events-none" />
+         <div className="w-full h-full relative bg-white rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.06)] overflow-hidden group-hover:shadow-[0_15px_35px_rgba(37,99,235,0.15)] group-hover:-translate-y-2 group-hover:scale-[1.03] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] border border-[#f0f0f0]">
+           <img src="/research/research-paper.png" alt="Research Paper Preview" className="w-full h-full object-cover object-top opacity-95 group-hover:opacity-100 transition-opacity" />
+           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
          </div>
-         
        </div>
 
-       <div className="flex-1 flex flex-col w-full h-full py-2 z-10">
-         <h4 className="text-xl md:text-2xl lg:text-[1.7rem] font-black text-[#111] leading-tight mb-3 group-hover:text-[#2563eb] transition-colors duration-300">
+       <div className="flex-1 flex flex-col w-full h-full py-1 z-10">
+         <h4 className="text-xl md:text-[1.35rem] font-black text-[#111] leading-snug mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300">
             {pub.title}
          </h4>
-         <p className="text-[15px] md:text-base text-[#666] font-medium line-clamp-3 mb-6 leading-relaxed">
+         <p className="text-[14px] md:text-[15px] text-[#666] font-medium line-clamp-3 mb-6 leading-relaxed">
            {pub.description}
          </p>
          
          <div className="mt-auto flex items-center justify-between">
-           <div className="flex flex-wrap items-center gap-2">
-             <span className="px-3 md:px-4 py-1.5 md:py-2 bg-blue-50 border border-blue-100 text-[#2563eb] rounded-xl text-[10px] md:text-[11px] font-bold tracking-widest uppercase shadow-sm flex items-center gap-1.5">
-                <Database size={14} /> {pub.publisher}
+           <div className="flex flex-wrap items-center gap-2.5">
+             <span className="px-3 py-1.5 bg-blue-50/80 text-blue-700 rounded-lg text-[11px] font-bold tracking-wide uppercase border border-blue-100/50 flex items-center gap-1.5 shadow-sm">
+                <Database size={12} /> {pub.publisher}
              </span>
-             <span className="px-3 md:px-4 py-1.5 md:py-2 bg-gray-50 border border-gray-200 text-[#555] rounded-xl text-[10px] md:text-[11px] font-bold tracking-widest uppercase shadow-sm flex items-center gap-1.5">
-                <Globe size={14} /> {pub.date}
+             <span className="px-3 py-1.5 bg-slate-50 text-slate-600 rounded-lg text-[11px] font-bold tracking-wide uppercase border border-slate-200/60 flex items-center gap-1.5 shadow-sm">
+                <Globe size={12} /> {pub.date}
              </span>
            </div>
 
-           <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#f9f9f9] text-[#111] border border-[#eee] flex items-center justify-center group-hover:bg-[#2563eb] group-hover:text-white group-hover:border-[#2563eb] group-hover:scale-110 transition-all duration-300 shadow-sm shrink-0">
-             <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+           <div className="w-10 h-10 rounded-full bg-white text-[#111] border border-[#eaeaea] flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300 shrink-0">
+             <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
            </div>
          </div>
        </div>
@@ -309,87 +307,100 @@ export default function ResearchSection() {
   }, [selectedPubIndex]);
 
   return (
-    <section id="research" className="py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden isolate">
-      <div className="max-w-[1280px] mx-auto">
+    <section id="research" className="py-32 px-6 relative overflow-hidden isolate bg-transparent text-[#111111]">
+      
+      {/* Background Glowing Orbs for Premium feel */}
+      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-blue-400/20 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 animate-pulse pointer-events-none -z-10"></div>
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-400/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 pointer-events-none -z-10" style={{ animationDelay: '2s' }}></div>
+
+      <div className="max-w-[1280px] mx-auto relative z-10">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
-          className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
+          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
         >
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <div className="p-3 md:p-4 bg-gradient-to-tr from-[#2563eb] to-[#3b82f6] rounded-2xl md:rounded-3xl shadow-md transform -rotate-3">
+            <div className="p-3 md:p-4 bg-gradient-to-tr from-[#2563eb] to-[#3b82f6] rounded-2xl md:rounded-3xl shadow-lg shadow-blue-500/20 transform -rotate-3">
               <BookOpen className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={2.5} />
             </div>
             Research
           </div>
-          <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Academic papers and publications.</span>
+          <span className="text-xl md:text-2xl text-[#666] font-medium tracking-tight mt-6">Academic papers and publications.</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-              {/* LEFT: Author Profile Sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-center">
+          
+          {/* LEFT: Author Profile Sidebar */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col glassCard rounded-[2.5rem] overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 border border-white/60 p-6 md:p-10"
+            className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col bg-white/70 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] shadow-[0_10px_40px_rgba(0,0,0,0.04)] transition-all duration-500 border border-white p-8 md:p-10"
             whileHover={{ y: -5, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-[6px] border-white shadow-[0_15px_35px_rgba(0,0,0,0.1)] mb-6 flex items-center justify-center relative bg-gradient-to-tr from-gray-50 to-[#fdfdfd]">
-                <img src="https://github.com/ArshVermaGit.png" alt="Arsh Verma" className="w-full h-full object-cover" />
+              
+              {/* Premium Avatar */}
+              <div className="relative mb-6">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-full animate-spin-slow opacity-20 blur-md"></div>
+                <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-[4px] border-white shadow-xl relative z-10 bg-white">
+                  <img src="https://github.com/ArshVermaGit.png" alt="Arsh Verma" className="w-full h-full object-cover" />
+                </div>
               </div>
               
-              <h3 className="text-3xl md:text-[2rem] font-black text-[#111] leading-tight mb-2">
+              <h3 className="text-3xl md:text-[2.2rem] font-black text-[#111] leading-tight mb-2 tracking-tight">
                 Arsh Verma
               </h3>
-              <p className="text-xs text-[#888] font-black uppercase tracking-[0.2em] mb-10">Author & Researcher</p>
+              <p className="text-[11px] text-[#2563eb] font-black uppercase tracking-[0.25em] mb-10 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">Author & Researcher</p>
 
               {/* Exact ORCID Widget Match - Highly Polished */}
-              <div className="w-full relative mt-2 pt-10 pb-8 px-4 bg-white border-[2px] border-[#2563eb] rounded-2xl flex flex-col items-center justify-center shadow-sm">
-                
-                {/* Overlapping ORCID Logo */}
-                <div className="absolute -top-[1.65rem] left-1/2 -translate-x-1/2 bg-white px-3">
-                  <svg viewBox="0 0 256 256" className="w-[3.25rem] h-[3.25rem] fill-[#2563eb]" xmlns="http://www.w3.org/2000/svg">
+              <div 
+                className="w-full p-6 bg-gradient-to-b from-blue-50/50 to-white rounded-3xl border border-blue-100 shadow-[inset_0_2px_20px_rgba(255,255,255,1),0_5px_15px_rgba(37,99,235,0.05)] flex flex-col items-center justify-center group hover:shadow-[inset_0_2px_20px_rgba(255,255,255,1),0_15px_30px_rgba(37,99,235,0.1)] hover:border-blue-200 transition-all duration-500 cursor-pointer relative overflow-hidden" 
+                onClick={() => window.open('https://orcid.org/my-orcid?orcid=0009-0005-0171-857X', '_blank')}
+              >
+                {/* Background glow in ORCID box */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4 shadow-[0_5px_15px_rgba(37,99,235,0.3)] group-hover:scale-110 transition-transform duration-500 relative z-10">
+                  <svg viewBox="0 0 256 256" className="w-7 h-7 fill-white" xmlns="http://www.w3.org/2000/svg">
                     <path d="M128,0C57.3,0,0,57.3,0,128c0,70.7,57.3,128,128,128c70.7,0,128-57.3,128-128C256,57.3,198.7,0,128,0z M90.4,195.5H62.9V91.2h27.5V195.5z M76.6,76.9c-8.8,0-15.9-7.1-15.9-15.9c0-8.8,7.1-15.9,15.9-15.9s15.9,7.1,15.9,15.9C92.5,69.8,85.4,76.9,76.6,76.9z M197.8,143.4c0,35.4-23.7,52.1-57.1,52.1h-39.7V91.2h39.7c33.4,0,57.1,16.8,57.1,52.1V143.4z M170.3,143.4c0-20.9-10.7-30.8-31.5-30.8h-10.2v61.7h10.2C159.5,174.3,170.3,164.4,170.3,143.4z"/>
                   </svg>
                 </div>
                 
-                <div className="flex flex-col items-center text-center w-full">
-                  <span className="text-[#333] font-semibold text-[17px] md:text-[18px] leading-none mb-1.5">https://orcid.org/</span>
-                  <span className="text-[#111] font-black text-[22px] md:text-[24px] tracking-tight mb-6 whitespace-nowrap">
+                <div className="flex flex-col items-center text-center w-full relative z-10">
+                  <span className="text-slate-400 font-bold text-[11px] tracking-[0.15em] mb-1.5 uppercase">ORCID iD</span>
+                  <span className="text-[#111] font-black text-xl tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
                     0009-0005-0171-857X
                   </span>
                 </div>
                 
-                <a 
-                  href="https://orcid.org/my-orcid?orcid=0009-0005-0171-857X"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[#0077b5] font-bold text-[16px] hover:text-[#005582] hover:underline underline-offset-4 decoration-[#0077b5] transition-colors"
-                >
-                  Preview public record
-                </a>
+                <div className="text-blue-600 font-bold text-[13px] flex items-center gap-1 mt-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                  View full record <ArrowUpRight size={14} />
+                </div>
               </div>
 
             </div>
           </motion.div>
 
-          <div className="lg:col-span-8 flex flex-col h-full">
+          {/* RIGHT: Publications List */}
+          <div className="lg:col-span-8 flex flex-col h-fit">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4 }}
-              className="glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 flex flex-col flex-1 border border-[#eaeaea]"
-              whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
+              className="bg-white/70 backdrop-blur-2xl rounded-[2.5rem] p-6 md:p-8 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] shadow-[0_10px_40px_rgba(0,0,0,0.03)] transition-all duration-500 flex flex-col border border-white"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold tracking-tight flex items-center gap-2">
-                  <BookOpen size={20} className="text-[#2563eb]" /> Recent Publications
+              <div className="flex justify-between items-center mb-8 px-2">
+                <h3 className="text-2xl font-black tracking-tight text-[#111] flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+                    <BookOpen size={18} className="text-[#2563eb]" />
+                  </div>
+                  Recent Publications
                 </h3>
-                <span className="text-[9px] font-black text-[#888] uppercase tracking-widest">{publications.length} Papers</span>
+                <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-[10px] font-black uppercase tracking-widest">{publications.length} Papers</span>
               </div>
 
               <div className="flex flex-col gap-4 flex-1">
