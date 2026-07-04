@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { GitPullRequest, CircleDot, Star, GitFork, BookOpen, MapPin, Calendar, Users, Trophy, X, ChevronLeft, ChevronRight, Activity, UserCheck, Code, GitCommit, Flame } from 'lucide-react';
+import { GitPullRequest, CircleDot, Star, GitFork, BookOpen, MapPin, Calendar, Users, Trophy, X, ChevronLeft, ChevronRight, Activity, UserCheck, Code, GitCommit, Flame, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const badgesList = [
@@ -123,20 +123,164 @@ export default function GithubSection() {
 
   if (loading) {
     return (
-      <section id="github" className="py-32 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
+      <section id="github" className="isolate overflow-hidden relative py-32 px-6 bg-transparent text-[#111111]">
+        <div className="max-w-[1280px] mx-auto">
+          {/* Header Skeleton */}
+          <div className="flex flex-col items-center justify-center text-center mb-16 animate-pulse">
+            <div className="w-12 h-12 md:w-20 md:h-20 bg-gray-200 rounded-full mb-6"></div>
+            <div className="w-48 h-12 bg-gray-200 rounded-xl mb-6"></div>
+            <div className="w-64 h-6 bg-gray-200 rounded-lg"></div>
+          </div>
 
-      
-        <div className="animate-pulse text-lg font-medium tracking-tight">Loading GitHub Activity...</div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left Column */}
+            <div className="lg:col-span-4 flex flex-col gap-10">
+              {/* Profile Card Skeleton */}
+              <div className="glassCard rounded-[2rem] p-10 shadow-sm text-center flex flex-col items-center animate-pulse">
+                <div className="w-36 h-36 rounded-full bg-gray-200 mb-6"></div>
+                <div className="w-40 h-8 bg-gray-200 rounded-lg mb-2"></div>
+                <div className="w-32 h-5 bg-gray-200 rounded-lg mb-8"></div>
+                <div className="w-48 h-12 bg-gray-200 rounded-lg mb-10"></div>
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
+                  <div className="w-40 h-4 bg-gray-200 rounded-lg"></div>
+                  <div className="mt-4 w-full py-3.5 bg-gray-200 rounded-xl h-12"></div>
+                </div>
+              </div>
+
+              {/* Followers / Following Skeleton */}
+              <div className="glassCard rounded-[2rem] py-6 px-8 shadow-sm flex justify-around items-center animate-pulse">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-10 bg-gray-200 rounded-lg"></div>
+                  <div className="w-20 h-3 bg-gray-200 rounded-lg"></div>
+                </div>
+                <div className="w-[1px] h-12 bg-gray-200"></div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-10 bg-gray-200 rounded-lg"></div>
+                  <div className="w-20 h-3 bg-gray-200 rounded-lg"></div>
+                </div>
+              </div>
+
+              {/* Top Languages Skeleton */}
+              <div className="glassCard rounded-[2rem] p-8 shadow-sm animate-pulse">
+                <div className="w-40 h-6 bg-gray-200 rounded-lg mb-6"></div>
+                <div className="flex flex-wrap gap-3">
+                  <div className="w-20 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-24 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-16 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-28 h-8 bg-gray-200 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="lg:col-span-8 flex flex-col gap-10">
+              {/* Stats Grid Skeleton */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-pulse">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="glassCard rounded-[2rem] p-4 md:p-8 flex flex-col justify-center items-center text-center">
+                    <div className="w-24 h-3 bg-gray-200 rounded-lg mb-3"></div>
+                    <div className="w-16 h-10 bg-gray-200 rounded-lg"></div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Heatmap Skeleton */}
+              <div className="glassCard rounded-[2rem] p-8 shadow-sm animate-pulse h-64 flex flex-col justify-between">
+                <div className="flex justify-between items-end mb-8">
+                  <div>
+                    <div className="w-48 h-6 bg-gray-200 rounded-lg mb-2"></div>
+                    <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
+                  </div>
+                  <div className="w-48 h-4 bg-gray-200 rounded-lg"></div>
+                </div>
+                <div className="flex-1 w-full bg-gray-200 rounded-lg opacity-50"></div>
+              </div>
+
+              {/* Bottom Row Skeleton */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {/* Repos Skeleton */}
+                <div className="flex flex-col gap-5 animate-pulse">
+                  <div className="w-32 h-6 bg-gray-200 rounded-lg"></div>
+                  {[1, 2].map((i) => (
+                    <div key={i} className="glassCard rounded-3xl p-6 h-[148px] flex flex-col justify-between">
+                      <div>
+                        <div className="w-48 h-6 bg-gray-200 rounded-lg mb-3"></div>
+                        <div className="w-full h-4 bg-gray-200 rounded-lg mb-1"></div>
+                        <div className="w-3/4 h-4 bg-gray-200 rounded-lg"></div>
+                      </div>
+                      <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Activity Skeleton */}
+                <div className="flex flex-col gap-5 animate-pulse">
+                  <div className="w-40 h-6 bg-gray-200 rounded-lg"></div>
+                  <div className="flex flex-col gap-5 flex-1">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="glassCard rounded-3xl p-6 h-[100px] flex items-start gap-4">
+                        <div className="w-6 h-6 bg-gray-200 rounded-full shrink-0"></div>
+                        <div className="flex flex-col gap-2 w-full">
+                          <div className="w-full h-4 bg-gray-200 rounded-lg"></div>
+                          <div className="w-3/4 h-4 bg-gray-200 rounded-lg"></div>
+                          <div className="w-24 h-3 bg-gray-200 rounded-lg mt-1"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Achievements Skeleton */}
+          <div className="glassCard rounded-[2rem] p-8 shadow-sm mt-10 animate-pulse">
+            <div className="w-40 h-6 bg-gray-200 rounded-lg mb-8 mx-auto md:mx-0"></div>
+            <div className="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-evenly w-full">
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                <div key={i} className="bg-gray-200 p-3 rounded-2xl w-[90px] h-[90px] md:w-[106px] md:h-[106px]"></div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
     );
   }
 
   if (error || !data) {
     return (
-      <section id="github" className="py-32 px-6 bg-transparent text-[#111111]">
-        <div className="max-w-[1280px] mx-auto text-center border border-red-200 bg-red-50 p-8 rounded-2xl">
-          <h2 className="text-xl font-bold text-red-600 mb-2">GitHub Integration Error</h2>
-          <p className="text-red-800 text-sm">{error}</p>
+      <section id="github" className="isolate py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+            className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
+          >
+            <div className="flex items-center justify-center gap-4 md:gap-6">
+              <img src="https://skillicons.dev/icons?i=github" alt="GitHub" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm transform rotate-3" />
+              GitHub
+            </div>
+            <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">My daily contribution graph.</span>
+          </motion.h2>
+
+          <div className="w-full max-w-3xl mx-auto mt-10">
+             <div className="glassCard rounded-[3rem] p-10 md:p-16 text-center flex flex-col items-center shadow-lg border border-red-100/50 bg-white/50 backdrop-blur-xl relative overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 to-pink-50/40 -z-10 group-hover:scale-105 transition-transform duration-700"></div>
+               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-red-500 border border-red-100">
+                  <X size={40} strokeWidth={2.5} />
+               </div>
+               <h3 className="text-3xl md:text-4xl font-black text-[#111] tracking-tight mb-4">API Limit Reached</h3>
+               <p className="text-lg md:text-xl text-[#666] font-medium mb-10 max-w-lg leading-relaxed">
+                 Looks like the GitHub API limit has been reached. You can still check out all my open-source contributions directly on my profile!
+               </p>
+               <a href="https://github.com/ArshVermaGit" target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#111] text-white rounded-2xl font-bold hover:bg-black transition-all hover:shadow-xl hover:-translate-y-1 flex items-center gap-3 text-lg">
+                 View GitHub Profile <ExternalLink size={20} />
+               </a>
+             </div>
+          </div>
         </div>
       </section>
     );

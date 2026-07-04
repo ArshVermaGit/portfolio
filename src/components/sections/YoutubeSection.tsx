@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Play, Calendar, X, Video, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Calendar, X, Video, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface YoutubeFeed {
@@ -110,20 +110,100 @@ export default function YoutubeSection() {
 
   if (loading) {
     return (
-      <section id="youtube" className="py-32 px-6 bg-transparent text-[#111111] min-h-[600px] flex items-center justify-center relative overflow-hidden isolate">
+      <section id="youtube" className="isolate py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto">
+          {/* Header Skeleton */}
+          <div className="flex flex-col items-center justify-center text-center mb-16 animate-pulse">
+            <div className="w-12 h-12 md:w-20 md:h-20 bg-gray-200 rounded-full mb-6"></div>
+            <div className="w-48 h-12 bg-gray-200 rounded-xl mb-6"></div>
+            <div className="w-64 h-6 bg-gray-200 rounded-lg"></div>
+          </div>
 
-      
-        <div className="animate-pulse text-lg font-bold tracking-tight text-[#FF0000]">Loading YouTube Playlist...</div>
+          {/* PLAYLIST LAYOUT SKELETON */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            
+            {/* LEFT: Channel Profile Sidebar Skeleton */}
+            <div className="lg:col-span-4 flex flex-col glassCard rounded-[2rem] overflow-hidden animate-pulse">
+              {/* Banner Mock Skeleton */}
+              <div className="h-32 w-full bg-gray-200 relative"></div>
+              
+              <div className="px-8 pb-8 flex flex-col items-center -mt-12 relative z-10 text-center">
+                <div className="w-24 h-24 rounded-full bg-gray-300 border-4 border-white mb-4"></div>
+                
+                <div className="w-40 h-8 bg-gray-200 rounded-lg mb-2"></div>
+                <div className="w-32 h-4 bg-gray-200 rounded-lg mb-6"></div>
+
+                <div className="w-full grid grid-cols-2 gap-3 mb-6">
+                  <div className="bg-gray-200 rounded-2xl h-16"></div>
+                  <div className="bg-gray-200 rounded-2xl h-16"></div>
+                </div>
+
+                <div className="w-full h-14 bg-gray-200 rounded-2xl"></div>
+              </div>
+            </div>
+
+            {/* RIGHT: Recent Uploads Skeleton */}
+            <div className="lg:col-span-8 flex flex-col h-full">
+              <div className="glassCard rounded-[2rem] p-8 flex flex-col flex-1 animate-pulse">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="w-40 h-6 bg-gray-200 rounded-lg"></div>
+                  <div className="w-16 h-4 bg-gray-200 rounded-lg"></div>
+                </div>
+
+                <div className="flex flex-col gap-4 flex-1 justify-center">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="flex flex-col sm:flex-row items-center gap-6 p-5 rounded-3xl glassCard h-[220px] sm:h-[136px]">
+                      <div className="w-full sm:w-48 xl:w-56 aspect-video rounded-2xl bg-gray-200 shrink-0"></div>
+                      <div className="flex-1 flex flex-col w-full h-full py-2">
+                        <div className="w-full h-6 bg-gray-200 rounded-lg mb-2"></div>
+                        <div className="w-3/4 h-6 bg-gray-200 rounded-lg"></div>
+                        <div className="w-32 h-4 bg-gray-200 rounded-lg mt-auto"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
     );
   }
 
   if (!data || data.items.length === 0) {
     return (
-      <section id="youtube" className="py-32 px-6 bg-transparent text-[#111111]">
-        <div className="max-w-[1280px] mx-auto text-center border border-red-200 bg-red-50 p-8 rounded-3xl">
-          <h2 className="text-xl font-bold text-red-600 mb-2">No Videos</h2>
-          <p className="text-red-800 text-sm">No videos found.</p>
+      <section id="youtube" className="isolate py-32 px-6 bg-transparent text-[#111111] relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+            className="text-5xl md:text-8xl font-black tracking-tighter mb-16 text-[#111111] flex flex-col items-center justify-center text-center"
+          >
+            <div className="flex items-center justify-center gap-4 md:gap-6">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" className="w-12 h-12 md:w-20 md:h-20 drop-shadow-sm transform rotate-3" />
+              YouTube
+            </div>
+            <span className="text-xl md:text-2xl text-[#888888] font-medium tracking-tight mt-6">Sharing knowledge and tutorials.</span>
+          </motion.h2>
+
+          <div className="w-full max-w-3xl mx-auto mt-10">
+             <div className="glassCard rounded-[3rem] p-10 md:p-16 text-center flex flex-col items-center shadow-lg border border-red-100/50 bg-white/50 backdrop-blur-xl relative overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 to-rose-50/40 -z-10 group-hover:scale-105 transition-transform duration-700"></div>
+               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-red-500 border border-red-100">
+                  <X size={40} strokeWidth={2.5} />
+               </div>
+               <h3 className="text-3xl md:text-4xl font-black text-[#111] tracking-tight mb-4">API Limit Reached</h3>
+               <p className="text-lg md:text-xl text-[#666] font-medium mb-10 max-w-lg leading-relaxed">
+                 Looks like the YouTube API limit has been reached. You can still check out all my latest videos directly on my channel!
+               </p>
+               <a href="https://www.youtube.com/@ArshCreates" target="_blank" rel="noreferrer" className="px-8 py-4 bg-[#FF0000] text-white rounded-2xl font-bold hover:bg-[#cc0000] transition-all hover:shadow-xl hover:-translate-y-1 flex items-center gap-3 text-lg">
+                 View YouTube Channel <ExternalLink size={20} />
+               </a>
+             </div>
+          </div>
         </div>
       </section>
     );
