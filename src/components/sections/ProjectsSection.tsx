@@ -304,13 +304,6 @@ function ProjectListItem({ project, onClick, idx }: { project: any, onClick: () 
     fetchRepo();
   }, [project.repo]);
 
-  const gradients = [
-    "from-[#f6f8fd] to-[#f1f5f9]", 
-    "from-[#fdfbfb] to-[#ebedee]",
-    "from-[#f8f9fa] to-[#e9ecef]",
-    "from-[#fcfcfc] to-[#f5f5f5]",
-  ];
-  const bgGradient = gradients[idx % gradients.length];
 
   return (
     <motion.div 
