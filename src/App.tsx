@@ -58,7 +58,7 @@ export default function App() {
   });
 
   useLayoutEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     let rafId: number | null = null;
 
     const updateBounds = () => {
