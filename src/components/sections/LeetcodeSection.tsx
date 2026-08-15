@@ -104,6 +104,7 @@ const leetcodeBadges = [
   { img: 'dcc-2026-4.png', name: 'April 2026' },
   { img: '50_1080_1080.png', name: '50 Days Badge' },
   { img: '100_1080_1080.png', name: '100 Days Badge' },
+  { img: '200_1080_1080.png', name: '200 Days Badge' },
 ];
 
 export default function LeetcodeSection() {
@@ -238,8 +239,8 @@ export default function LeetcodeSection() {
                 <div className="w-32 h-6 bg-gray-200 rounded-lg"></div>
                 <div className="w-16 h-4 bg-gray-200 rounded-lg"></div>
               </div>
-              <div className="flex-1 grid grid-cols-4 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
-                {[1, 2, 3, 4].map(i => (
+              <div className="flex-1 grid grid-cols-5 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
+                {[1, 2, 3, 4, 5].map(i => (
                   <div key={i} className="glassCard w-full max-w-[130px] aspect-square rounded-[1.5rem] bg-gray-200"></div>
                 ))}
               </div>
@@ -486,8 +487,8 @@ export default function LeetcodeSection() {
               </button>
             </div>
 
-            <div className="flex-1 grid grid-cols-4 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
-               {leetcodeBadges.slice(0, 4).map((badge, idx) => (
+            <div className="flex-1 grid grid-cols-5 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
+               {leetcodeBadges.slice(0, 5).map((badge, idx) => (
                   <div key={idx} className="relative group glassCard border border-[#eaeaea] p-4 rounded-[1.5rem] hover:bg-white hover:border-[#ddd] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg cursor-pointer aspect-square flex items-center justify-center w-full max-w-[130px]" onClick={() => setSelectedBadgeIndex(idx)}>
                     <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-[90%] h-[90%] object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
                   </div>
