@@ -136,6 +136,7 @@ export default function Navbar() {
         <motion.button 
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           className="bg-white/80 backdrop-blur-xl border border-white p-3.5 rounded-[1.25rem] shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center text-black"
         >
           {isMobileMenuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
@@ -194,6 +195,7 @@ export default function Navbar() {
                 className="glassBtn group relative"
                 onClick={() => scrollTo(section.id)}
                 title={section.label}
+                aria-label={section.label}
               >
                 {/* Active Liquid Indicator Pill */}
                 {isActive && (

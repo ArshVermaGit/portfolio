@@ -31,7 +31,7 @@ function ResumeModal({ onClose }: { onClose: () => void }) {
             <a href="/hero/resume.pdf" download className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#111] text-white rounded-full font-bold text-xs md:text-sm hover:bg-black transition-colors shrink-0">
                Download <Download size={16} className="w-3.5 h-3.5 md:w-4 md:h-4" />
             </a>
-            <button onClick={onClose} className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md border border-[#eaeaea] shrink-0">
+            <button onClick={onClose} aria-label="Close modal" className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md border border-[#eaeaea] shrink-0">
               <X size={20} strokeWidth={3} />
             </button>
           </div>
