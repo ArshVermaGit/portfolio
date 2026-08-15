@@ -58,25 +58,36 @@ export default function App() {
   });
 
   useLayoutEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    let rafId: number | null = null;
+
     const updateBounds = () => {
-      if (heroRef.current && aboutRef.current) {
-        const heroRect = heroRef.current.getBoundingClientRect();
-        const aboutRect = aboutRef.current.getBoundingClientRect();
-        setBounds({
-          hero: {
-            top: heroRect.top + window.scrollY,
-            left: heroRect.left + window.scrollX,
-            width: heroRect.width,
-            height: heroRect.height
-          },
-          about: {
-            top: aboutRect.top + window.scrollY,
-            left: aboutRect.left + window.scrollX,
-            width: aboutRect.width,
-            height: aboutRect.height
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        if (rafId) cancelAnimationFrame(rafId);
+        
+        rafId = requestAnimationFrame(() => {
+          if (heroRef.current && aboutRef.current) {
+            const heroRect = heroRef.current.getBoundingClientRect();
+            const aboutRect = aboutRef.current.getBoundingClientRect();
+            setBounds({
+              hero: {
+                top: heroRect.top + window.scrollY,
+                left: heroRect.left + window.scrollX,
+                width: heroRect.width,
+                height: heroRect.height
+              },
+              about: {
+                top: aboutRect.top + window.scrollY,
+                left: aboutRect.left + window.scrollX,
+                width: aboutRect.width,
+                height: aboutRect.height
+              }
+            });
           }
         });
-      }
+      }, 50); // Debounce resize calculations
     };
     
     // Initial and slightly delayed calculations to ensure layout is complete
