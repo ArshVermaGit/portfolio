@@ -218,7 +218,7 @@ export default function LeetcodeSection() {
             </div>
 
             {/* 3. CONTESTS PARTICIPATED SKELETON */}
-            <div className="lg:col-span-6 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
+            <div className="lg:col-span-5 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
               <div className="flex justify-between items-center mb-6">
                 <div className="w-24 h-6 bg-gray-200 rounded-lg"></div>
                 <div className="w-16 h-5 bg-gray-200 rounded-full"></div>
@@ -234,7 +234,7 @@ export default function LeetcodeSection() {
             </div>
 
             {/* 5. ACHIEVEMENTS SKELETON */}
-            <div className="lg:col-span-6 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
+            <div className="lg:col-span-7 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
               <div className="flex justify-between items-center mb-6">
                 <div className="w-32 h-6 bg-gray-200 rounded-lg"></div>
                 <div className="w-16 h-4 bg-gray-200 rounded-lg"></div>
@@ -448,7 +448,7 @@ export default function LeetcodeSection() {
           {/* 3. CONTESTS PARTICIPATED */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="lg:col-span-6 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-5 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
@@ -477,7 +477,7 @@ export default function LeetcodeSection() {
           {/* 5. ACHIEVEMENTS */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="lg:col-span-6 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-7 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
