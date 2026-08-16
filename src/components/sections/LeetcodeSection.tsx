@@ -100,6 +100,7 @@ function parseLeetCodeCalendar(submissionCalendar: string) {
 }
 
 const leetcodeBadges = [
+  { img: 'Top_100_Liked-1.png', name: 'Top 100 Liked' },
   { img: 'dcc-2026-3.png', name: 'March 2026' },
   { img: 'dcc-2026-4.png', name: 'April 2026' },
   { img: '50_1080_1080.png', name: '50 Days Badge' },
@@ -218,7 +219,7 @@ export default function LeetcodeSection() {
             </div>
 
             {/* 3. CONTESTS PARTICIPATED SKELETON */}
-            <div className="lg:col-span-5 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
+            <div className="lg:col-span-4 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
               <div className="flex justify-between items-center mb-6">
                 <div className="w-24 h-6 bg-gray-200 rounded-lg"></div>
                 <div className="w-16 h-5 bg-gray-200 rounded-full"></div>
@@ -234,13 +235,13 @@ export default function LeetcodeSection() {
             </div>
 
             {/* 5. ACHIEVEMENTS SKELETON */}
-            <div className="lg:col-span-7 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
+            <div className="lg:col-span-8 glassCard rounded-[2rem] p-8 h-full flex flex-col animate-pulse">
               <div className="flex justify-between items-center mb-6">
                 <div className="w-32 h-6 bg-gray-200 rounded-lg"></div>
                 <div className="w-16 h-4 bg-gray-200 rounded-lg"></div>
               </div>
-              <div className="flex-1 grid grid-cols-5 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
-                {[1, 2, 3, 4, 5].map(i => (
+              <div className="flex-1 grid grid-cols-3 md:grid-cols-6 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
+                {[1, 2, 3, 4, 5, 6].map(i => (
                   <div key={i} className="glassCard w-full max-w-[130px] aspect-square rounded-[1.5rem] bg-gray-200"></div>
                 ))}
               </div>
@@ -448,7 +449,7 @@ export default function LeetcodeSection() {
           {/* 3. CONTESTS PARTICIPATED */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="lg:col-span-5 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-4 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
@@ -477,7 +478,7 @@ export default function LeetcodeSection() {
           {/* 5. ACHIEVEMENTS */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="lg:col-span-7 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+            className="lg:col-span-8 glassCard rounded-[2rem] p-8 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
             whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }}
           >
             <div className="flex justify-between items-center mb-6">
@@ -487,8 +488,8 @@ export default function LeetcodeSection() {
               </button>
             </div>
 
-            <div className="flex-1 grid grid-cols-5 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
-               {leetcodeBadges.slice(0, 5).map((badge, idx) => (
+            <div className="flex-1 grid grid-cols-3 md:grid-cols-6 gap-4 xl:gap-6 w-full items-center place-items-center mt-4">
+               {leetcodeBadges.slice(0, 6).map((badge, idx) => (
                   <div key={idx} className="relative group glassCard border border-[#eaeaea] p-4 rounded-[1.5rem] hover:bg-white hover:border-[#ddd] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg cursor-pointer aspect-square flex items-center justify-center w-full max-w-[130px]" onClick={() => setSelectedBadgeIndex(idx)}>
                     <img src={`/Leetcode/${badge.img}`} alt={badge.name} className="w-[90%] h-[90%] object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
                   </div>
