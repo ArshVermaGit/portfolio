@@ -53,7 +53,7 @@ interface GithubData {
     totalRepos: number;
     totalContributions: number;
     currentStreak: number;
-    maxStreak: number;
+    totalActiveDays: number;
     totalStars: number;
     totalForks: number;
   };
@@ -402,7 +402,7 @@ export default function GithubSection() {
                 { label: 'CONTRIBUTIONS', value: data.stats.totalContributions, icon: <GitCommit size={14} /> },
                 { label: 'TOTAL STARS', value: data.stats.totalStars, icon: <Star size={14} /> },
                 { label: 'TOTAL FORKS', value: data.stats.totalForks, icon: <GitFork size={14} /> },
-                { label: 'MAX STREAK', value: `${data.stats.maxStreak} Days`, icon: <Flame size={14} /> },
+                { label: 'TOTAL ACTIVE DAYS', value: `${data.stats.totalActiveDays} Days`, icon: <Flame size={14} /> },
               ].map((stat, idx) => (
                 <motion.div key={idx} whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", bounce: 0.5 } }} className="glassCard  rounded-[2rem] p-4 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-center items-center text-center">
                   <p className="text-[10px] md:text-[11px] text-[#888888] font-bold uppercase tracking-widest mb-2 md:mb-3 flex items-center gap-1.5 justify-center">{stat.icon} {stat.label}</p>

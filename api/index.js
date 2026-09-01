@@ -92,8 +92,7 @@ const GITHUB_GRAPHQL_QUERY = `
 
 function calculateStreaks(weeks) {
   let currentStreak = 0;
-  let maxStreak = 0;
-  let tempStreak = 0;
+  let totalActiveDays = 0;
   const today = new Date().toISOString().split('T')[0];
   
   const days = weeks.flatMap(week => week.contributionDays);
@@ -101,10 +100,7 @@ function calculateStreaks(weeks) {
   for (let i = 0; i < days.length; i++) {
     const day = days[i];
     if (day.contributionCount > 0) {
-      tempStreak++;
-      maxStreak = Math.max(maxStreak, tempStreak);
-    } else {
-      tempStreak = 0;
+      totalActiveDays++;
     }
   }
 
@@ -119,7 +115,7 @@ function calculateStreaks(weeks) {
     }
   }
 
-  return { currentStreak, maxStreak };
+  return { currentStreak, totalActiveDays };
 }
 
 app.get('/api/github', async (req, res) => {
@@ -148,7 +144,7 @@ app.get('/api/github', async (req, res) => {
     }
 
     const user = response.data.data.user;
-    const { currentStreak, maxStreak } = calculateStreaks(user.contributionsCollection.contributionCalendar.weeks);
+    const { currentStreak, totalActiveDays } = calculateStreaks(user.contributionsCollection.contributionCalendar.weeks);
 
     // Calculate aggregated stats from first 100 repositories
     let totalStars = 0;
@@ -197,7 +193,7 @@ app.get('/api/github', async (req, res) => {
         totalRepos: user.repositories.totalCount,
         totalContributions: user.contributionsCollection.contributionCalendar.totalContributions,
         currentStreak,
-        maxStreak,
+        totalActiveDays,
         totalStars,
         totalForks
       },
