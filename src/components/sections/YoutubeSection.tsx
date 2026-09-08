@@ -261,22 +261,28 @@ export default function YoutubeSection() {
               </h3>
               <p className="text-sm text-[#666] font-bold uppercase tracking-wider mb-6">@ArshCreates</p>
 
-              <div className="w-full grid grid-cols-2 gap-3 mb-6">
+              <div className="w-full grid grid-cols-2 gap-4 mb-6">
                 <button 
                   onClick={() => setSelectedVideoIdx(0)}
-                  className="bg-white rounded-2xl p-3 border border-[#eee] flex flex-col items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                  className="relative overflow-hidden bg-white rounded-[1.25rem] p-4 flex flex-col items-center justify-center border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(255,0,0,0.12)] hover:border-red-100 transition-all duration-300 cursor-pointer group hover:-translate-y-1"
                 >
-                  <Play size={18} className="text-[#888] mb-1 group-hover:text-red-600 group-hover:fill-red-600 transition-colors" />
-                  <span className="font-black text-[#111] text-sm group-hover:text-red-600 transition-colors">Play Latest</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center mb-2.5 group-hover:bg-red-600 group-hover:text-white group-hover:shadow-md group-hover:shadow-red-500/30 transition-all duration-300 relative z-10">
+                    <Play size={18} className="fill-current ml-0.5" />
+                  </div>
+                  <span className="font-black text-[#111] text-sm tracking-wide relative z-10 group-hover:text-red-600 transition-colors">Play Latest</span>
                 </button>
                 <a 
                   href="https://www.youtube.com/@ArshCreates/videos"
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-white rounded-2xl p-3 border border-[#eee] flex flex-col items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                  className="relative overflow-hidden bg-white rounded-[1.25rem] p-4 flex flex-col items-center justify-center border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-gray-200 transition-all duration-300 cursor-pointer group hover:-translate-y-1"
                 >
-                  <Video size={18} className="text-[#888] mb-1 group-hover:text-red-600 transition-colors" />
-                  <span className="font-black text-[#111] text-sm group-hover:text-red-600 transition-colors">All Videos</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="w-10 h-10 rounded-full bg-gray-50 text-gray-500 flex items-center justify-center mb-2.5 group-hover:bg-gray-800 group-hover:text-white group-hover:shadow-md group-hover:shadow-gray-800/20 transition-all duration-300 relative z-10">
+                    <Video size={18} />
+                  </div>
+                  <span className="font-black text-[#111] text-sm tracking-wide relative z-10 group-hover:text-gray-900 transition-colors">All Videos</span>
                 </a>
               </div>
 
