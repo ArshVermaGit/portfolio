@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, Shield, X, Medal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Trophy, Flame, Code2, CalendarIcon, X, Medal, Activity, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 
 interface AllQuestionsCount {
@@ -28,7 +28,6 @@ interface LeetCodeData {
       realName: string;
       userAvatar: string;
       aboutMe: string;
-      reputation: number;
       ranking: number;
     };
     submitStats: {
@@ -329,6 +328,7 @@ export default function LeetcodeSection() {
 
   const { matchedUser, recentSubmissionList, allQuestionsCount, userContestRanking } = data;
   const calendar = parseLeetCodeCalendar(matchedUser.submissionCalendar);
+  const totalActiveDays = Object.values(JSON.parse(matchedUser.submissionCalendar) as Record<string, number>).filter(count => count > 0).length;
   
   const totalSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'All')?.count || 0;
   const easySolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'Easy')?.count || 0;
@@ -388,8 +388,8 @@ export default function LeetcodeSection() {
                 <span className="text-xl font-black text-[#111]">{matchedUser.profile.ranking.toLocaleString()}</span>
               </div>
               <div className="glassCard rounded-3xl p-4 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#888] flex items-center gap-1.5 mb-1.5"><Shield size={12} className="text-[#00b8a3]" /> Reputation</span>
-                <span className="text-xl font-black text-[#111]">{attendedContests}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#888] flex items-center gap-1.5 mb-1.5"><CalendarIcon size={12} className="text-[#00b8a3]" /> Active Days</span>
+                <span className="text-xl font-black text-[#111]">{totalActiveDays}</span>
               </div>
             </div>
           </motion.div>
