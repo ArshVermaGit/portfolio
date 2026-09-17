@@ -223,7 +223,6 @@ const LEETCODE_GRAPHQL_QUERY = `
         realName
         userAvatar
         aboutMe
-        reputation
         ranking
       }
       submitStats {
