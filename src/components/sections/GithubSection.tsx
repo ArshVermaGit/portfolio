@@ -126,49 +126,49 @@ export default function GithubSection() {
       <section id="github" className="isolate overflow-hidden relative py-32 px-6 bg-transparent text-[#111111]">
         <div className="max-w-[1280px] mx-auto">
           {/* Header Skeleton */}
-          <div className="flex flex-col items-center justify-center text-center mb-16 animate-pulse">
-            <div className="w-12 h-12 md:w-20 md:h-20 bg-gray-200 rounded-full mb-6"></div>
-            <div className="w-48 h-12 bg-gray-200 rounded-xl mb-6"></div>
-            <div className="w-64 h-6 bg-gray-200 rounded-lg"></div>
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <div className="w-12 h-12 md:w-20 md:h-20 skeleton-bone-circle mb-6 skeleton-fade-in" style={{ animationDelay: '0s' }}></div>
+            <div className="w-48 h-12 skeleton-bone mb-6 skeleton-fade-in" style={{ animationDelay: '0.05s' }}></div>
+            <div className="w-64 h-6 skeleton-bone skeleton-fade-in" style={{ animationDelay: '0.1s' }}></div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column */}
             <div className="lg:col-span-4 flex flex-col gap-10">
               {/* Profile Card Skeleton */}
-              <div className="glassCard rounded-[2rem] p-10 shadow-sm text-center flex flex-col items-center animate-pulse">
-                <div className="w-36 h-36 rounded-full bg-gray-200 mb-6"></div>
-                <div className="w-40 h-8 bg-gray-200 rounded-lg mb-2"></div>
-                <div className="w-32 h-5 bg-gray-200 rounded-lg mb-8"></div>
-                <div className="w-48 h-12 bg-gray-200 rounded-lg mb-10"></div>
+              <div className="glassCard rounded-[2rem] p-10 shadow-sm text-center flex flex-col items-center skeleton-fade-in" style={{ animationDelay: '0.15s' }}>
+                <div className="w-36 h-36 rounded-full skeleton-bone-circle mb-6 skeleton-delay-1"></div>
+                <div className="w-40 h-8 skeleton-bone mb-2 skeleton-delay-2"></div>
+                <div className="w-32 h-5 skeleton-bone mb-8 skeleton-delay-2"></div>
+                <div className="w-48 h-12 skeleton-bone rounded-xl mb-10 skeleton-delay-3"></div>
                 <div className="flex flex-col items-center gap-4 w-full">
-                  <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
-                  <div className="w-40 h-4 bg-gray-200 rounded-lg"></div>
-                  <div className="mt-4 w-full py-3.5 bg-gray-200 rounded-xl h-12"></div>
+                  <div className="w-32 h-4 skeleton-bone skeleton-delay-3"></div>
+                  <div className="w-40 h-4 skeleton-bone skeleton-delay-4"></div>
+                  <div className="mt-4 w-full h-12 skeleton-bone-dark rounded-xl skeleton-delay-4"></div>
                 </div>
               </div>
 
               {/* Followers / Following Skeleton */}
-              <div className="glassCard rounded-[2rem] py-6 px-8 shadow-sm flex justify-around items-center animate-pulse">
+              <div className="glassCard rounded-[2rem] py-6 px-8 shadow-sm flex justify-around items-center skeleton-fade-in" style={{ animationDelay: '0.25s' }}>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-10 bg-gray-200 rounded-lg"></div>
-                  <div className="w-20 h-3 bg-gray-200 rounded-lg"></div>
+                  <div className="w-12 h-10 skeleton-bone skeleton-delay-2"></div>
+                  <div className="w-20 h-3 skeleton-bone skeleton-delay-3"></div>
                 </div>
-                <div className="w-[1px] h-12 bg-gray-200"></div>
+                <div className="w-[1px] h-12 bg-[#eee]/40"></div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-10 bg-gray-200 rounded-lg"></div>
-                  <div className="w-20 h-3 bg-gray-200 rounded-lg"></div>
+                  <div className="w-12 h-10 skeleton-bone skeleton-delay-3"></div>
+                  <div className="w-20 h-3 skeleton-bone skeleton-delay-4"></div>
                 </div>
               </div>
 
               {/* Top Languages Skeleton */}
-              <div className="glassCard rounded-[2rem] p-8 shadow-sm animate-pulse">
-                <div className="w-40 h-6 bg-gray-200 rounded-lg mb-6"></div>
+              <div className="glassCard rounded-[2rem] p-8 shadow-sm skeleton-fade-in" style={{ animationDelay: '0.35s' }}>
+                <div className="w-40 h-6 skeleton-bone mb-6 skeleton-delay-2"></div>
                 <div className="flex flex-wrap gap-3">
-                  <div className="w-20 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-24 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-16 h-8 bg-gray-200 rounded-full"></div>
-                  <div className="w-28 h-8 bg-gray-200 rounded-full"></div>
+                  <div className="w-20 h-8 skeleton-bone-circle skeleton-delay-3"></div>
+                  <div className="w-24 h-8 skeleton-bone-circle skeleton-delay-4"></div>
+                  <div className="w-16 h-8 skeleton-bone-circle skeleton-delay-5"></div>
+                  <div className="w-28 h-8 skeleton-bone-circle skeleton-delay-6"></div>
                 </div>
               </div>
             </div>
@@ -176,55 +176,55 @@ export default function GithubSection() {
             {/* Right Column */}
             <div className="lg:col-span-8 flex flex-col gap-10">
               {/* Stats Grid Skeleton */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-pulse">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="glassCard rounded-[2rem] p-4 md:p-8 flex flex-col justify-center items-center text-center">
-                    <div className="w-24 h-3 bg-gray-200 rounded-lg mb-3"></div>
-                    <div className="w-16 h-10 bg-gray-200 rounded-lg"></div>
+                  <div key={i} className="glassCard rounded-[2rem] p-4 md:p-8 flex flex-col justify-center items-center text-center skeleton-fade-in" style={{ animationDelay: `${0.15 + i * 0.08}s` }}>
+                    <div className={`w-24 h-3 skeleton-bone mb-3 skeleton-delay-${i}`}></div>
+                    <div className={`w-16 h-10 skeleton-bone skeleton-delay-${Math.min(i + 1, 7)}`}></div>
                   </div>
                 ))}
               </div>
 
               {/* Heatmap Skeleton */}
-              <div className="glassCard rounded-[2rem] p-8 shadow-sm animate-pulse h-64 flex flex-col justify-between">
+              <div className="glassCard rounded-[2rem] p-8 shadow-sm h-64 flex flex-col justify-between skeleton-fade-in" style={{ animationDelay: '0.45s' }}>
                 <div className="flex justify-between items-end mb-8">
                   <div>
-                    <div className="w-48 h-6 bg-gray-200 rounded-lg mb-2"></div>
-                    <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
+                    <div className="w-48 h-6 skeleton-bone mb-2 skeleton-delay-1"></div>
+                    <div className="w-32 h-4 skeleton-bone skeleton-delay-2"></div>
                   </div>
-                  <div className="w-48 h-4 bg-gray-200 rounded-lg"></div>
+                  <div className="w-48 h-4 skeleton-bone skeleton-delay-3"></div>
                 </div>
-                <div className="flex-1 w-full bg-gray-200 rounded-lg opacity-50"></div>
+                <div className="flex-1 w-full skeleton-bone rounded-lg opacity-60 skeleton-delay-4"></div>
               </div>
 
               {/* Bottom Row Skeleton */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Repos Skeleton */}
-                <div className="flex flex-col gap-5 animate-pulse">
-                  <div className="w-32 h-6 bg-gray-200 rounded-lg"></div>
+                <div className="flex flex-col gap-5 skeleton-fade-in" style={{ animationDelay: '0.55s' }}>
+                  <div className="w-32 h-6 skeleton-bone skeleton-delay-1"></div>
                   {[1, 2].map((i) => (
                     <div key={i} className="glassCard rounded-3xl p-6 h-[148px] flex flex-col justify-between">
                       <div>
-                        <div className="w-48 h-6 bg-gray-200 rounded-lg mb-3"></div>
-                        <div className="w-full h-4 bg-gray-200 rounded-lg mb-1"></div>
-                        <div className="w-3/4 h-4 bg-gray-200 rounded-lg"></div>
+                        <div className={`w-48 h-6 skeleton-bone mb-3 skeleton-delay-${i}`}></div>
+                        <div className={`w-full h-4 skeleton-bone mb-1 skeleton-delay-${i + 1}`}></div>
+                        <div className={`w-3/4 h-4 skeleton-bone skeleton-delay-${Math.min(i + 2, 7)}`}></div>
                       </div>
-                      <div className="w-32 h-4 bg-gray-200 rounded-lg"></div>
+                      <div className={`w-32 h-4 skeleton-bone skeleton-delay-${Math.min(i + 2, 7)}`}></div>
                     </div>
                   ))}
                 </div>
 
                 {/* Activity Skeleton */}
-                <div className="flex flex-col gap-5 animate-pulse">
-                  <div className="w-40 h-6 bg-gray-200 rounded-lg"></div>
+                <div className="flex flex-col gap-5 skeleton-fade-in" style={{ animationDelay: '0.65s' }}>
+                  <div className="w-40 h-6 skeleton-bone skeleton-delay-1"></div>
                   <div className="flex flex-col gap-5 flex-1">
                     {[1, 2, 3].map((i) => (
                       <div key={i} className="glassCard rounded-3xl p-6 h-[100px] flex items-start gap-4">
-                        <div className="w-6 h-6 bg-gray-200 rounded-full shrink-0"></div>
+                        <div className={`w-6 h-6 skeleton-bone-circle shrink-0 skeleton-delay-${i}`}></div>
                         <div className="flex flex-col gap-2 w-full">
-                          <div className="w-full h-4 bg-gray-200 rounded-lg"></div>
-                          <div className="w-3/4 h-4 bg-gray-200 rounded-lg"></div>
-                          <div className="w-24 h-3 bg-gray-200 rounded-lg mt-1"></div>
+                          <div className={`w-full h-4 skeleton-bone skeleton-delay-${i + 1}`}></div>
+                          <div className={`w-3/4 h-4 skeleton-bone skeleton-delay-${Math.min(i + 2, 7)}`}></div>
+                          <div className={`w-24 h-3 skeleton-bone mt-1 skeleton-delay-${Math.min(i + 3, 7)}`}></div>
                         </div>
                       </div>
                     ))}
@@ -235,11 +235,11 @@ export default function GithubSection() {
           </div>
           
           {/* Achievements Skeleton */}
-          <div className="glassCard rounded-[2rem] p-8 shadow-sm mt-10 animate-pulse">
-            <div className="w-40 h-6 bg-gray-200 rounded-lg mb-8 mx-auto md:mx-0"></div>
+          <div className="glassCard rounded-[2rem] p-8 shadow-sm mt-10 skeleton-fade-in" style={{ animationDelay: '0.75s' }}>
+            <div className="w-40 h-6 skeleton-bone mb-8 mx-auto md:mx-0 skeleton-delay-1"></div>
             <div className="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-evenly w-full">
               {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                <div key={i} className="bg-gray-200 p-3 rounded-2xl w-[90px] h-[90px] md:w-[106px] md:h-[106px]"></div>
+                <div key={i} className={`skeleton-bone p-3 rounded-2xl w-[90px] h-[90px] md:w-[106px] md:h-[106px] skeleton-delay-${i}`}></div>
               ))}
             </div>
           </div>
