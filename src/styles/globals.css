@@ -201,3 +201,79 @@ body::before {
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* ═══════════ SKELETON SHIMMER ═══════════ */
+@keyframes shimmer {
+  0% {
+    background-position: -700px 0;
+  }
+  100% {
+    background-position: 700px 0;
+  }
+}
+
+.skeleton-bone {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(0, 0, 0, 0.04) 25%,
+    rgba(0, 0, 0, 0.08) 37%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(0, 0, 0, 0.08) 63%,
+    rgba(0, 0, 0, 0.04) 75%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  background-size: 1400px 100%;
+  animation: shimmer 2.4s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+.skeleton-bone-dark {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.10) 37%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(0, 0, 0, 0.10) 63%,
+    rgba(0, 0, 0, 0.06) 75%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  background-size: 1400px 100%;
+  animation: shimmer 2.4s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+.skeleton-bone-circle {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.09) 37%,
+    rgba(255, 255, 255, 0.40) 50%,
+    rgba(0, 0, 0, 0.09) 63%,
+    rgba(0, 0, 0, 0.05) 75%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  background-size: 1400px 100%;
+  animation: shimmer 2.4s ease-in-out infinite;
+  border-radius: 9999px;
+}
+
+/* Stagger delays for skeleton children */
+.skeleton-delay-1 { animation-delay: 0.1s; }
+.skeleton-delay-2 { animation-delay: 0.2s; }
+.skeleton-delay-3 { animation-delay: 0.3s; }
+.skeleton-delay-4 { animation-delay: 0.4s; }
+.skeleton-delay-5 { animation-delay: 0.5s; }
+.skeleton-delay-6 { animation-delay: 0.6s; }
+.skeleton-delay-7 { animation-delay: 0.7s; }
+
+@keyframes skeleton-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.skeleton-fade-in {
+  animation: skeleton-fade-in 0.5s ease-out both;
+}
