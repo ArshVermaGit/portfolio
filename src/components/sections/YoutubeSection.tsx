@@ -95,7 +95,13 @@ export default function YoutubeSection() {
   }, []);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedVideoIdx(null);
+      if (e.key === 'ArrowRight') setSelectedVideoIdx(prev => prev === null ? null : (prev >= data!.items.length - 1 ? prev : prev + 1));
+      if (e.key === 'ArrowLeft') setSelectedVideoIdx(prev => prev === null ? null : (prev <= 0 ? prev : prev - 1));
+    };
     if (selectedVideoIdx !== null) {
+      window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
       if ((window as any).lenis) (window as any).lenis.stop();
     } else {
@@ -103,10 +109,11 @@ export default function YoutubeSection() {
       if ((window as any).lenis) (window as any).lenis.start();
     }
     return () => { 
+      window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto'; 
       if ((window as any).lenis) (window as any).lenis.start();
     };
-  }, [selectedVideoIdx]);
+  }, [selectedVideoIdx, data]);
 
   if (loading) {
     return (
@@ -394,6 +401,7 @@ export default function YoutubeSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-md overscroll-none"
+              onClick={() => setSelectedVideoIdx(null)}
             >
               {/* Left Navigation */}
               {selectedVideoIdx !== null && selectedVideoIdx > 0 && (
