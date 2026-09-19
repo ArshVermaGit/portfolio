@@ -621,7 +621,6 @@ export default function LeetcodeSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#111111]/80 backdrop-blur-md p-4 overscroll-none"
-              onClick={() => setSelectedBadgeIndex(null)}
             >
               {selectedBadgeIndex !== null && selectedBadgeIndex > 0 && (
                 <div className="absolute inset-y-0 left-2 md:left-6 flex items-center z-[10000] pointer-events-none">

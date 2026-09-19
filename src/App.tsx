@@ -38,16 +38,14 @@ export default function App() {
 
     (window as any).lenis = lenis;
 
-    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      requestAnimationFrame(raf);
     }
 
-    rafId = requestAnimationFrame(raf);
+    requestAnimationFrame(raf);
 
     return () => {
-      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
@@ -94,20 +92,14 @@ export default function App() {
     
     // Initial and slightly delayed calculations to ensure layout is complete
     updateBounds();
-    const initTimeout1 = setTimeout(updateBounds, 100);
-    const initTimeout2 = setTimeout(updateBounds, 500);
+    setTimeout(updateBounds, 100);
+    setTimeout(updateBounds, 500);
     document.fonts.ready.then(updateBounds);
 
     const resizeObserver = new ResizeObserver(updateBounds);
     resizeObserver.observe(document.body);
     
-    return () => {
-      resizeObserver.disconnect();
-      if (timeoutId) clearTimeout(timeoutId);
-      if (rafId) cancelAnimationFrame(rafId);
-      clearTimeout(initTimeout1);
-      clearTimeout(initTimeout2);
-    };
+    return () => resizeObserver.disconnect();
   }, []);
 
   const { scrollY } = useScroll();
