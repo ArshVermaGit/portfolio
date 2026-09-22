@@ -1,74 +1,144 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website for **Arsh Verma** — a single-page application showcasing projects, experience, research, open-source contributions, and coding profiles with live data from GitHub, LeetCode, and YouTube.
 
-Currently, two official plugins are available:
+**Live:** [arshverma.com](https://arshverma.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+| Layer     | Technology                                                  |
+| --------- | ----------------------------------------------------------- |
+| Frontend  | React 19, TypeScript, Tailwind CSS                          |
+| Build     | Vite                                                        |
+| Backend   | Express (Vercel Serverless Functions)                       |
+| Animation | Framer Motion, Lenis (smooth scroll)                        |
+| Icons     | Lucide React                                                |
+| Hosting   | Vercel                                                      |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Sections
 
-## Expanding the ESLint configuration
+- **Hero** — introduction with animated profile photo
+- **About** — background and personal summary
+- **Education** — academic history
+- **Tech Stack** — languages, frameworks, and tools
+- **Projects** — featured software projects
+- **AI Projects** — machine-learning and AI work
+- **Experience** — professional work history
+- **Hackathons** — competition highlights
+- **Research** — publications and research work
+- **Certifications** — professional certifications
+- **Open Source** — merged PRs and contributions
+- **GitHub** — live contribution graph, streak, top languages, and pinned repos
+- **LeetCode** — solve stats, rating, contest history, and recent submissions
+- **YouTube** — latest videos from the channel
+- **Coding Profiles** — links to competitive programming profiles
+- **Contact** — reach-out form and social links
+- **Support** — ways to support the work
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## API Routes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The Express backend proxies external APIs to keep tokens server-side and avoid CORS issues.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Endpoint         | Source             | Description                                         |
+| ---------------- | ------------------ | --------------------------------------------------- |
+| `GET /api/github`   | GitHub GraphQL API | Profile, repos, contribution calendar, PRs, issues  |
+| `GET /api/leetcode` | LeetCode GraphQL   | Solve stats, contest ranking, recent submissions    |
+| `GET /api/youtube`  | YouTube RSS Feed   | Latest videos from the channel                      |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** ≥ 18
+- A **GitHub personal access token** (for the GitHub section)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/ArshVermaGit/portfolio.git
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Create a .env file
+cp .env.example .env   # or create manually
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Add your tokens to `.env`:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
-# portfolio
+GITHUB_TOKEN=ghp_your_token_here
+```
+
+### Development
+
+```bash
+# Start both frontend (Vite) and backend (Express) concurrently
+npm run dev
+```
+
+- Frontend: [http://localhost:5173](http://localhost:5173)
+- Backend: [http://localhost:3001](http://localhost:3001)
+
+You can also run them independently:
+
+```bash
+npm run dev:frontend   # Vite dev server only
+npm run dev:backend    # Express API server only
+```
+
+### Build & Preview
+
+```bash
+npm run build      # TypeScript check + Vite production build
+npm run preview    # Preview the production build locally
+```
+
+### Testing
+
+```bash
+npm test           # Unit tests (Vitest)
+npm run test:e2e   # End-to-end tests (Playwright)
+```
+
+### Lint
+
+```bash
+npm run lint       # ESLint
+```
+
+## Project Structure
+
+```
+├── api/
+│   └── index.js            # Express API (GitHub, LeetCode, YouTube routes)
+├── public/                 # Static assets (images, icons, branding)
+├── src/
+│   ├── components/
+│   │   ├── layout/         # Navbar, Footer
+│   │   └── sections/       # All page sections (Hero, About, Projects, etc.)
+│   ├── styles/             # Additional stylesheets
+│   ├── App.tsx             # Root component with smooth-scroll + animated profile
+│   ├── main.tsx            # Entry point
+│   └── index.css           # Global styles
+├── .github/                # Issue/PR templates, Dependabot config
+├── vercel.json             # Vercel routing (rewrites /api/* to the Express handler)
+├── tailwind.config.ts      # Tailwind CSS configuration
+├── vite.config.ts          # Vite configuration
+├── playwright.config.ts    # Playwright E2E config
+└── package.json
+```
+
+## Deployment
+
+The site is deployed on **Vercel**. The `vercel.json` rewrites all `/api/*` requests to the Express serverless function at `api/index.js`. Push to `main` to trigger a deploy.
+
+## Contributing
+
+Contributions are welcome! Please see the [pull request template](.github/PULL_REQUEST_TEMPLATE.md) and [issue templates](.github/ISSUE_TEMPLATE/) for guidelines.
+
+## License
+
+This project is open source. See the repository for license details.
