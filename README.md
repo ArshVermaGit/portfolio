@@ -2,7 +2,7 @@
 
 Personal portfolio website for **Arsh Verma** — showcasing projects, experience, research, and live coding stats.
 
-**Live:** [arshverma.com](https://arshverma.com)
+**Live:** [arsh-verma.vercel.app](https://arsh-verma.vercel.app)
 
 ## Tech Stack
 
